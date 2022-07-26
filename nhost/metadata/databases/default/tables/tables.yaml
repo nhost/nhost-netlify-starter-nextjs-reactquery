@@ -8,5 +8,6 @@
 - "!include auth_users.yaml"
 - "!include public_conferences.yaml"
 - "!include public_speaker.yaml"
+- "!include public_talk.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"
