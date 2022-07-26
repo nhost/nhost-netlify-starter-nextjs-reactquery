@@ -4,6 +4,7 @@ table:
 select_permissions:
 - permission:
     columns:
+    - avatar_url
     - bio
     - conference_id
     - id
