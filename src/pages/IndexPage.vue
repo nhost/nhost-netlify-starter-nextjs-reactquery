@@ -47,6 +47,26 @@
               See Talks
             </button>
           </div>
+          <div>
+            <h2
+              class="text-white font-medium text-center text-xl leading-normal py-2 mt-12"
+            >
+              Talks
+            </h2>
+            <div
+              v-for="(item, i) in result.conferences"
+              :key="i"
+              :value="item.id"
+            >
+              <h2
+                v-for="talk in item.talks"
+                class="text-white font-medium flex"
+                text="item.name"
+              >
+                {{ talk.name }}
+              </h2>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -81,6 +101,16 @@ const GET_CONFERENCES = gql`
     conferences {
       id
       name
+      speakers {
+        name
+      }
+      talks {
+        name
+        speaker {
+          name
+          bio
+        }
+      }
     }
   }
 `;

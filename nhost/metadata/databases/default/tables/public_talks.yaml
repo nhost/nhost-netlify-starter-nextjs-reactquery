@@ -8,6 +8,16 @@ object_relationships:
 select_permissions:
 - permission:
     columns:
+    - conference_id
+    - description
+    - duration
+    - id
+    - name
+    - speaker_id
+    filter: {}
+  role: public
+- permission:
+    columns:
     - description
     - duration
     - id
