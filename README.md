@@ -7,8 +7,10 @@ This is an example project using Vue.js and Nhost to create a simple conference 
 - Apollo (via nhost-apollo)
 
 ## Previews (WIP)
-Backend: https://whffelfshrazjyufyihs.nhost.run/console/login
-Front-end: https://friendly-khapse-f8288a.netlify.app/
+- Backend: https://whffelfshrazjyufyihs.nhost.run/console/login
+- Front-end: https://friendly-khapse-f8288a.netlify.app/
+
+
 
 
 ## Features
@@ -104,6 +106,9 @@ After a few seconds, you should get a PostgreSQL database, a GraphQL API with Ha
 ### Connecting your Nhost application to a GitHub repository
 
 Through the Nhost console interface you can connect this template to your Nhost application. When you do this, your application will be automatically deployed and any following updates you push to your code will also be automatically be deployed.
+
+![Screenshot from 2022-07-26 14-17-35](https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png)
+
 
 ## Deploy to Netlify
 
