@@ -1,6 +1,10 @@
 table:
   name: talks
   schema: public
+object_relationships:
+- name: speaker
+  using:
+    foreign_key_constraint_on: speaker_id
 select_permissions:
 - permission:
     columns:

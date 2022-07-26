@@ -9,6 +9,13 @@ array_relationships:
       table:
         name: speakers
         schema: public
+- name: talks
+  using:
+    foreign_key_constraint_on:
+      column: conference_id
+      table:
+        name: talks
+        schema: public
 select_permissions:
 - permission:
     columns:
