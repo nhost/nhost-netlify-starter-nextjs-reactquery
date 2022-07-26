@@ -4,7 +4,9 @@ table:
 select_permissions:
 - permission:
     columns:
+    - bio
     - conference_id
     - name
+    - social
     filter: {}
   role: user
