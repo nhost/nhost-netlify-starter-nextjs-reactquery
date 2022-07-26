@@ -51,7 +51,7 @@
             <h2
               class="text-white font-medium text-center text-xl leading-normal py-2 mt-12"
             >
-              Talks
+              Agenda
             </h2>
             <div
               v-for="(item, i) in result.conferences"
