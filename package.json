@@ -1,5 +1,5 @@
 {
-  "name": "@nhost-examples/vue-apollo",
+  "name": "vue-netlify-starter",
   "private": true,
   "version": "0.0.0",
   "scripts": {
@@ -16,8 +16,8 @@
   "dependencies": {
     "@apollo/client": "^3.6.9",
     "@mdi/font": "5.9.55",
-    "@nhost/apollo": "*",
-    "@nhost/vue": "*",
+    "@nhost/apollo": "^0.5.24",
+    "@nhost/vue": "^0.4.0",
     "@vue/apollo-composable": "4.0.0-alpha.18",
     "graphql": "15.7.2",
     "graphql-tag": "^2.12.6",
