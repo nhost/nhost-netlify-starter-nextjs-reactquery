@@ -6,6 +6,11 @@ This is an example project using Vue.js and Nhost to create a simple conference 
 - Tailwind v3.0
 - Apollo (via nhost-apollo)
 
+## Previews (WIP)
+Backend: https://whffelfshrazjyufyihs.nhost.run/console/login
+Front-end: https://friendly-khapse-f8288a.netlify.app/
+
+
 ## Features
 - Conference organizers are able to register and log into the application.
 - Conference organizers are able to create/edit/delete conferences and add speakers to them.
@@ -13,6 +18,7 @@ This is an example project using Vue.js and Nhost to create a simple conference 
 ## Table of Contents:
 
 - [VueJS and Nhost Starter](#vuejs-and-nhost-starter)
+  - [Previews (WIP)](#previews-wip)
   - [Features](#features)
   - [Table of Contents:](#table-of-contents)
   - [Getting Started](#getting-started)
