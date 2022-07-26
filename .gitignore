@@ -23,3 +23,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.nhost
+web/node_modules
+node_modules
+functions/node_modules
