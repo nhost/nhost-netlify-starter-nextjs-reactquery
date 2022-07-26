@@ -1,3 +1,11 @@
 table:
   name: conferences
   schema: public
+select_permissions:
+- permission:
+    columns:
+    - id
+    - name
+    - slug
+    filter: {}
+  role: user

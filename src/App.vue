@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar class="bg-header">
+    <v-app-bar>
       <template #prepend>
         <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       </template>
@@ -30,6 +30,7 @@
 </template>
 
 <script lang="ts" setup>
+import "@fontsource/inter";
 import { useDisplay } from "vuetify";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
