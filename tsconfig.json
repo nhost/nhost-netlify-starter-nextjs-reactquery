@@ -1,9 +1,12 @@
 {
-  "extends": "../../config/tsconfig.base.json",
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "lib": [
+      "DOM",
+      "DOM.Iterable",
+      "ESNext"
+    ],
     "allowJs": false,
     "skipLibCheck": true,
     "esModuleInterop": false,
@@ -19,5 +22,7 @@
     "declaration": false,
     "declarationMap": false,
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }
