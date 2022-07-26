@@ -6,6 +6,16 @@ select_permissions:
     columns:
     - bio
     - conference_id
+    - id
+    - name
+    - social
+    - user_id
+    filter: {}
+  role: public
+- permission:
+    columns:
+    - bio
+    - conference_id
     - name
     - social
     filter: {}
