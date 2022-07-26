@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
-import { createVuetify, ThemeDefinition } from "vuetify";
 import "./styles/index.css";
 
 import { createApolloClient } from "@nhost/apollo";
@@ -8,42 +7,8 @@ import { NhostClient } from "@nhost/vue";
 import { DefaultApolloClient } from "@vue/apollo-composable";
 import { inspect } from "@xstate/inspect";
 
-// eslint-disable-next-line import/no-unresolved
-import "vuetify/styles";
-
-import EmailPasswordless from "./components/EmailPasswordlessForm.vue";
-import ErrorSnackBar from "./components/ErrorSnackBar.vue";
-import OauthLinks from "./components/OAuthLinks.vue";
-import VerificationEmailDialog from "./components/VerificationEmailDialog.vue";
 import App from "./App.vue";
 import { routes } from "./routes";
-
-import "@mdi/font/css/materialdesignicons.css";
-
-const customLightTheme: ThemeDefinition = {
-  dark: false,
-  colors: {
-    background: "#FFFFFF",
-    surface: "#FFFFFF",
-    primary: "#2b82ff",
-    "primary-darken-1": "#3700B3",
-    secondary: "#03DAC6",
-    "secondary-darken-1": "#018786",
-    error: "#B00020",
-    info: "#2196F3",
-    success: "#4CAF50",
-    warning: "#FB8C00",
-  },
-};
-
-const vuetify = createVuetify({
-  theme: {
-    defaultTheme: "customLightTheme",
-    themes: {
-      customLightTheme,
-    },
-  },
-});
 
 const devTools = import.meta.env.VITE_DEBUG === "true";
 if (devTools) {
@@ -85,10 +50,5 @@ router.beforeEach(async (to) => {
 createApp(App)
   .provide(DefaultApolloClient, apolloClient)
   .use(router)
-  .use(vuetify)
   .use(nhost)
-  .component("ErrorSnackBar", ErrorSnackBar)
-  .component("EmailPasswordless", EmailPasswordless)
-  .component("OauthLinks", OauthLinks)
-  .component("VerificationEmailDialog", VerificationEmailDialog)
   .mount("#app");

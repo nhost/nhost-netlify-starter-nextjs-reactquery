@@ -1,21 +1,5 @@
 <template>
-  <div className="d-flex align-center flex-column">
-    <v-card width="400" tile>
-      <v-card-title> Apollo </v-card-title>
-      <v-card-text>
-        <v-list density="compact" v-if="result">
-          <v-list-subheader>Conferences</v-list-subheader>
-          <v-list-item
-            v-for="(item, i) in result.conferences"
-            :key="i"
-            :value="item.id"
-          >
-            <v-list-item-title v-text="item.name"></v-list-item-title>
-          </v-list-item>
-        </v-list>
-      </v-card-text>
-    </v-card>
-  </div>
+  <div className="d-flex align-center flex-column">asd</div>
 </template>
 
 <script lang="ts" setup>
@@ -41,7 +25,6 @@ const { result } = useQuery(
   null,
   computed(() => ({
     fetchPolicy: "cache-and-network",
-    enabled: isAuthenticated.value,
   }))
 );
 </script>

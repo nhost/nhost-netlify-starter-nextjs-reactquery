@@ -12,6 +12,14 @@ array_relationships:
 select_permissions:
 - permission:
     columns:
+    - creator_user_id
+    - id
+    - name
+    - slug
+    filter: {}
+  role: public
+- permission:
+    columns:
     - id
     - name
     - slug
