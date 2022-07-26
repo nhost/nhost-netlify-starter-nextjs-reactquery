@@ -1,10 +1,24 @@
-# Nhost Vue 3 + Apollo example
+# VueJS and Nhost Starter
 
-## See this example live
+This is an example project using Vue.js and Nhost to create a simple conference management application.
 
-Visit our demo application on [vue-apollo.example.nhost.io](https://vue-apollo.example.nhost.io)
+- Vuejs v3
+- Tailwind v3.0
+- Apollo (via nhost-apollo)
 
-## Get started
+## Features
+- Conference organizers are able to register and log into the application.
+- Conference organizers are able to create/edit/delete conferences and add speakers to them.
+
+## Table of Contents:
+
+- [VueJS and Nhost Starter](#vuejs-and-nhost-starter)
+  - [Features](#features)
+  - [Table of Contents:](#table-of-contents)
+  - [Getting Started](#getting-started)
+  - [Deploy to Netlify](#deploy-to-netlify)
+
+## Getting Started
 
 1. Clone the repository
 
@@ -13,27 +27,22 @@ git clone https://github.com/nhost/nhost
 cd nhost
 ```
 
-2. Install and build dependencies
+2. Install the dependencies
 
 ```sh
-pnpm install
-pnpm build
+yarn install
 ```
 
-3. Go to the example folder
-
-```sh
-cd examples/vue-apollo
-```
-
-4. Terminal 1: Start Nhost
+3. Terminal 1: Start Nhost
 
 ```sh
 nhost dev
 ```
 
-5. Terminal 2: Start the Vue application
+4. Terminal 2: Start the Vue application
 
 ```sh
-pnpm run dev
+yarn dev
 ```
+
+## Deploy to Netlify
