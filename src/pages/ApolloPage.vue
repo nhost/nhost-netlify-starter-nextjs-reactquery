@@ -40,7 +40,6 @@ const { result } = useQuery(
   GET_CONFERENCES,
   null,
   computed(() => ({
-    pollInterval: 5000,
     fetchPolicy: "cache-and-network",
     enabled: isAuthenticated.value,
   }))

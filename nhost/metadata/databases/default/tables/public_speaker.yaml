@@ -1,0 +1,10 @@
+table:
+  name: speaker
+  schema: public
+select_permissions:
+- permission:
+    columns:
+    - conference_id
+    - name
+    filter: {}
+  role: user
