@@ -21,7 +21,8 @@ This is an example project using Vue.js and Nhost to create a simple conference 
   - [Features](#features)
   - [Table of Contents:](#table-of-contents)
   - [Getting Started](#getting-started)
-  - [Schema Description](#schema-description)
+  - [Project Structure](#project-structure)
+  - [Database Schema Structure](#database-schema-structure)
   - [Deploy to Nhost](#deploy-to-nhost)
     - [Creating a new Nhost Application](#creating-a-new-nhost-application)
     - [Connecting your Nhost application to a GitHub repository](#connecting-your-nhost-application-to-a-github-repository)
@@ -54,7 +55,28 @@ nhost dev
 yarn dev
 ```
 
-## Schema Description
+## Project Structure
+
+Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
+
+```
+/
+├── nhost/
+├── .nhost/
+├── public/
+│   └── favicon.ico
+├── src/
+│   ├── components/
+│   │   └── ...vue
+│   └── pages/
+│       └── IndexPage.vue
+└── package.json
+```
+
+`nhost` folder
+`.nhost` folder
+
+## Database Schema Structure
 
 ```graphql
 query ConferencesQuery {
