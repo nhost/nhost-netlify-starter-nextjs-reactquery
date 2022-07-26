@@ -7,6 +7,7 @@ select_permissions:
     - bio
     - conference_id
     - id
+    - job_description
     - name
     - social
     - user_id
