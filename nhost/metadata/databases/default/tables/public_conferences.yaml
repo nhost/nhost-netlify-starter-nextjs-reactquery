@@ -20,7 +20,9 @@ select_permissions:
 - permission:
     columns:
     - creator_user_id
+    - featured
     - id
+    - location
     - name
     - slug
     filter: {}

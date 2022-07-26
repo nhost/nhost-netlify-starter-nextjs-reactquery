@@ -28,12 +28,12 @@
           className="flex flex-col w-full  mx-auto place-content-between py-20"
         >
           <h1 class="text-white font-bold text-center text-5xl leading-snug">
-            Custom Conference Project (Nhost + Vue.js)
+            {{ result.conferences[0].name }}
           </h1>
           <h2
             class="text-white font-medium text-center text-xl leading-normal py-2"
           >
-            7-8 Nov 2022 · San Francisco and online
+            date · {{ result.conferences[0].location }}
           </h2>
           <div class="mx-auto space-x-3 mt-2">
             <button
@@ -98,9 +98,10 @@ import { useQuery } from "@vue/apollo-composable";
 
 const GET_CONFERENCES = gql`
   query ConferencesQuery {
-    conferences {
+    conferences(where: { featured: { _eq: true } }) {
       id
       name
+      location
       speakers {
         name
       }
