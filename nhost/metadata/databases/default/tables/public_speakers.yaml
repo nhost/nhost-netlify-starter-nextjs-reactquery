@@ -1,0 +1,23 @@
+table:
+  name: speakers
+  schema: public
+select_permissions:
+- permission:
+    columns:
+    - bio
+    - conference_id
+    - id
+    - job_description
+    - name
+    - social
+    - user_id
+    filter: {}
+  role: public
+- permission:
+    columns:
+    - bio
+    - conference_id
+    - name
+    - social
+    filter: {}
+  role: user

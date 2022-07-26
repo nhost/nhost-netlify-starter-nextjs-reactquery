@@ -1,0 +1,12 @@
+table:
+  name: talks
+  schema: public
+select_permissions:
+- permission:
+    columns:
+    - description
+    - duration
+    - id
+    - name
+    filter: {}
+  role: user

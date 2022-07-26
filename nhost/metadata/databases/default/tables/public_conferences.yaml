@@ -7,7 +7,7 @@ array_relationships:
     foreign_key_constraint_on:
       column: conference_id
       table:
-        name: speaker
+        name: speakers
         schema: public
 select_permissions:
 - permission:
