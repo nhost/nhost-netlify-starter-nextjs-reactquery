@@ -107,8 +107,21 @@ After a few seconds, you should get a PostgreSQL database, a GraphQL API with Ha
 
 Through the Nhost console interface you can connect this template to your Nhost application. When you do this, your application will be automatically deployed and any following updates you push to your code will also be automatically be deployed.
 
+1. Fork/clone this repository to your GitHub account.
+
+2. Provide the require permissions to select this repository to the official Nhost GitHub application.
+
+3. Find your repository on the Nhost Console & connect it:
+
 ![Screenshot from 2022-07-26 14-17-35](https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png)
 
+4. Once connected, the application will automatically deploy.
+
+![Screenshot from 2022-07-26 14-20-04](https://user-images.githubusercontent.com/20285232/181070624-f12571a4-6b77-4a2f-acab-9e156306b392.png)
+
+5. Add changes to your application. Any changes you push to your repository will also be automatically be deployed (you can see your deployments on the "Deployments" section of the console)
+
+![Screenshot from 2022-07-26 14-20-18](https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png)
 
 ## Deploy to Netlify
 
