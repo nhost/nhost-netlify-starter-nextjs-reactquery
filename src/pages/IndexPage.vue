@@ -57,14 +57,21 @@
               v-for="(item, i) in result.conferences"
               :key="i"
               :value="item.id"
+              class="space-y-4 flex flex-col"
             >
-              <h2
+              <div
                 v-for="talk in item.talks"
-                class="text-white font-medium flex"
-                text="item.name"
+                class="text-white font-medium flex flex-col"
               >
-                {{ talk.name }}
-              </h2>
+                <div>
+                  <h1 className="text-lg flex">{{ talk.name }}</h1>
+                </div>
+                <div>
+                  <h2 className="text-xs self-center">
+                    {{ talk.speaker.name }}
+                  </h2>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -102,9 +109,6 @@ const GET_CONFERENCES = gql`
       id
       name
       location
-      speakers {
-        name
-      }
       talks {
         name
         speaker {
