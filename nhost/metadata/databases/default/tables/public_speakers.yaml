@@ -6,7 +6,6 @@ select_permissions:
     columns:
     - avatar_url
     - bio
-    - conference_id
     - id
     - job_description
     - name
@@ -17,7 +16,6 @@ select_permissions:
 - permission:
     columns:
     - bio
-    - conference_id
     - name
     - social
     filter: {}

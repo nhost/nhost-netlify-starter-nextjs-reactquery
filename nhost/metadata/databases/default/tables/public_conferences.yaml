@@ -2,13 +2,6 @@ table:
   name: conferences
   schema: public
 array_relationships:
-- name: speakers
-  using:
-    foreign_key_constraint_on:
-      column: conference_id
-      table:
-        name: speakers
-        schema: public
 - name: talks
   using:
     foreign_key_constraint_on:
