@@ -23,7 +23,7 @@ export const routes: RouteRecordRaw[] = [
     path: "/signin",
     component: SignIn,
     children: [
-      { path: "", component: SignInMain },
+      { path: "signin", component: SignInEmailPasword },
       {
         path: "passwordless",
         component: SignInEmailPaswordless,
