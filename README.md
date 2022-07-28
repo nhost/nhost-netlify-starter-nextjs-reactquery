@@ -1,5 +1,8 @@
 # VueJS and Nhost Starter
 
+
+
+
 This is an example project using Vue.js and Nhost to create a simple conference management application.
 
 - Vuejs v3
