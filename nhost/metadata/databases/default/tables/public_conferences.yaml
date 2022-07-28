@@ -13,11 +13,13 @@ select_permissions:
 - permission:
     columns:
     - creator_user_id
+    - end_date
     - featured
     - id
     - location
     - name
     - slug
+    - start_date
     filter: {}
   role: public
 - permission:

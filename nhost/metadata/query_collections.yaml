@@ -1,1 +1,26 @@
-[]
+- name: allowed-queries
+  definition:
+    queries:
+    - name: getConferences
+      query: |-
+        query ConferencesQuery {
+          conferences {
+            id
+            name
+            talks {
+            name
+              speaker {
+                name
+              }
+            }
+          }
+        }
+    - name: featuredConference
+      query: |-
+        query featuredConference {
+          conferences(where: {featured: {_eq: true}}) {
+            id
+            name
+            location
+          }
+        }
