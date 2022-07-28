@@ -1,0 +1,10 @@
+query Speakers {
+  speakers {
+    id
+    name
+    bio
+    social
+    job_description
+    avatar_url
+  }
+}

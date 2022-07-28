@@ -1,0 +1,17 @@
+query Talks {
+  talks {
+    id
+    name
+    start_date
+    end_date
+    speaker {
+      name
+    }
+  }
+}
+
+mutation UpdateTalk($id: uuid!, $talk: talks_set_input!) {
+  update_talks_by_pk(pk_columns: { id: $id }, _set: $talk) {
+    id
+  }
+}

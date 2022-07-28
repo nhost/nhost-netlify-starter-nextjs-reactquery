@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+
+body {
+  font-family: "Inter", sans-serif;
+  @apply overflow-y-hidden overflow-hidden;
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(to right, #ffffff08 0.5px, transparent 1px),
+    linear-gradient(to bottom, #ffffff08 0.5px, transparent 1px);
+}
+
+.grotesk {
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.stroke {
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+.gradient {
+  color: transparent;
+  background-clip: text;
+  background-image: linear-gradient(89.97deg, #9819a0 0.02%, #0d7f8c 123.85%);
+}
+
+.text-shadow {
+  text-shadow: 5px 1px 10px #00000005;
+}
+
+@tailwind utilities;

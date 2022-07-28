@@ -1,0 +1,19 @@
+query ConferencesQuery {
+  conferences(where: { featured: { _eq: true } }) {
+    id
+    name
+    location
+    start_date
+    end_date
+    talks(order_by: { start_date: asc }) {
+      id
+      name
+      start_date
+      end_date
+      speaker {
+        name
+        bio
+      }
+    }
+  }
+}
