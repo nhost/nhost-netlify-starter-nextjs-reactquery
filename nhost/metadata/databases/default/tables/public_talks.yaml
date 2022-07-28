@@ -11,9 +11,11 @@ select_permissions:
     - conference_id
     - description
     - duration
+    - end_date
     - id
     - name
     - speaker_id
+    - start_date
     filter: {}
   role: public
 - permission:
