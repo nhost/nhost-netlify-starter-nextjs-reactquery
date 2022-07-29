@@ -202,7 +202,7 @@ NEXT_PUBLIC_NHOST_REGION=YOUR_NHOST_APP_REGION
 You can select these variables from your app overview:
                                                                                                                                  
 <p align="center" width="100%">
-<img width="50%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
+<img width="33%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
 </p>
 
 Then add the variables to your Netlify Deployment:     
