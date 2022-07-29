@@ -97,10 +97,10 @@ query ConferencesQuery {
 
 Nhost is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
 
-- Database: PostgreSQL
-- Instant GraphQL API: Hasura
-- Authentication: Hasura Auth
-- Storage: Hasura Storage
+Database: PostgreSQL
+Instant GraphQL API: Hasura
+Authentication: Hasura Auth
+Storage: Hasura Storage
 
 We make it easy to build and deploy this backend using our platform that takes care of configuration, security, and performance. Things just works and scale automatically so you can focus on your product and on your business.
 
