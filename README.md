@@ -63,6 +63,10 @@ Inside this folder you are going to see both the specification for the backend (
 └── package.json
 ```
 
+</details>
+
+
+
 ## GraphQL API structure
 
 <details><summary>Query Examples</summary>
