@@ -9,5 +9,6 @@
 - "!include public_conferences.yaml"
 - "!include public_speakers.yaml"
 - "!include public_talks.yaml"
+- "!include public_tickets.yaml"
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"
