@@ -1,5 +1,5 @@
-mutation AddEmail($ticket: tickets_insert_input!) {
-  insert_tickets_one(object: $ticket) {
-    id
+mutation AddEmail($ticket: [tickets_insert_input!]!) {
+  insert_tickets(objects: $ticket) {
+    affected_rows
   }
 }

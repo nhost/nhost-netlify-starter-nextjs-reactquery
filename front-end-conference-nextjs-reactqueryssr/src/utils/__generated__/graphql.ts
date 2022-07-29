@@ -5319,11 +5319,11 @@ export type DeleteTalkMutationVariables = Exact<{
 export type DeleteTalkMutation = { __typename?: 'mutation_root', delete_talks_by_pk?: { __typename?: 'talks', id: any } | null };
 
 export type AddEmailMutationVariables = Exact<{
-  ticket: Tickets_Insert_Input;
+  ticket: Array<Tickets_Insert_Input> | Tickets_Insert_Input;
 }>;
 
 
-export type AddEmailMutation = { __typename?: 'mutation_root', insert_tickets_one?: { __typename?: 'tickets', id: number } | null };
+export type AddEmailMutation = { __typename?: 'mutation_root', insert_tickets?: { __typename?: 'tickets_mutation_response', affected_rows: number } | null };
 
 
 export const ConferencesQueryDocument = `
@@ -5509,9 +5509,9 @@ export const useDeleteTalkMutation = <
     );
 useDeleteTalkMutation.fetcher = (variables: DeleteTalkMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteTalkMutation, DeleteTalkMutationVariables>(DeleteTalkDocument, variables, options);
 export const AddEmailDocument = `
-    mutation AddEmail($ticket: tickets_insert_input!) {
-  insert_tickets_one(object: $ticket) {
-    id
+    mutation AddEmail($ticket: [tickets_insert_input!]!) {
+  insert_tickets(objects: $ticket) {
+    affected_rows
   }
 }
     `;
