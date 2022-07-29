@@ -125,9 +125,9 @@ query Talks {
 
 ## Deploy to Nhost
     
-<img align="left" width="40%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
+<img align="left" width="35%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
 
-[Nhost](https://nhost.io/) is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
+[Nhost](https://nhost.io/) is an open source Firebase alternative with GraphQL. More importantly, by creating a project with Nhost you automatically get the following:
 ~~~
 - Database: PostgreSQL.
 - Instant GraphQL API: Hasura.
