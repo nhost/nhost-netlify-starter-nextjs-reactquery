@@ -20,9 +20,13 @@ select_permissions:
   role: public
 - permission:
     columns:
+    - conference_id
     - description
     - duration
+    - end_date
     - id
     - name
+    - speaker_id
+    - start_date
     filter: {}
   role: user
