@@ -1,26 +1,24 @@
 import { Header } from '@/components/Header';
-import { Listbox } from '@headlessui/react';
-import { Talk } from '@/components/Talk';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import Layout from '@/components/Layout';
+import SpeakerListbox from '@/components/SpeakerListbox';
+import { Talk } from '@/components/Talk';
 import {
   useAddTalkMutation,
   useSpeakersQuery,
   useTalksQuery,
 } from '@/utils/__generated__/graphql';
+import { useAuthenticated } from '@nhost/react';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import SpeakerListbox from '@/components/SpeakerListbox';
+
 import { queryClient } from '../utils/react-query-client';
-import { useUserAvatarUrl, useAuthenticated } from '@nhost/react';
 
 const Talks = () => {
   return (
     <Layout title="Home | Next.js + TypeScript Example">
-      <div className="bg-grid bg-header h-screen text-white">
-        <Header />
-        <div className="flex flex-col max-w-4xl mx-auto my-10">
-          <ConferenceTalks></ConferenceTalks>
-        </div>
+      <Header />
+      <div className="flex flex-col max-w-4xl mx-auto my-10">
+        <ConferenceTalks></ConferenceTalks>
       </div>
     </Layout>
   );
@@ -63,16 +61,18 @@ function ConferenceTalks() {
 function AddNewTalk() {
   const { data } = useSpeakersQuery();
   const { mutateAsync, isLoading } = useAddTalkMutation({
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.fetchQuery(useTalksQuery.getKey());
     },
   });
 
+  const [error, setError] = useState<Error | null>(null);
+
   const [talk, setTalk] = useState({
-    name: 'New Talk',
+    name: '',
     speaker: { name: '', id: '' },
-    startDate: '10:00',
-    endDate: '10:30',
+    startDate: '2022-08-02T10:00:00+00:00',
+    endDate: '2022-08-02T10:00:00+00:00',
   });
 
   useEffect(() => {
@@ -89,20 +89,25 @@ function AddNewTalk() {
           name: talk.name,
           conference_id: 'cf23abcd-b0dc-4469-97a4-e7d5c9dc2047',
           speaker_id: talk.speaker.id,
-          start_date: '2022-08-03T10:00:00+00:00',
-          end_date: '2022-08-03T10:00:00+00:00',
+          start_date: talk.startDate,
+          end_date: talk.endDate,
         },
       });
     } catch (error) {
-      console.log(error);
+      setError(error);
     }
   };
 
   return (
     <div className="bg-card flex flex-col w-full px-12 pt-10 pb-10 space-y-8 border border-gray-700 rounded-md">
+      {error ? (
+        <div className="bg-opacity-10 px-4 py-4 text-sm bg-red-900 rounded-md">
+          Error: {error.message}
+        </div>
+      ) : null}
       <div className="place-content-between flex flex-row">
         <div className="flex">
-          <h1 className="text-md self-center font-medium text-white">
+          <h1 className="text-list self-center text-xs font-medium">
             Talk Title
           </h1>
         </div>
@@ -128,9 +133,7 @@ function AddNewTalk() {
       </div>
       <div className="place-content-between flex flex-row">
         <div className="flex">
-          <h1 className="text-md self-center font-medium text-white">
-            Speaker
-          </h1>
+          <h1 className="text-list self-center text-xs font-medium">Speaker</h1>
         </div>
         <div className="flex w-[230px] cursor-pointer">
           <SpeakerListbox
@@ -138,6 +141,60 @@ function AddNewTalk() {
             speakers={data.speakers}
             onChange={(speaker) => setTalk({ ...talk, speaker })}
           ></SpeakerListbox>
+        </div>
+      </div>
+      <div className="place-content-between flex flex-row">
+        <div className="flex">
+          <h1 className="text-list self-center text-xs font-medium">
+            Starting Time
+          </h1>
+        </div>
+        <div className="flex w-[230px]">
+          <input
+            tabIndex={1}
+            value={talk.startDate}
+            onChange={(e) => {
+              setTalk({ ...talk, startDate: e.target.value });
+            }}
+            className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
+            autoFocus
+            id="Starting Time"
+            placeholder="Starting Time"
+            required
+            minLength={2}
+            maxLength={128}
+            spellCheck="false"
+            aria-label="Starting Time"
+            autoCapitalize="none"
+            type="Starting Time"
+          />
+        </div>
+      </div>
+      <div className="place-content-between flex flex-row">
+        <div className="flex">
+          <h1 className="text-list self-center text-xs font-medium">
+            Ending Time
+          </h1>
+        </div>
+        <div className="flex w-[230px]">
+          <input
+            tabIndex={4}
+            value={talk.endDate}
+            onChange={(e) => {
+              setTalk({ ...talk, endDate: e.target.value });
+            }}
+            className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
+            autoFocus
+            id="Ending Time"
+            placeholder="Ending Time"
+            required
+            minLength={2}
+            maxLength={128}
+            spellCheck="false"
+            aria-label="Ending Time"
+            autoCapitalize="none"
+            type="Ending Time"
+          />
         </div>
       </div>
       <div className="flex flex-col">

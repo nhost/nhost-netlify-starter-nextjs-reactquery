@@ -2,25 +2,12 @@ import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 
-const people = [
-  { name: 'Wade Cooper' },
-  { name: 'Arlene Mccoy' },
-  { name: 'Devon Webb' },
-  { name: 'Tom Cook' },
-  { name: 'Tanya Fox' },
-  { name: 'Hellen Schmidt' },
-];
-
-export default function SpeakerListbox({
-  selected,
-  onChange,
-  speakers = people,
-}) {
+export default function SpeakerListbox({ selected, onChange, speakers }) {
   return (
     <div className="w-full cursor-pointer">
       <Listbox value={selected || speakers[0]} onChange={onChange}>
         <div className="relative mt-1">
-          <Listbox.Button className="bg-input relative w-full py-2 pl-3 pr-10 text-left bg-transparent border border-gray-700 rounded-lg cursor-default">
+          <Listbox.Button className="bg-input relative w-full py-2 pl-3 pr-10 text-left text-white bg-transparent border border-gray-700 rounded-lg cursor-default">
             <span className="block text-xs truncate">{selected.name}</span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon className="text-list w-4 h-4" aria-hidden="true" />
@@ -53,7 +40,7 @@ export default function SpeakerListbox({
                         {person.name}
                       </span>
                       {selected ? (
-                        <span className="text-amber-600 absolute inset-y-0 left-0 flex items-center pl-3">
+                        <span className="text-blue-800 absolute inset-y-0 left-0 flex items-center pl-3">
                           <CheckIcon className="w-5 h-5" aria-hidden="true" />
                         </span>
                       ) : null}

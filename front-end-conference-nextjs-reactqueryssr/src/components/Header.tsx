@@ -13,7 +13,9 @@ export function Header() {
       <div className="place-content-between flex flex-row max-w-5xl py-4 mx-auto">
         <div className="flex w-48">
           <Link href="/">
-            <a className="text-md self-center cursor-pointer">Conference</a>
+            <a className="text-md text-white self-center cursor-pointer">
+              Conference Starter
+            </a>
           </Link>
         </div>
         <div className="text-list w-52 flex flex-row self-center space-x-2 text-sm font-medium list-none">

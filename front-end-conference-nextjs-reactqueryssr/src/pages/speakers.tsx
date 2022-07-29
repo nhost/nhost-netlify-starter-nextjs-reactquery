@@ -1,8 +1,8 @@
 import { Header } from '@/components/Header';
 import Layout from '@/components/Layout';
 import { Speaker } from '@/components/Speaker';
-import { queryClient } from '@/utils/react-query-client';
 import { useSpeakersQuery } from '@/utils/__generated__/graphql';
+import { queryClient } from '@/utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
@@ -60,10 +60,12 @@ function AddNewSpeaker() {
 
   const [newSpeaker, setNewSpeaker] = useState({
     name: '',
-    social: '@',
+    social: '',
     job_description: '',
     avatar_url: 'https://via.placeholder.com/350x350',
   });
+
+  const [error, setError] = useState<Error | null>(null);
 
   const handleAddSpeaker = async () => {
     try {
@@ -75,11 +77,18 @@ function AddNewSpeaker() {
           avatar_url: newSpeaker.avatar_url,
         },
       });
-    } catch (error) {}
+    } catch (error) {
+      setError(error);
+    }
   };
 
   return (
     <div className="bg-card flex flex-col w-full px-12 pt-10 pb-10 space-y-8 border border-gray-700 rounded-md">
+      {error ? (
+        <div className="bg-opacity-10 px-4 py-4 text-sm bg-red-900 rounded-md">
+          Error: {error.message}
+        </div>
+      ) : null}
       <div className="place-content-between flex flex-row">
         <div className="flex">
           <h1 className="text-list self-center text-xs font-medium">
@@ -91,6 +100,7 @@ function AddNewSpeaker() {
             tabIndex={1}
             value={newSpeaker.name}
             onChange={(e) => {
+              setError(null);
               setNewSpeaker({ ...newSpeaker, name: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
@@ -118,6 +128,7 @@ function AddNewSpeaker() {
             tabIndex={2}
             value={newSpeaker.social}
             onChange={(e) => {
+              setError(null);
               setNewSpeaker({ ...newSpeaker, social: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
@@ -145,6 +156,7 @@ function AddNewSpeaker() {
             tabIndex={3}
             value={newSpeaker.job_description}
             onChange={(e) => {
+              setError(null);
               setNewSpeaker({ ...newSpeaker, job_description: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
@@ -172,6 +184,7 @@ function AddNewSpeaker() {
             tabIndex={4}
             value={newSpeaker.avatar_url}
             onChange={(e) => {
+              setError(null);
               setNewSpeaker({ ...newSpeaker, name: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
