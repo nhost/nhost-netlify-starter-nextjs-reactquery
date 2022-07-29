@@ -79,7 +79,7 @@ function AddNewTalk() {
   useEffect(() => {
     if (!data) return;
     setTalk({ ...talk, speaker: data.speakers[0] });
-  }, [data, setTalk, talk]);
+  }, [data, setTalk]);
 
   if (!data) return <div>loading...</div>;
 
