@@ -5005,6 +5005,13 @@ export type AddTalkMutationVariables = Exact<{
 
 export type AddTalkMutation = { __typename?: 'mutation_root', insert_talks_one?: { __typename?: 'talks', id: any } | null };
 
+export type DeleteTalkMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteTalkMutation = { __typename?: 'mutation_root', delete_talks_by_pk?: { __typename?: 'talks', id: any } | null };
+
 
 export const ConferencesQueryDocument = `
     query ConferencesQuery {
@@ -5154,3 +5161,20 @@ export const useAddTalkMutation = <
       options
     );
 useAddTalkMutation.fetcher = (variables: AddTalkMutationVariables, options?: RequestInit['headers']) => fetchData<AddTalkMutation, AddTalkMutationVariables>(AddTalkDocument, variables, options);
+export const DeleteTalkDocument = `
+    mutation DeleteTalk($id: uuid!) {
+  delete_talks_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export const useDeleteTalkMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<DeleteTalkMutation, TError, DeleteTalkMutationVariables, TContext>) =>
+    useMutation<DeleteTalkMutation, TError, DeleteTalkMutationVariables, TContext>(
+      ['DeleteTalk'],
+      (variables?: DeleteTalkMutationVariables) => fetchData<DeleteTalkMutation, DeleteTalkMutationVariables>(DeleteTalkDocument, variables)(),
+      options
+    );
+useDeleteTalkMutation.fetcher = (variables: DeleteTalkMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteTalkMutation, DeleteTalkMutationVariables>(DeleteTalkDocument, variables, options);

@@ -17,7 +17,13 @@ mutation UpdateTalk($id: uuid!, $talk: talks_set_input!) {
 }
 
 mutation AddTalk($talk: talks_insert_input!) {
-  insert_talks_one(object:$talk) {
+  insert_talks_one(object: $talk) {
+    id
+  }
+}
+
+mutation DeleteTalk($id: uuid!) {
+  delete_talks_by_pk(id: $id) {
     id
   }
 }
