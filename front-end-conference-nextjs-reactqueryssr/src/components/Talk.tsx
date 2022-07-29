@@ -4,6 +4,7 @@ import {
 } from '../utils/__generated__/graphql';
 import { queryClient } from '../utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
+import { useConferencesQueryQuery } from '../utils/__generated__/graphql';
 type Talk = {
   id: string;
   name: string;
@@ -19,6 +20,7 @@ export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
   const { mutateAsync } = useDeleteTalkMutation({
     onSuccess: () => {
       queryClient.fetchQuery(useTalksQuery.getKey());
+      queryClient.fetchQuery(useConferencesQueryQuery.getKey());
     },
   });
 
