@@ -1,6 +1,18 @@
 table:
   name: speakers
   schema: public
+insert_permissions:
+- permission:
+    check: {}
+    columns:
+    - avatar_url
+    - bio
+    - id
+    - job_description
+    - name
+    - social
+    - user_id
+  role: user
 select_permissions:
 - permission:
     columns:
@@ -22,5 +34,10 @@ select_permissions:
     - name
     - social
     - user_id
+    filter: {}
+  role: user
+delete_permissions:
+- permission:
+    backend_only: false
     filter: {}
   role: user

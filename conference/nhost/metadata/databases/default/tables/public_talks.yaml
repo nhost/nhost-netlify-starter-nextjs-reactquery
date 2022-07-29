@@ -2,9 +2,28 @@ table:
   name: talks
   schema: public
 object_relationships:
+- name: conference
+  using:
+    foreign_key_constraint_on: conference_id
 - name: speaker
   using:
     foreign_key_constraint_on: speaker_id
+insert_permissions:
+- permission:
+    check:
+      conference:
+        creator_user_id:
+          _eq: X-Hasura-User-Id
+    columns:
+    - id
+    - name
+    - description
+    - duration
+    - conference_id
+    - speaker_id
+    - start_date
+    - end_date
+  role: user
 select_permissions:
 - permission:
     columns:
@@ -29,4 +48,12 @@ select_permissions:
     - speaker_id
     - start_date
     filter: {}
+  role: user
+delete_permissions:
+- permission:
+    backend_only: false
+    filter:
+      conference:
+        creator_user_id:
+          _eq: X-Hasura-User-Id
   role: user
