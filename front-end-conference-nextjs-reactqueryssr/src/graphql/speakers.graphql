@@ -14,3 +14,9 @@ mutation AddSpeaker($speaker: speakers_insert_input!) {
     id
   }
 }
+
+mutation DeleteSpeaker($id: uuid!) {
+  delete_speakers_by_pk(id: $id) {
+    id
+  }
+}

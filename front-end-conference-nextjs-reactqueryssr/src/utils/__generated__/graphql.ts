@@ -4985,6 +4985,13 @@ export type AddSpeakerMutationVariables = Exact<{
 
 export type AddSpeakerMutation = { __typename?: 'mutation_root', insert_speakers_one?: { __typename?: 'speakers', id: any } | null };
 
+export type DeleteSpeakerMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type DeleteSpeakerMutation = { __typename?: 'mutation_root', delete_speakers_by_pk?: { __typename?: 'speakers', id: any } | null };
+
 export type TalksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5097,6 +5104,23 @@ export const useAddSpeakerMutation = <
       options
     );
 useAddSpeakerMutation.fetcher = (variables: AddSpeakerMutationVariables, options?: RequestInit['headers']) => fetchData<AddSpeakerMutation, AddSpeakerMutationVariables>(AddSpeakerDocument, variables, options);
+export const DeleteSpeakerDocument = `
+    mutation DeleteSpeaker($id: uuid!) {
+  delete_speakers_by_pk(id: $id) {
+    id
+  }
+}
+    `;
+export const useDeleteSpeakerMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<DeleteSpeakerMutation, TError, DeleteSpeakerMutationVariables, TContext>) =>
+    useMutation<DeleteSpeakerMutation, TError, DeleteSpeakerMutationVariables, TContext>(
+      ['DeleteSpeaker'],
+      (variables?: DeleteSpeakerMutationVariables) => fetchData<DeleteSpeakerMutation, DeleteSpeakerMutationVariables>(DeleteSpeakerDocument, variables)(),
+      options
+    );
+useDeleteSpeakerMutation.fetcher = (variables: DeleteSpeakerMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteSpeakerMutation, DeleteSpeakerMutationVariables>(DeleteSpeakerDocument, variables, options);
 export const TalksDocument = `
     query Talks {
   talks {

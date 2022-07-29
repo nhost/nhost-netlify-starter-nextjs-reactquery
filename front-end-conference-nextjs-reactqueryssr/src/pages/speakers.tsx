@@ -27,6 +27,7 @@ const Speakers = () => {
               return (
                 <Speaker
                   key={speaker.id}
+                  id={speaker.id}
                   avatarUrl={
                     speaker.avatar_url || 'https://via.placeholder.com/350x350'
                   }
