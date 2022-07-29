@@ -34,7 +34,7 @@ export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
       : new Date(endDate).getUTCMinutes();
 
   return (
-    <div className="bg-card relative flex flex-col w-full py-4 space-y-1 border border-gray-700 rounded-md">
+    <div className="bg-card shadow-gray-900 relative flex flex-col w-full py-4 space-y-1 border border-gray-900 rounded-md shadow-sm">
       {isAuthenticated ? (
         <button
           className="right-2 top-3 opacity-80 absolute text-red-500"

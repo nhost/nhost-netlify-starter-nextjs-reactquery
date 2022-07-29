@@ -5,7 +5,7 @@ import {
 } from '@/utils/__generated__/graphql';
 import { Agenda } from './Agenda';
 import { useState } from 'react';
-import { useAddEmailMutation } from '../utils/__generated__/graphql';
+import { useAddEmailMutation } from '@/utils/__generated__/graphql';
 
 export function FeaturedConference() {
   const { data, isLoading, isError } = useConferencesQueryQuery();

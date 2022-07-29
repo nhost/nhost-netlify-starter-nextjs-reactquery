@@ -33,7 +33,7 @@ export function Speaker({ id, avatarUrl, name, social, job }: Speaker) {
   });
 
   return (
-    <div className="bg-card relative flex flex-col px-4 py-5 transition-all duration-150 ease-in border border-gray-700 rounded-md">
+    <div className="bg-card shadow-gray-900 relative flex flex-col px-4 py-5 transition-all duration-150 ease-in border border-gray-900 rounded-md shadow-sm">
       {isAuthenticated ? (
         <button
           className="right-2 bottom-3 opacity-80 absolute text-red-500"

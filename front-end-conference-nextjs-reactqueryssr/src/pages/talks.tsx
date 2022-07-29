@@ -211,7 +211,7 @@ function AddNewTalk() {
   );
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(
     useTalksQuery.getKey(),
@@ -221,6 +221,7 @@ export async function getServerSideProps() {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 1,
   };
 }
 export default Talks;

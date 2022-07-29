@@ -23,7 +23,7 @@ const IndexPage = () => {
   );
 };
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(
@@ -35,6 +35,7 @@ export async function getServerSideProps() {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
+    revalidate: 10,
   };
 }
 
