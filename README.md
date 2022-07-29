@@ -11,7 +11,7 @@ This is an example front-end for the multi-conference example app created with N
 
 ## Getting Started
 
-<details><summary><h6>Steps for setting up local development</h6></summary>
+<details><summary>Steps for setting up local development</h6></summary>
 
 <p>
 1. Clone the repository
@@ -42,7 +42,7 @@ yarn dev
 </p>
 </details>
 
-<details><summary><h6>Project structure walkthrough<h6></summary>
+<details><summary>Project structure walkthrough</summary>
 
 Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
 
@@ -62,7 +62,7 @@ Inside this folder you are going to see both the specification for the backend (
 
 </details>
 
-<details><summary><h6>GraphQL API Schema and Example Queries</h6></summary>
+<details><summary>GraphQL API Schema and Example Queries</h6></summary>
 <p>
 
 ```graphql
@@ -127,7 +127,7 @@ query Talks {
 - Serverless Functions: AWS Lambdas.
 ~~~
 
-<details><summary><h6>Steps for creating an Nhost application</h6></summary>
+<details><summary>Steps for creating an Nhost application</h6></summary>
 
 Log in to your Nhost dashboard and click the **Create your first app** button.
 
@@ -144,7 +144,7 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
 </details>
-<details><summary><h6>Connecting this repository to Nhost</h6></summary>
+<details><summary>Connecting this repository to Nhost</h6></summary>
 Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
 1. Fork/clone this repository to your GitHub account.
@@ -175,7 +175,7 @@ Nhost supports a git-based workflow which means that you can safely work locally
                                                                                                                                  
 ## Deploy to Netlify
                                                                                                                                  
-<details><summary><h6>Steps for deploying this template to Netlify</h6></summary>
+<details><summary>Steps for deploying this template to Netlify</h6></summary>
                                                                                                                                  
 1. Clone this repo: ``
 2. Make sure you are in the correct directory and run`yarn install` (or `npm install`.)
