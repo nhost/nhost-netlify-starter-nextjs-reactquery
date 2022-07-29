@@ -1,5 +1,3 @@
-
-
 https://user-images.githubusercontent.com/20285232/181749889-24593a54-2847-466c-8f73-6b3f754ad303.mp4
 
 # Nhost Netlify Starter Template (nextjs-reactquery-graphql)
@@ -172,3 +170,33 @@ Nhost supports a git-based workflow which means that you can safely work locally
 
 </p>
 </details>
+                                                                                                                                 
+## Deploy to Netlify
+                                                                                                                                 
+<details><summary><h6>Steps for deploying this template to Netlify</h6></summary>
+                                                                                                                                 
+1. Clone this repo: ``
+2. Make sure you are in the correct directory and run`yarn install` (or `npm install`.)
+3. Run `yarn dev` (or `npm run dev`.)
+4. Make your desired changes to the front-end.
+5. Provide the necessary permissions to the Netlify application for your GitHub repository.
+6. Add the correct environment variables from your Nhost application:
+
+```
+NEXT_PUBLIC_NHOST_SUBDOMAIN=YOUR_NHOST_APP_SUBDOMAIN
+NEXT_PUBLIC_NHOST_REGION=YOUR_NHOST_APP_REGION
+```
+                                                                                                                                 
+You can select these variables from your app overview:
+                                                                                                                                 
+<p align="center" width="100%">
+<img width="50%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
+</p>
+
+Add the variables to your Netlify Deployment:     
+  
+<p align="center" width="100%">
+<img width="50%"" src="https://user-images.githubusercontent.com/20285232/181789867-ebd6a197-8125-47a1-9bd1-8f8f01e24f29.png"> 
+</p>
+</details>
+                                                                                                                             
