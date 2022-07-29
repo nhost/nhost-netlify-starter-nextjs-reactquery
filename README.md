@@ -3,7 +3,6 @@
 This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  
 
 - [Getting Started](#getting-started)
-- [Project Structure Specification](#project-structure-specification)
 - [GraphQL API structure](#graphql-api-structure)
 - [Deploy to Nhost](#deploy-to-nhost)
   - [Connecting your Nhost application to a GitHub repository](#connecting-your-nhost-application-to-a-github-repository)
@@ -11,7 +10,7 @@ This is an example front-end for the confere example app. It uses nextjs, react-
 
 ## Getting Started
 
-<details><summary>Steps for setting up the Nhost Backend</summary>
+<details><summary><h3>Steps for setting up the Nhost Backend</h3></summary>
 
 <p>
 1. Clone the repository
@@ -42,7 +41,6 @@ yarn dev
 </p>
 </details>
 
-## Project Structure Specification
 
  <details><summary><h3>Project structure walk along<h3></summary>
 
