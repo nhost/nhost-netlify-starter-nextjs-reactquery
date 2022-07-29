@@ -44,7 +44,7 @@ yarn dev
 
 ## Project Structure Specification
 
-<details><summary>Project structure walk along</summary>
+> <details><summary>Project structure walk along</summary>
 
 
 Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
