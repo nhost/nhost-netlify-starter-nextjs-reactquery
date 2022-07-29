@@ -1894,6 +1894,13 @@ export type Conferences_Mutation_Response = {
   returning: Array<Conferences>;
 };
 
+/** input type for inserting object relation for remote table "conferences" */
+export type Conferences_Obj_Rel_Insert_Input = {
+  data: Conferences_Insert_Input;
+  /** upsert condition */
+  on_conflict?: InputMaybe<Conferences_On_Conflict>;
+};
+
 /** on_conflict condition type for table "conferences" */
 export type Conferences_On_Conflict = {
   constraint: Conferences_Constraint;
@@ -4019,8 +4026,10 @@ export type Subscription_RootUsersAggregateArgs = {
 /** columns and relationships of "talks" */
 export type Talks = {
   __typename?: 'talks';
+  /** An object relationship */
+  conference: Conferences;
   conference_id: Scalars['uuid'];
-  description: Scalars['String'];
+  description?: Maybe<Scalars['String']>;
   duration?: Maybe<Scalars['Int']>;
   end_date?: Maybe<Scalars['timestamptz']>;
   id: Scalars['uuid'];
@@ -4099,6 +4108,7 @@ export type Talks_Bool_Exp = {
   _and?: InputMaybe<Array<Talks_Bool_Exp>>;
   _not?: InputMaybe<Talks_Bool_Exp>;
   _or?: InputMaybe<Array<Talks_Bool_Exp>>;
+  conference?: InputMaybe<Conferences_Bool_Exp>;
   conference_id?: InputMaybe<Uuid_Comparison_Exp>;
   description?: InputMaybe<String_Comparison_Exp>;
   duration?: InputMaybe<Int_Comparison_Exp>;
@@ -4123,6 +4133,7 @@ export type Talks_Inc_Input = {
 
 /** input type for inserting data into table "talks" */
 export type Talks_Insert_Input = {
+  conference?: InputMaybe<Conferences_Obj_Rel_Insert_Input>;
   conference_id?: InputMaybe<Scalars['uuid']>;
   description?: InputMaybe<Scalars['String']>;
   duration?: InputMaybe<Scalars['Int']>;
@@ -4202,6 +4213,7 @@ export type Talks_On_Conflict = {
 
 /** Ordering options when selecting data from "talks". */
 export type Talks_Order_By = {
+  conference?: InputMaybe<Conferences_Order_By>;
   conference_id?: InputMaybe<Order_By>;
   description?: InputMaybe<Order_By>;
   duration?: InputMaybe<Order_By>;
@@ -4966,6 +4978,13 @@ export type SpeakersQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type SpeakersQuery = { __typename?: 'query_root', speakers: Array<{ __typename?: 'speakers', id: any, name: string, bio?: string | null, social?: string | null, job_description?: string | null, avatar_url?: string | null }> };
 
+export type AddSpeakerMutationVariables = Exact<{
+  speaker: Speakers_Insert_Input;
+}>;
+
+
+export type AddSpeakerMutation = { __typename?: 'mutation_root', insert_speakers_one?: { __typename?: 'speakers', id: any } | null };
+
 export type TalksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -5054,6 +5073,23 @@ useSpeakersQuery.getKey = (variables?: SpeakersQueryVariables) => variables === 
 ;
 
 useSpeakersQuery.fetcher = (variables?: SpeakersQueryVariables, options?: RequestInit['headers']) => fetchData<SpeakersQuery, SpeakersQueryVariables>(SpeakersDocument, variables, options);
+export const AddSpeakerDocument = `
+    mutation AddSpeaker($speaker: speakers_insert_input!) {
+  insert_speakers_one(object: $speaker) {
+    id
+  }
+}
+    `;
+export const useAddSpeakerMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<AddSpeakerMutation, TError, AddSpeakerMutationVariables, TContext>) =>
+    useMutation<AddSpeakerMutation, TError, AddSpeakerMutationVariables, TContext>(
+      ['AddSpeaker'],
+      (variables?: AddSpeakerMutationVariables) => fetchData<AddSpeakerMutation, AddSpeakerMutationVariables>(AddSpeakerDocument, variables)(),
+      options
+    );
+useAddSpeakerMutation.fetcher = (variables: AddSpeakerMutationVariables, options?: RequestInit['headers']) => fetchData<AddSpeakerMutation, AddSpeakerMutationVariables>(AddSpeakerDocument, variables, options);
 export const TalksDocument = `
     query Talks {
   talks {

@@ -15,7 +15,7 @@ const IndexPage = () => {
 
   return (
     <Layout title="Nhost NextJS React Query Starter Example">
-      <div className="bg-header bg-grid text-white">
+      <div className="bg-header bg-grid h-full text-white">
         <Header />
         <FeaturedConference />
       </div>

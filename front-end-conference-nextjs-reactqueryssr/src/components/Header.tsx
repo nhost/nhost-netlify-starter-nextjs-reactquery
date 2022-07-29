@@ -1,4 +1,4 @@
-import { useUserEmail } from '@nhost/react';
+import { useSignOut, useUserEmail } from '@nhost/react';
 import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 export function Header() {
   const { asPath } = useRouter();
   const userEmail = useUserEmail();
+  const { signOut } = useSignOut();
+
   return (
     <header className="bg-header border-b-brd sticky border-b">
       <div className="place-content-between flex flex-row max-w-5xl py-4 mx-auto">
@@ -42,9 +44,15 @@ export function Header() {
         </div>
         <div className="flex w-48">
           {userEmail ? (
-            <div>
-              <button className="px-2 py-1 text-xs border rounded-md">
+            <div className="flex flex-row space-x-4">
+              <button className="text-list px-2 py-1 text-xs cursor-default">
                 {userEmail}
+              </button>
+              <button
+                onClick={() => signOut()}
+                className="text-list border-list px-2 py-1 text-xs border rounded-md cursor-pointer"
+              >
+                Sign Out
               </button>
             </div>
           ) : (

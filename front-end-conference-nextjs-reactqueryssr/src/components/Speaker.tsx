@@ -14,7 +14,7 @@ export type Speaker = {
 
 export function Speaker({ avatarUrl, name, social, job }: Speaker) {
   return (
-    <div className="border-dim flex flex-col p-2 transition-all duration-150 ease-in border rounded-md">
+    <div className="bg-card flex flex-col py-4 px-4 transition-all duration-150 ease-in border border-gray-700 rounded-md">
       <img
         className="object-cover rounded-md aspect-square p-0.5"
         width={350}

@@ -9,8 +9,9 @@ import {
   useTalksQuery,
 } from '@/utils/__generated__/graphql';
 import { useEffect, useState } from 'react';
-import InlineInput from '@/components/ui/InlineInput';
 import SpeakerListbox from '@/components/SpeakerListbox';
+import { queryClient } from '../utils/react-query-client';
+import { useUserAvatarUrl, useAuthenticated } from '@nhost/react';
 
 const Talks = () => {
   return (
@@ -29,6 +30,7 @@ function ConferenceTalks() {
   const { data, isLoading, isError } = useTalksQuery();
   if (isError) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
+  const isAuthenticated = useAuthenticated();
 
   return (
     <div>
@@ -42,31 +44,29 @@ function ConferenceTalks() {
               speaker={talk.speaker.name}
               startDate={talk.start_date}
               endDate={talk.end_date}
-            ></Talk>
+            />
           );
         })}
       </div>
-      <div className="max-w-md py-10 mx-auto">
-        <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
-          Add New Talk
-        </h1>
-        <AddNewTalk></AddNewTalk>
-      </div>
+      {isAuthenticated ? (
+        <div className="w-full max-w-lg py-10 mx-auto">
+          <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
+            Add New Talk
+          </h1>
+          <AddNewTalk></AddNewTalk>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-const people = [
-  { id: 1, name: 'Durward Reynolds', unavailable: false },
-  { id: 2, name: 'Kenton Towne', unavailable: false },
-  { id: 3, name: 'Therese Wunsch', unavailable: false },
-  { id: 4, name: 'Benedict Kessler', unavailable: true },
-  { id: 5, name: 'Katelyn Rohan', unavailable: false },
-];
-
 function AddNewTalk() {
   const { data } = useSpeakersQuery();
-  const { mutateAsync, isLoading } = useAddTalkMutation();
+  const { mutateAsync, isLoading } = useAddTalkMutation({
+    onSuccess: (data) => {
+      queryClient.fetchQuery(useTalksQuery.getKey());
+    },
+  });
 
   const [talk, setTalk] = useState({
     name: 'New Talk',
@@ -152,6 +152,7 @@ function AddNewTalk() {
     </div>
   );
 }
+
 export async function getServerSideProps() {
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery(

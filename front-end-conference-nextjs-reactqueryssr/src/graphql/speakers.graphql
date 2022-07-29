@@ -8,3 +8,9 @@ query Speakers {
     avatar_url
   }
 }
+
+mutation AddSpeaker($speaker: speakers_insert_input!) {
+  insert_speakers_one(object: $speaker) {
+    id
+  }
+}
