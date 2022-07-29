@@ -3,10 +3,9 @@
 This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  
 
 - [Getting Started](#getting-started)
-- [Project Structure](#project-structure)
-- [Database Schema Structure](#database-schema-structure)
+- [Project Structure Specification](#project-structure-specification)
+- [GraphQL API structure](#graphql-api-structure)
 - [Deploy to Nhost](#deploy-to-nhost)
-  - [Creating a new Nhost Application](#creating-a-new-nhost-application)
   - [Connecting your Nhost application to a GitHub repository](#connecting-your-nhost-application-to-a-github-repository)
 - [Deploying the front-end](#deploying-the-front-end)
 
@@ -43,9 +42,7 @@ yarn dev
 </p>
 </details>
 
-
-
-## Project Structure
+## Project Structure Specification
 
 <details><summary>Project structure walk along</summary>
 
@@ -66,12 +63,12 @@ Inside this folder you are going to see both the specification for the backend (
 └── package.json
 ```
 
-</p>
-</details>
+## GraphQL API structure
 
+<details><summary>Query Examples</summary>
+<p>
 
-
-## Database Schema Structure
+- Get a featured conference
 
 ```graphql
 query ConferencesQuery {
@@ -92,9 +89,12 @@ query ConferencesQuery {
 }
 ```
 
+</p>
+</details>
+
 ## Deploy to Nhost
 
-Nhost is the open source GraphQL backend (Firebase Alternative) and a development platform. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. When deploying to Nhost you automatically get the following:
+Nhost is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
 
 - Database: PostgreSQL
 - Instant GraphQL API: Hasura
@@ -103,7 +103,8 @@ Nhost is the open source GraphQL backend (Firebase Alternative) and a developmen
 
 We make it easy to build and deploy this backend using our platform that takes care of configuration, security, and performance. Things just works and scale automatically so you can focus on your product and on your business.
 
-### Creating a new Nhost Application
+<details><summary>Steps for creating an Nhost application.</summary>
+<p>
 
 First things first, we need to create a new Nhost project.
 
@@ -117,11 +118,14 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
+</p>
+</details>
+
 ### Connecting your Nhost application to a GitHub repository
 
-Through the Nhost console interface you can connect this template to your Nhost application. When you do this, your application will be automatically deployed and any following updates you push to your code will also be automatically be deployed.
+Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
-<details><summary>Steps to automatically connect this repository to your Nhost application</summary>
+<details><summary>Steps to connect this repository to your Nhost application</summary>
 
 1. Fork/clone this repository to your GitHub account.
 
