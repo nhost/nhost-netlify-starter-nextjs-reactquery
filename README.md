@@ -2,15 +2,16 @@
 
 https://user-images.githubusercontent.com/20285232/181749889-24593a54-2847-466c-8f73-6b3f754ad303.mp4
 
+# Nhost Netlify Starter Template (nextjs-reactquery-graphql)
 
-This is an example front-end for the conference example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api).
+This is an example front-end for the multi-conference example app created with Nhost. It uses Next.js, React-Query, Tailwind, and Nhost as a backend (authentication, postgres database, graphql api) and Netlify to host the front-end. This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api).
 
 - [Getting Started](#getting-started)
 - [Deploy to Nhost](#deploy-to-nhost)
 
 ## Getting Started
 
-<details><summary><h4>Steps for setting up local development</h4></summary>
+<details><summary><h6>Steps for setting up local development</h6></summary>
 
 <p>
 1. Clone the repository
@@ -41,7 +42,7 @@ yarn dev
 </p>
 </details>
 
-<details><summary><h4>Project structure walkthrough<h4></summary>
+<details><summary><h6>Project structure walkthrough<h6></summary>
 
 Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
 
@@ -61,10 +62,8 @@ Inside this folder you are going to see both the specification for the backend (
 
 </details>
 
-<details><summary><h4>GraphQL API Schema and Example Queries</h4></summary>
+<details><summary><h6>GraphQL API Schema and Example Queries</h6></summary>
 <p>
-
-- Get a featured conference
 
 ```graphql
 query ConferencesQuery {
@@ -85,6 +84,33 @@ query ConferencesQuery {
 }
 ```
 
+```graphql
+query Speakers {
+  speakers {
+    id
+    name
+    bio
+    social
+    job_description
+    avatar_url
+  }
+}
+```
+
+```graphql
+query Talks {
+  talks {
+    id
+    name
+    start_date
+    end_date
+    speaker {
+      name
+    }
+  }
+}
+```
+
 </p>
 </details>
 
@@ -98,22 +124,27 @@ query ConferencesQuery {
 - Instant GraphQL API: Hasura.
 - Authentication: Hasura Auth.
 - Storage: Hasura Storage.
+- Serverless Functions: AWS Lambdas.
 ~~~
 
-<details><summary><h4>Steps for creating an Nhost application</h4></summary>
+<details><summary><h6>Steps for creating an Nhost application</h6></summary>
 
 Log in to your Nhost dashboard and click the **Create your first app** button.
 
-![Creating an Nhost Application](https://docs.nhost.io/assets/images/create-app-step-1-64d13fc87fac1d0989da25857e1c3811.png)
+<p align="center" width="100%">
+    <img width="55%"" src="https://docs.nhost.io/assets/images/create-app-step-1-64d13fc87fac1d0989da25857e1c3811.png"> 
+</p>
 
 Next, give your new Nhost app a name, select a geographic region for your Nhost services and click Create App.
 
-![Creating an Nhost Application](https://docs.nhost.io/assets/images/create-app-step-2-823c33a87887cbe28da98a85219dcc59.png)
+<p align="center" width="100%">
+    <img width="55%"" src="https://docs.nhost.io/assets/images/create-app-step-2-823c33a87887cbe28da98a85219dcc59.png"> 
+</p>
 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
 </details>
-<details><summary><h4>Steps for creating an Nhost application</h4></summary>
+<details><summary><h6>Connecting this repository to Nhost</h6></summary>
 Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
 1. Fork/clone this repository to your GitHub account.
@@ -123,21 +154,20 @@ Nhost supports a git-based workflow which means that you can safely work locally
 3. Find your repository on the Nhost Console & connect it:
 
 <p align="center" width="100%">
-    <img width="55%" height="80%" src="https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png"> 
+    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png"> 
 </p>
-
 
 4. Once connected, the application will automatically deploy.
 
 <p align="center" width="100%" height="100%">
-    <img width="55%" height="500px" src="https://user-images.githubusercontent.com/20285232/181070624-f12571a4-6b77-4a2f-acab-9e156306b392.png"> 
+    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070624-f12571a4-6b77-4a2f-acab-9e156306b392.png"> 
 </p>
 
 5. Add changes to your application. Any changes you push to your repository will also be automatically be deployed (you can see your deployments on the "Deployments" section of the console)
 
 
 <p align="center" width="100%">
-    <img width="55%" height="500px" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
+    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
 </p>
 
 </p>
