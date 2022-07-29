@@ -1,6 +1,6 @@
-<p align="center" width="100%" height="100%">
+<!-- <p align="center" width="100%" height="100%">
     <img width="55%" height="50%" src="https://user-images.githubusercontent.com/20285232/181688126-ad1d015c-4f67-4b00-b870-f73e59f05efa.png"> 
-</p>
+</p> -->
 
 This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api).
 
@@ -93,8 +93,7 @@ query ConferencesQuery {
 
 ## Deploy to Nhost
     
-    ![Default](https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png)
-
+<img align="left" width="55%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
 
 Nhost is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
 
