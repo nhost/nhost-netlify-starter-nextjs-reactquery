@@ -89,7 +89,7 @@ query ConferencesQuery {
 
 ## Deploy to Nhost
     
-<img align="left" width="38%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
+<img align="left" width="40%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
 
 [Nhost](https://nhost.io/) is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
 ~~~
@@ -98,9 +98,6 @@ query ConferencesQuery {
 - Authentication: Hasura Auth.
 - Storage: Hasura Storage.
 ~~~
-
-
-We make it easy to build and deploy this backend using our platform that takes care of configuration, security, and performance. Things just works and scale automatically so you can focus on your product and on your business.
 
 <details><summary><h4>Steps for creating an Nhost application</h4></summary>
 
@@ -115,9 +112,7 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
 </details>
-
 <details><summary><h4>Steps for creating an Nhost application</h4></summary>
-
 Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
 1. Fork/clone this repository to your GitHub account.
