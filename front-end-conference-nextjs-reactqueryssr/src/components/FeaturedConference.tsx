@@ -16,6 +16,10 @@ export function FeaturedConference() {
     'id' | 'name' | 'start_date' | 'end_date' | 'location'
   > = data.conferences[0];
 
+  if (!featuredConference) {
+    return null;
+  }
+
   return (
     <div className="">
       <div className=" max-w-4xl mx-auto">

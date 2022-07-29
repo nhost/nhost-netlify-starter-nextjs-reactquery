@@ -80,7 +80,7 @@ export default forwardRef(function InputField(
             "flex flex-row place-content-start items-center rounded-sm px-2 py-1",
             error
               ? "outline outline-2 outline-red"
-              : "focus-within:outline focus-within:outline-2 focus-within:outline-blue",
+              : "",
             label ? "col-span-3" : "col-span-5"
           )}
         >

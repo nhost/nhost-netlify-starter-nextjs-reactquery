@@ -3,7 +3,6 @@
 
 body {
   font-family: "Inter", sans-serif;
-  @apply overflow-y-hidden overflow-hidden;
 }
 
 .bg-grid {

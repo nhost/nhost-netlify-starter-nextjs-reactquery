@@ -15,3 +15,9 @@ mutation UpdateTalk($id: uuid!, $talk: talks_set_input!) {
     id
   }
 }
+
+mutation AddTalk($talk: talks_insert_input!) {
+  insert_talks_one(object:$talk) {
+    id
+  }
+}

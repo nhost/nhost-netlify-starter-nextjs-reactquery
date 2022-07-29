@@ -17,7 +17,7 @@ export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
       ? '00'
       : new Date(endDate).getUTCMinutes();
   return (
-    <div className="bg-card flex flex-col w-full py-5 border border-gray-700 rounded-md">
+    <div className="bg-card flex flex-col w-full py-4 space-y-1 border border-gray-700 rounded-md">
       <h2 className="text-dim text-xs font-medium">
         {startDate
           ? `${new Date(startDate).getUTCHours()}:${startMinutes} to ${new Date(

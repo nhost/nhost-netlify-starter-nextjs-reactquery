@@ -4979,6 +4979,13 @@ export type UpdateTalkMutationVariables = Exact<{
 
 export type UpdateTalkMutation = { __typename?: 'mutation_root', update_talks_by_pk?: { __typename?: 'talks', id: any } | null };
 
+export type AddTalkMutationVariables = Exact<{
+  talk: Talks_Insert_Input;
+}>;
+
+
+export type AddTalkMutation = { __typename?: 'mutation_root', insert_talks_one?: { __typename?: 'talks', id: any } | null };
+
 
 export const ConferencesQueryDocument = `
     query ConferencesQuery {
@@ -5094,3 +5101,20 @@ export const useUpdateTalkMutation = <
       options
     );
 useUpdateTalkMutation.fetcher = (variables: UpdateTalkMutationVariables, options?: RequestInit['headers']) => fetchData<UpdateTalkMutation, UpdateTalkMutationVariables>(UpdateTalkDocument, variables, options);
+export const AddTalkDocument = `
+    mutation AddTalk($talk: talks_insert_input!) {
+  insert_talks_one(object: $talk) {
+    id
+  }
+}
+    `;
+export const useAddTalkMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<AddTalkMutation, TError, AddTalkMutationVariables, TContext>) =>
+    useMutation<AddTalkMutation, TError, AddTalkMutationVariables, TContext>(
+      ['AddTalk'],
+      (variables?: AddTalkMutationVariables) => fetchData<AddTalkMutation, AddTalkMutationVariables>(AddTalkDocument, variables)(),
+      options
+    );
+useAddTalkMutation.fetcher = (variables: AddTalkMutationVariables, options?: RequestInit['headers']) => fetchData<AddTalkMutation, AddTalkMutationVariables>(AddTalkDocument, variables, options);
