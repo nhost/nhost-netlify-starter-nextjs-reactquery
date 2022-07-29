@@ -1,0 +1,36 @@
+{
+  "extends": ["next", "prettier"],
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "no-unused-vars": "off",
+    "eqeqeq": "error",
+    "prefer-const": "warn",
+    "curly": "off",
+    "@next/next/no-img-element": "off",
+    "import/no-default-export": "off",
+    "react/self-closing-comp": 1,
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/no-unescaped-entities": "off",
+    "react/display-name": "off",
+    "react/jsx-curly-brace-presence": "warn",
+    "react/jsx-no-useless-fragment": "warn",
+    "react/jsx-boolean-value": "warn",
+    "jsx-a11y/anchor-is-valid": "off",
+    "no-console": "warn",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": ["..*"],
+            "message": "Please use absolute imports instead. (e.g: @/ui/, @/hooks/, etc.)"
+          }
+        ]
+      }
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "settings": { "react": { "version": "detect" } }
+}

@@ -1,16 +1,8 @@
-import Layout from "../components/Layout";
-import { useConferencesQueryQuery } from "../utils/__generated__/graphql";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import clsx from "clsx";
-import { getHours } from "date-fns";
-import { Header } from ".";
-import {
-  useAuthenticated,
-  useSignInEmailPassword,
-  useSignInEmailPasswordless,
-} from "@nhost/react";
-import { useForm } from "react-hook-form";
+import { useAuthenticated, useSignInEmailPassword } from '@nhost/react';
+import { useForm } from 'react-hook-form';
+
+import Layout from '@/components/Layout';
+import { Header } from '@/components/Header';
 
 type SignInFormProps = {
   email: string;
@@ -18,14 +10,14 @@ type SignInFormProps = {
 };
 
 export function SignInWithEmail() {
-  const { signInEmailPassword, isLoading, isSuccess, isError, error } =
+  const { signInEmailPassword, isLoading, isError, error } =
     useSignInEmailPassword();
 
   const { register, handleSubmit, setValue } = useForm<SignInFormProps>({
-    reValidateMode: "onSubmit",
+    reValidateMode: 'onSubmit',
     defaultValues: {
-      email: "",
-      password: "",
+      email: '',
+      password: '',
     },
   });
 
@@ -36,10 +28,10 @@ export function SignInWithEmail() {
   };
 
   return (
-    <div className="max-w-5xl mx-auto  ">
+    <div className=" max-w-5xl mx-auto">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col  py-8 px-10 rounded-md space-y-4 w-96"
+        className="w-96 flex flex-col px-10 py-8 space-y-4 rounded-md"
       >
         <div className="space-y-2">
           <div className="flex flex-col pt-2">
@@ -49,12 +41,12 @@ export function SignInWithEmail() {
           </div>
           <div className="flex w-full">
             <input
-              {...register("email")}
+              {...register('email')}
               onChange={(e) => {
-                setValue("email", e.target.value);
+                setValue('email', e.target.value);
               }}
               tabIndex={1}
-              className="rounded-md py-3 px-2 text-sm w-full bg-input text-list"
+              className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
               autoFocus
               id="email"
               placeholder="Email"
@@ -76,11 +68,11 @@ export function SignInWithEmail() {
           </div>
           <div className="flex mt-1">
             <input
-              {...register("password")}
+              {...register('password')}
               onChange={(e) => {
-                setValue("password", e.target.value);
+                setValue('password', e.target.value);
               }}
-              className="rounded-md py-3 px-2 text-sm w-full bg-input text-list"
+              className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
               tabIndex={2}
               id="password"
               placeholder="Password"
@@ -97,7 +89,7 @@ export function SignInWithEmail() {
         </div>
         <div className="flex flex-col">
           <button
-            className="border mt-4 py-2 text-list hover:border-white hover:text-white transition-colors duration-200 border-list text-sm rounded-md flex w-full items-center justify-center"
+            className="text-list hover:border-white hover:text-white border-list flex items-center justify-center w-full py-2 mt-4 text-sm transition-colors duration-200 border rounded-md"
             tabIndex={3}
             type="submit"
             disabled={isLoading}
@@ -109,20 +101,19 @@ export function SignInWithEmail() {
 
       {isError && (
         <div className="my-3">
-          <p className="font-medium text-red">Error: {error.message}</p>
+          <p className="text-red font-medium">Error: {error.message}</p>
         </div>
       )}
     </div>
   );
 }
-
 const IndexPage = () => {
   const isAuthenticated = useAuthenticated();
   return (
     <Layout title="">
       <div className="bg-header bg-grid h-screen text-white">
-        <Header></Header>
-        <div className="max-w-md mx-auto py-20">
+        <Header />
+        <div className="max-w-md py-20 mx-auto">
           {!isAuthenticated ? (
             <div className="flex flex-col">
               <SignInWithEmail></SignInWithEmail>
