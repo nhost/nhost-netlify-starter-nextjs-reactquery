@@ -4,7 +4,6 @@ This is an example front-end for the confere example app. It uses nextjs, react-
 
 - [Getting Started](#getting-started)
 - [Project Structure Specification](#project-structure-specification)
-  - [<details><summary>Project structure walk along</summary>](#detailssummaryproject-structure-walk-alongsummary)
 - [GraphQL API structure](#graphql-api-structure)
 - [Deploy to Nhost](#deploy-to-nhost)
   - [Connecting your Nhost application to a GitHub repository](#connecting-your-nhost-application-to-a-github-repository)
@@ -45,7 +44,7 @@ yarn dev
 
 ## Project Structure Specification
 
-### <details><summary>Project structure walk along</summary>
+ <details><summary><h3>Project structure walk along<h3></summary>
 
 
 Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
