@@ -1,12 +1,8 @@
-import { dehydrate, QueryClient } from "@tanstack/react-query";
-import { Agenda, FeaturedConference, Header, Talk } from ".";
-import Layout from "../components/Layout";
-import InlineInput from "../components/ui/InlineInput";
-import {
-  useSpeakersQuery,
-  useTalksQuery,
-  useUpdateTalkMutation,
-} from "../utils/__generated__/graphql";
+import { Header } from '@/components/Header';
+import { Talk } from '@/components/Talk';
+import { dehydrate, QueryClient } from '@tanstack/react-query';
+import Layout from '@/components/Layout';
+import { useTalksQuery } from '@/utils/__generated__/graphql';
 
 const Talks = () => {
   const { data, isLoading, isError } = useTalksQuery();
@@ -17,9 +13,9 @@ const Talks = () => {
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <div className="bg-grid bg-header h-screen text-white">
-        <Header></Header>
-        <div className="mx-auto max-w-4xl flex flex-col my-10">
-          <div className="grid grid-cols-3 py-5 gap-8 place-content-between text-center">
+        <Header />
+        <div className="flex flex-col max-w-4xl mx-auto my-10">
+          <div className="place-content-between grid grid-cols-3 gap-8 py-5 text-center">
             {data.talks.map((talk) => {
               return (
                 <Talk
@@ -44,7 +40,7 @@ export async function getServerSideProps() {
 
   await queryClient.prefetchQuery(
     useTalksQuery.getKey(),
-    useTalksQuery.fetcher()
+    useTalksQuery.fetcher(),
   );
 
   return {
