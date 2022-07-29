@@ -18,7 +18,7 @@ export function getDatesInRange(
 
   const date = new Date(startDate.getTime());
 
-  const dates = [];
+  const dates: Date[] = [];
 
   while (date <= endDate) {
     dates.push(new Date(date));

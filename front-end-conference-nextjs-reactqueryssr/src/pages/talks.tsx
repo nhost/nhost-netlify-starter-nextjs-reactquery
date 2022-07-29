@@ -141,7 +141,7 @@ function AddNewTalk() {
             selected={talk.speaker}
             speakers={data.speakers}
             onChange={(speaker) => setTalk({ ...talk, speaker })}
-          ></SpeakerListbox>
+          />
         </div>
       </div>
       <div className="place-content-between flex flex-row">

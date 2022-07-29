@@ -1,15 +1,18 @@
 import {
   useDeleteTalkMutation,
   useTalksQuery,
-} from '../utils/__generated__/graphql';
-import { queryClient } from '../utils/react-query-client';
+} from '@/utils/__generated__/graphql';
+import { queryClient } from '@/utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
-import { useConferencesQueryQuery } from '../utils/__generated__/graphql';
-type Talk = {
+import { useConferencesQueryQuery } from '@/utils/__generated__/graphql';
+import { Speaker } from './Speaker';
+
+export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
+
+export type Talk = {
   id: string;
   name: string;
-  // will change to speaker type
-  speaker: string;
+  speaker: PropType<Speaker, 'name'>;
   startDate: string;
   endDate: string;
 };

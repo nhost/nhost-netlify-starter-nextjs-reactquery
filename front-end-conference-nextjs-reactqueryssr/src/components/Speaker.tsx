@@ -1,11 +1,10 @@
 import { useAuthenticated } from '@nhost/react';
 import {
   useDeleteSpeakerMutation,
-  useTalksQuery,
   useConferencesQueryQuery,
-} from '../utils/__generated__/graphql';
-import { queryClient } from '../utils/react-query-client';
-import { useSpeakersQuery } from '../utils/__generated__/graphql';
+} from '@/utils/__generated__/graphql';
+import { queryClient } from '@/utils/react-query-client';
+import { useSpeakersQuery } from '@/utils/__generated__/graphql';
 
 /**
  * Speaker is conference speaker type with a name, social, job, and avatarUrl property, all of which are strings.
@@ -60,6 +59,7 @@ export function Speaker({ id, avatarUrl, name, social, job }: Speaker) {
         </button>
       ) : null}
       <img
+        alt="Speaker's photo"
         className="object-cover rounded-md aspect-square p-0.5"
         width={350}
         height={350}

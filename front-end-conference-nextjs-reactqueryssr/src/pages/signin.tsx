@@ -116,7 +116,7 @@ const IndexPage = () => {
         <div className="max-w-md py-20 mx-auto">
           {!isAuthenticated ? (
             <div className="flex flex-col">
-              <SignInWithEmail></SignInWithEmail>
+              <SignInWithEmail />
             </div>
           ) : (
             <div>Dashboard</div>

@@ -1,13 +1,14 @@
 import { Header } from '@/components/Header';
 import Layout from '@/components/Layout';
 import { Speaker } from '@/components/Speaker';
-import { useSpeakersQuery } from '@/utils/__generated__/graphql';
+import {
+  useAddSpeakerMutation,
+  useSpeakersQuery,
+} from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
-
-import { useAddSpeakerMutation } from '../utils/__generated__/graphql';
+import { useState } from 'react';
 
 const Speakers = () => {
   const { data, isLoading, isError } = useSpeakersQuery();
@@ -42,7 +43,7 @@ const Speakers = () => {
               <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
                 Add New Speaker
               </h1>
-              <AddNewSpeaker></AddNewSpeaker>
+              <AddNewSpeaker />
             </div>
           ) : null}
         </div>
@@ -53,7 +54,7 @@ const Speakers = () => {
 
 function AddNewSpeaker() {
   const { mutateAsync, isLoading } = useAddSpeakerMutation({
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.fetchQuery(useSpeakersQuery.getKey());
     },
   });
