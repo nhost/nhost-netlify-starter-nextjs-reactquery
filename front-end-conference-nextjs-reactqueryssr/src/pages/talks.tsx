@@ -88,7 +88,7 @@ function AddNewTalk() {
       await mutateAsync({
         talk: {
           name: talk.name,
-          conference_id: 'cf23abcd-b0dc-4469-97a4-e7d5c9dc2047',
+          conference_id: '1b92282d-b09d-4a79-9087-c734a788a058',
           speaker_id: talk.speaker.id,
           start_date: talk.startDate,
           end_date: talk.endDate,
