@@ -93,23 +93,22 @@ query ConferencesQuery {
 
 ## Deploy to Nhost
     
-<img align="left" width="33%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
+<img align="left" width="38%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
 
-Nhost is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
+[Nhost](https://nhost.io/) is an open source Firebase alternative with GraphQL. Nhost is doing for the backend, what Netlify and Vercel are doing for the frontend. More importantly, by creating a project with Nhost you automatically get the following:
+~~~
+- Database: PostgreSQL.
+- Instant GraphQL API: Hasura.
+- Authentication: Hasura Auth.
+- Storage: Hasura Storage.
+~~~
 
-Database: PostgreSQL
-Instant GraphQL API: Hasura
-Authentication: Hasura Auth
-Storage: Hasura Storage
 
 We make it easy to build and deploy this backend using our platform that takes care of configuration, security, and performance. Things just works and scale automatically so you can focus on your product and on your business.
 
-<details><summary>Steps for creating an Nhost application.</summary>
-<p>
+<details><summary><h3>Steps for creating an Nhost application</h3></summary>
 
-First things first, we need to create a new Nhost project.
-
-So, log in to your Nhost dashboard and click the **Create your first app** button.
+Log in to your Nhost dashboard and click the **Create your first app** button.
 
 ![Creating an Nhost Application](https://docs.nhost.io/assets/images/create-app-step-1-64d13fc87fac1d0989da25857e1c3811.png)
 
@@ -119,7 +118,6 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
-</p>
 </details>
 
 ### Connecting your Nhost application to a GitHub repository
