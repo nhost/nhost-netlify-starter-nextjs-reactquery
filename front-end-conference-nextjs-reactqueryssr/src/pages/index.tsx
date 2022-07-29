@@ -7,11 +7,10 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/router";
 import clsx from "clsx";
-import { getHours } from "date-fns";
 import { useUserEmail } from "@nhost/react";
 import { dehydrate, QueryClient } from "@tanstack/react-query";
-import InlineInput from "../components/ui/InlineInput";
 import { useState } from "react";
+import { getDatesInRange } from "../utils/getDatesInRange";
 
 export function Header() {
   const { asPath } = useRouter();
@@ -41,14 +40,6 @@ export function Header() {
           >
             <Link href="talks">Talks</Link>
           </li>
-          {/* <li
-            className={clsx(
-              "hover:text-white py-1 px-2 cursor-pointer",
-              asPath === "/sponsors" && "text-white"
-            )}
-          >
-            Sponsors
-          </li> */}
           <li
             className={clsx(
               "hover:text-white py-1 px-2 cursor-pointer",
@@ -76,20 +67,6 @@ export function Header() {
       </div>
     </header>
   );
-}
-function getDatesInRange(startDate, endDate) {
-  startDate = new Date(startDate);
-  endDate = new Date(endDate);
-  const date = new Date(startDate.getTime());
-
-  const dates = [];
-
-  while (date <= endDate) {
-    dates.push(new Date(date));
-    date.setDate(date.getDate() + 1);
-  }
-
-  return dates;
 }
 
 export function FeaturedConference() {
@@ -138,29 +115,7 @@ export function FeaturedConference() {
   );
 }
 
-function EditIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="h-3.5 w-3.5 absolute right-6 top-2 "
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-      strokeWidth={1}
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-      />
-    </svg>
-  );
-}
-
 export function Talk({ id, name, speaker, startDate, endDate }) {
-  const { mutate, isLoading } = useUpdateTalkMutation();
-  const [isEditing, setIsEditing] = useState(false);
-  const [nameInput, setNameInput] = useState(name);
-
   const startMinutes =
     new Date(startDate).getUTCMinutes() === 0
       ? "00"
@@ -178,31 +133,7 @@ export function Talk({ id, name, speaker, startDate, endDate }) {
             ).getUTCHours()}:${endMinutes} UTC`
           : "-"}
       </h2>
-      {/* <div className="flex flex-row self-center align-middle">
-        <div className="flex relative">
-          <InlineInput
-            className="flex font-medium bg-transparent text-xl text-center"
-            value={nameInput}
-            onChange={(e) => setNameInput(e.target.value)}
-          ></InlineInput>
-          <EditIcon></EditIcon>
-        </div>
-      </div> */}
-
-      {/* <button
-        onClick={async () => {
-          await mutate({
-            id,
-            talk: {
-              name: nameInput,
-            },
-          });
-        }}
-      >
-        save
-      </button> */}
       <h1 className="font-medium text-white text-lg"> {name}</h1>
-
       <h1 className="font-medium text-white text-xs"> by {speaker}</h1>
     </div>
   );
