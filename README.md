@@ -17,20 +17,20 @@ This is an example front-end for the multi-conference example app created with N
 
 ## Table of Contents:
 - [Nhost Netlify Starter Template (nextjs-reactquery-graphql)](#nhost-netlify-starter-template-nextjs-reactquery-graphql)
+  - [Previews:](#previews)
+  - [Table of Contents:](#table-of-contents)
   - [Getting Started](#getting-started)
   - [Deploy to Nhost](#deploy-to-nhost)
   - [Deploy to Netlify](#deploy-to-netlify)
 
 ## Getting Started
 
-<details><summary>Steps for setting up local development</h6></summary>
+<details><summary>Steps for setting up local development</summary>
 
-<p>
 1. Clone the repository
 
 ```sh
-git clone https://github.com/nhost/nhost
-cd nhost
+git clone https://github.com/nhost/nhost-netlify-starter-nextjs-reactquery.git
 ```
 
 2. Install the dependencies
@@ -45,13 +45,12 @@ yarn install
 nhost dev
 ```
 
-4. Terminal 2: Start the Vue application
+4. Terminal 2: Start the Next.js application
 
 ```sh
 yarn dev
 ```
 
-</p>
 </details>
 
 <details><summary>Project structure walkthrough</summary>
@@ -62,20 +61,19 @@ Inside this folder you are going to see both the specification for the backend (
 /
 ├── nhost/
 ├── .nhost/
-├── public/
-│   └── favicon.ico
 ├── src/
 │   ├── components/
-│   │   └── ...vue
+|   |
 │   └── pages/
-│       └── IndexPage.vue
+│       └── index.tsx
 └── package.json
 ```
 
+- `nhost` is the main specification of your backend: tables, permissions & roles.
+
 </details>
 
-<details><summary>GraphQL API Schema and Example Queries</h6></summary>
-<p>
+<details><summary>GraphQL API Schema and Example Queries</summary>
 
 ```graphql
 query ConferencesQuery {
@@ -123,7 +121,6 @@ query Talks {
 }
 ```
 
-</p>
 </details>
 
 ## Deploy to Nhost
@@ -139,7 +136,7 @@ query Talks {
 - Serverless Functions: AWS Lambdas.
 ~~~
 
-<details><summary>Steps for creating an Nhost application</h6></summary>
+<details><summary>Steps for creating an Nhost application</summary>
 
 Log in to your Nhost dashboard and click the **Create your first app** button.
 
@@ -156,7 +153,7 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
 </details>
-<details><summary>Connecting this repository to Nhost</h6></summary>
+<details><summary>Connecting this repository to Nhost</summary>
 Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
 1. Fork/clone this repository to your GitHub account.
@@ -187,27 +184,27 @@ Nhost supports a git-based workflow which means that you can safely work locally
                                                                                                                                  
 ## Deploy to Netlify
                                                                                                                                  
-<details><summary>Steps for deploying this template to Netlify</h6></summary>
-                                                                                                                                 
-1. Clone this repo: ``
+<details><summary>Steps for deploying this template to Netlify</summary>
+                                                                                                                            
+1. Clone this repo: `https://github.com/nhost/nhost-netlify-starter-nextjs-reactquery.git`
 2. Make sure you are in the correct directory and run`yarn install` (or `npm install`.)
 3. Run `yarn dev` (or `npm run dev`.)
 4. Make your desired changes to the front-end.
 5. Provide the necessary permissions to the Netlify application for your GitHub repository.
-6. Add the correct environment variables from your Nhost application:
+6. Once you import the repository, add the correct environment variables from your Nhost application:
 
 ```
 NEXT_PUBLIC_NHOST_SUBDOMAIN=YOUR_NHOST_APP_SUBDOMAIN
 NEXT_PUBLIC_NHOST_REGION=YOUR_NHOST_APP_REGION
 ```
-                                                                                                                                 
+                                                                                                           
 You can select these variables from your app overview:
                                                                                                                                  
 <p align="center" width="100%">
 <img width="50%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
 </p>
 
-Add the variables to your Netlify Deployment:     
+Then add the variables to your Netlify Deployment:     
   
 <p align="center" width="100%">
 <img width="50%"" src="https://user-images.githubusercontent.com/20285232/181789867-ebd6a197-8125-47a1-9bd1-8f8f01e24f29.png"> 
