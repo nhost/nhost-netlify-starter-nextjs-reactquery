@@ -1,4 +1,5 @@
-https://user-images.githubusercontent.com/20285232/181749889-24593a54-2847-466c-8f73-6b3f754ad303.mp4
+https://user-images.githubusercontent.com/20285232/181801170-ac201340-4fc1-48ea-8c78-5904ec293a6a.mp4
+
 
 # Nhost Netlify Starter Template
 
