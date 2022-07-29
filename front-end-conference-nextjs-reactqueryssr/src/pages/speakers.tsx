@@ -14,12 +14,12 @@ const Speakers = () => {
 
   if (isError) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-  
+
   const isAuthenticated = useAuthenticated();
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">
-      <div className="bg-grid bg-header text-white h-full">
+      <div className=" text-white">
         <Header />
         <div className="flex flex-col max-w-5xl mx-auto my-10">
           <div className="grid w-full grid-cols-4 gap-6">
@@ -37,12 +37,14 @@ const Speakers = () => {
               );
             })}
           </div>
-          {isAuthenticated ? <div className="w-full max-w-lg py-10 mx-auto">
-            <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
-              Add New Speaker
-            </h1>
-            <AddNewSpeaker></AddNewSpeaker>
-          </div> : null}
+          {isAuthenticated ? (
+            <div className="w-full max-w-lg py-10 mx-auto">
+              <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
+                Add New Speaker
+              </h1>
+              <AddNewSpeaker></AddNewSpeaker>
+            </div>
+          ) : null}
         </div>
       </div>
     </Layout>

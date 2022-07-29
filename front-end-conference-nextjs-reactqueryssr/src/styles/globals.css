@@ -1,8 +1,15 @@
 @tailwind base;
 @tailwind components;
 
+html {
+  overflow-y: overlay;
+  cursor: default;
+  height: 100%;
+}
+
 body {
-  font-family: "Inter", sans-serif;
+  font-family: 'Inter', sans-serif;
+  height: 100%;
 }
 
 .bg-grid {
@@ -12,7 +19,7 @@ body {
 }
 
 .grotesk {
-  font-family: "Space Grotesk", sans-serif;
+  font-family: 'Space Grotesk', sans-serif;
 }
 
 .stroke {
