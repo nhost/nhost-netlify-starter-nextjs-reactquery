@@ -3,7 +3,6 @@
 This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  
 
 - [Getting Started](#getting-started)
-- [GraphQL API structure](#graphql-api-structure)
 - [Deploy to Nhost](#deploy-to-nhost)
   - [Connecting your Nhost application to a GitHub repository](#connecting-your-nhost-application-to-a-github-repository)
 - [Deploying the front-end](#deploying-the-front-end)
@@ -63,10 +62,7 @@ Inside this folder you are going to see both the specification for the backend (
 </details>
 
 
-
-## GraphQL API structure
-
-<details><summary>Query Examples</summary>
+<details><summary>GraphQL API Schema and Example Queries</summary>
 <p>
 
 - Get a featured conference
