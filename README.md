@@ -62,7 +62,7 @@ Inside this folder you are going to see both the specification for the backend (
 </details>
 
 
-<details><summary>GraphQL API Schema and Example Queries</summary>
+<details><summary><h4>GraphQL API Schema and Example Queries</h4></summary>
 <p>
 
 - Get a featured conference
