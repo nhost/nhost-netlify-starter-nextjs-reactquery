@@ -11,14 +11,14 @@ import { useAuthenticated } from '@nhost/react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 
-import { queryClient } from '../utils/react-query-client';
+import { queryClient } from '@/utils/react-query-client';
 
 const Talks = () => {
   return (
     <Layout title="Home | Next.js + TypeScript Example">
       <Header />
       <div className="flex flex-col max-w-4xl mx-auto my-10">
-        <ConferenceTalks></ConferenceTalks>
+        <ConferenceTalks />
       </div>
     </Layout>
   );
@@ -52,7 +52,7 @@ function ConferenceTalks() {
           <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
             Add New Talk
           </h1>
-          <AddNewTalk></AddNewTalk>
+          <AddNewTalk />
         </div>
       ) : null}
     </div>
@@ -79,7 +79,7 @@ function AddNewTalk() {
   useEffect(() => {
     if (!data) return;
     setTalk({ ...talk, speaker: data.speakers[0] });
-  }, [data, setTalk]);
+  }, [data, setTalk, talk]);
 
   if (!data) return <div>loading...</div>;
 

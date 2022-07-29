@@ -6,20 +6,35 @@ import {
 } from '@/generated/graphql';
 import { Header } from '@/components/Header';
 import { FeaturedConference } from '@/components/FeaturedConference';
+import { ReactNode } from 'react';
 
-const IndexPage = () => {
-  const { isLoading, isError } =
-    useConferencesQueryQuery<ConferencesQueryQuery>();
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Something went wrong.</div>;
+interface IndexContainerProps {
+  children?: ReactNode;
+}
 
+export const IndexContainer = ({ children }: IndexContainerProps) => {
   return (
     <Layout title="Nhost NextJS React Query Starter Example">
       <div className="bg-header bg-grid h-full text-white">
         <Header />
-        <FeaturedConference />
+        {children ? children : null}
       </div>
     </Layout>
+  );
+};
+
+const IndexPage = () => {
+  const { isLoading, isError } =
+    useConferencesQueryQuery<ConferencesQueryQuery>();
+
+  if (isLoading) return <IndexContainer />;
+
+  if (isError) return <IndexContainer />;
+
+  return (
+    <IndexContainer>
+      <FeaturedConference />
+    </IndexContainer>
   );
 };
 
@@ -35,7 +50,7 @@ export async function getStaticProps() {
     props: {
       dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
     },
-    revalidate: 10,
+    revalidate: 60,
   };
 }
 
