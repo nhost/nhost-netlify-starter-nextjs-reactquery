@@ -1,4 +1,4 @@
-<img align="left" width="33%" src="https://user-images.githubusercontent.com/20285232/181688126-ad1d015c-4f67-4b00-b870-f73e59f05efa.png" width=250 height=250> 
+<img align="left" width="55%" src="https://user-images.githubusercontent.com/20285232/181688126-ad1d015c-4f67-4b00-b870-f73e59f05efa.png" width=250 height=250> 
 
 This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.) This is an example front-end for the confere example app. It uses nextjs, react-query, tailwind, and nhost as a backend (authentication, postgres database, graphql api.)  
 
