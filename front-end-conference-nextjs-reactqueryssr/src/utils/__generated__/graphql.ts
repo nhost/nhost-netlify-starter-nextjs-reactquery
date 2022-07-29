@@ -2414,6 +2414,10 @@ export type Mutation_Root = {
   delete_talks?: Maybe<Talks_Mutation_Response>;
   /** delete single row from the table: "talks" */
   delete_talks_by_pk?: Maybe<Talks>;
+  /** delete data from the table: "tickets" */
+  delete_tickets?: Maybe<Tickets_Mutation_Response>;
+  /** delete single row from the table: "tickets" */
+  delete_tickets_by_pk?: Maybe<Tickets>;
   /** insert a single row into the table: "auth.providers" */
   insertAuthProvider?: Maybe<AuthProviders>;
   /** insert a single row into the table: "auth.provider_requests" */
@@ -2466,6 +2470,10 @@ export type Mutation_Root = {
   insert_talks?: Maybe<Talks_Mutation_Response>;
   /** insert a single row into the table: "talks" */
   insert_talks_one?: Maybe<Talks>;
+  /** insert data into the table: "tickets" */
+  insert_tickets?: Maybe<Tickets_Mutation_Response>;
+  /** insert a single row into the table: "tickets" */
+  insert_tickets_one?: Maybe<Tickets>;
   /** update single row of the table: "auth.providers" */
   updateAuthProvider?: Maybe<AuthProviders>;
   /** update single row of the table: "auth.provider_requests" */
@@ -2518,6 +2526,10 @@ export type Mutation_Root = {
   update_talks?: Maybe<Talks_Mutation_Response>;
   /** update single row of the table: "talks" */
   update_talks_by_pk?: Maybe<Talks>;
+  /** update data of the table: "tickets" */
+  update_tickets?: Maybe<Tickets_Mutation_Response>;
+  /** update single row of the table: "tickets" */
+  update_tickets_by_pk?: Maybe<Tickets>;
 };
 
 
@@ -2674,6 +2686,18 @@ export type Mutation_RootDelete_TalksArgs = {
 /** mutation root */
 export type Mutation_RootDelete_Talks_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_TicketsArgs = {
+  where: Tickets_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootDelete_Tickets_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -2856,6 +2880,20 @@ export type Mutation_RootInsert_TalksArgs = {
 export type Mutation_RootInsert_Talks_OneArgs = {
   object: Talks_Insert_Input;
   on_conflict?: InputMaybe<Talks_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_TicketsArgs = {
+  objects: Array<Tickets_Insert_Input>;
+  on_conflict?: InputMaybe<Tickets_On_Conflict>;
+};
+
+
+/** mutation root */
+export type Mutation_RootInsert_Tickets_OneArgs = {
+  object: Tickets_Insert_Input;
+  on_conflict?: InputMaybe<Tickets_On_Conflict>;
 };
 
 
@@ -3068,6 +3106,22 @@ export type Mutation_RootUpdate_Talks_By_PkArgs = {
   pk_columns: Talks_Pk_Columns_Input;
 };
 
+
+/** mutation root */
+export type Mutation_RootUpdate_TicketsArgs = {
+  _inc?: InputMaybe<Tickets_Inc_Input>;
+  _set?: InputMaybe<Tickets_Set_Input>;
+  where: Tickets_Bool_Exp;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tickets_By_PkArgs = {
+  _inc?: InputMaybe<Tickets_Inc_Input>;
+  _set?: InputMaybe<Tickets_Set_Input>;
+  pk_columns: Tickets_Pk_Columns_Input;
+};
+
 /** column ordering options */
 export enum Order_By {
   /** in ascending order, nulls last */
@@ -3158,6 +3212,12 @@ export type Query_Root = {
   talks_aggregate: Talks_Aggregate;
   /** fetch data from the table: "talks" using primary key columns */
   talks_by_pk?: Maybe<Talks>;
+  /** fetch data from the table: "tickets" */
+  tickets: Array<Tickets>;
+  /** fetch aggregated fields from the table: "tickets" */
+  tickets_aggregate: Tickets_Aggregate;
+  /** fetch data from the table: "tickets" using primary key columns */
+  tickets_by_pk?: Maybe<Tickets>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -3443,6 +3503,29 @@ export type Query_RootTalks_By_PkArgs = {
 };
 
 
+export type Query_RootTicketsArgs = {
+  distinct_on?: InputMaybe<Array<Tickets_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tickets_Order_By>>;
+  where?: InputMaybe<Tickets_Bool_Exp>;
+};
+
+
+export type Query_RootTickets_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tickets_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tickets_Order_By>>;
+  where?: InputMaybe<Tickets_Bool_Exp>;
+};
+
+
+export type Query_RootTickets_By_PkArgs = {
+  id: Scalars['Int'];
+};
+
+
 export type Query_RootUserArgs = {
   id: Scalars['uuid'];
 };
@@ -3716,6 +3799,12 @@ export type Subscription_Root = {
   talks_aggregate: Talks_Aggregate;
   /** fetch data from the table: "talks" using primary key columns */
   talks_by_pk?: Maybe<Talks>;
+  /** fetch data from the table: "tickets" */
+  tickets: Array<Tickets>;
+  /** fetch aggregated fields from the table: "tickets" */
+  tickets_aggregate: Tickets_Aggregate;
+  /** fetch data from the table: "tickets" using primary key columns */
+  tickets_by_pk?: Maybe<Tickets>;
   /** fetch data from the table: "auth.users" using primary key columns */
   user?: Maybe<Users>;
   /** fetch data from the table: "auth.users" */
@@ -3998,6 +4087,29 @@ export type Subscription_RootTalks_AggregateArgs = {
 
 export type Subscription_RootTalks_By_PkArgs = {
   id: Scalars['uuid'];
+};
+
+
+export type Subscription_RootTicketsArgs = {
+  distinct_on?: InputMaybe<Array<Tickets_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tickets_Order_By>>;
+  where?: InputMaybe<Tickets_Bool_Exp>;
+};
+
+
+export type Subscription_RootTickets_AggregateArgs = {
+  distinct_on?: InputMaybe<Array<Tickets_Select_Column>>;
+  limit?: InputMaybe<Scalars['Int']>;
+  offset?: InputMaybe<Scalars['Int']>;
+  order_by?: InputMaybe<Array<Tickets_Order_By>>;
+  where?: InputMaybe<Tickets_Bool_Exp>;
+};
+
+
+export type Subscription_RootTickets_By_PkArgs = {
+  id: Scalars['Int'];
 };
 
 
@@ -4357,6 +4469,193 @@ export type Talks_Variance_Fields = {
 /** order by variance() on columns of table "talks" */
 export type Talks_Variance_Order_By = {
   duration?: InputMaybe<Order_By>;
+};
+
+/** columns and relationships of "tickets" */
+export type Tickets = {
+  __typename?: 'tickets';
+  conference_id: Scalars['uuid'];
+  email: Scalars['String'];
+  id: Scalars['Int'];
+};
+
+/** aggregated selection of "tickets" */
+export type Tickets_Aggregate = {
+  __typename?: 'tickets_aggregate';
+  aggregate?: Maybe<Tickets_Aggregate_Fields>;
+  nodes: Array<Tickets>;
+};
+
+/** aggregate fields of "tickets" */
+export type Tickets_Aggregate_Fields = {
+  __typename?: 'tickets_aggregate_fields';
+  avg?: Maybe<Tickets_Avg_Fields>;
+  count: Scalars['Int'];
+  max?: Maybe<Tickets_Max_Fields>;
+  min?: Maybe<Tickets_Min_Fields>;
+  stddev?: Maybe<Tickets_Stddev_Fields>;
+  stddev_pop?: Maybe<Tickets_Stddev_Pop_Fields>;
+  stddev_samp?: Maybe<Tickets_Stddev_Samp_Fields>;
+  sum?: Maybe<Tickets_Sum_Fields>;
+  var_pop?: Maybe<Tickets_Var_Pop_Fields>;
+  var_samp?: Maybe<Tickets_Var_Samp_Fields>;
+  variance?: Maybe<Tickets_Variance_Fields>;
+};
+
+
+/** aggregate fields of "tickets" */
+export type Tickets_Aggregate_FieldsCountArgs = {
+  columns?: InputMaybe<Array<Tickets_Select_Column>>;
+  distinct?: InputMaybe<Scalars['Boolean']>;
+};
+
+/** aggregate avg on columns */
+export type Tickets_Avg_Fields = {
+  __typename?: 'tickets_avg_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** Boolean expression to filter rows from the table "tickets". All fields are combined with a logical 'AND'. */
+export type Tickets_Bool_Exp = {
+  _and?: InputMaybe<Array<Tickets_Bool_Exp>>;
+  _not?: InputMaybe<Tickets_Bool_Exp>;
+  _or?: InputMaybe<Array<Tickets_Bool_Exp>>;
+  conference_id?: InputMaybe<Uuid_Comparison_Exp>;
+  email?: InputMaybe<String_Comparison_Exp>;
+  id?: InputMaybe<Int_Comparison_Exp>;
+};
+
+/** unique or primary key constraints on table "tickets" */
+export enum Tickets_Constraint {
+  /** unique or primary key constraint on columns "email" */
+  TicketsEmailKey = 'tickets_email_key',
+  /** unique or primary key constraint on columns "id" */
+  TicketsPkey = 'tickets_pkey'
+}
+
+/** input type for incrementing numeric columns in table "tickets" */
+export type Tickets_Inc_Input = {
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** input type for inserting data into table "tickets" */
+export type Tickets_Insert_Input = {
+  conference_id?: InputMaybe<Scalars['uuid']>;
+  email?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate max on columns */
+export type Tickets_Max_Fields = {
+  __typename?: 'tickets_max_fields';
+  conference_id?: Maybe<Scalars['uuid']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** aggregate min on columns */
+export type Tickets_Min_Fields = {
+  __typename?: 'tickets_min_fields';
+  conference_id?: Maybe<Scalars['uuid']>;
+  email?: Maybe<Scalars['String']>;
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** response of any mutation on the table "tickets" */
+export type Tickets_Mutation_Response = {
+  __typename?: 'tickets_mutation_response';
+  /** number of rows affected by the mutation */
+  affected_rows: Scalars['Int'];
+  /** data from the rows affected by the mutation */
+  returning: Array<Tickets>;
+};
+
+/** on_conflict condition type for table "tickets" */
+export type Tickets_On_Conflict = {
+  constraint: Tickets_Constraint;
+  update_columns?: Array<Tickets_Update_Column>;
+  where?: InputMaybe<Tickets_Bool_Exp>;
+};
+
+/** Ordering options when selecting data from "tickets". */
+export type Tickets_Order_By = {
+  conference_id?: InputMaybe<Order_By>;
+  email?: InputMaybe<Order_By>;
+  id?: InputMaybe<Order_By>;
+};
+
+/** primary key columns input for table: tickets */
+export type Tickets_Pk_Columns_Input = {
+  id: Scalars['Int'];
+};
+
+/** select columns of table "tickets" */
+export enum Tickets_Select_Column {
+  /** column name */
+  ConferenceId = 'conference_id',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id'
+}
+
+/** input type for updating data in table "tickets" */
+export type Tickets_Set_Input = {
+  conference_id?: InputMaybe<Scalars['uuid']>;
+  email?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['Int']>;
+};
+
+/** aggregate stddev on columns */
+export type Tickets_Stddev_Fields = {
+  __typename?: 'tickets_stddev_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_pop on columns */
+export type Tickets_Stddev_Pop_Fields = {
+  __typename?: 'tickets_stddev_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate stddev_samp on columns */
+export type Tickets_Stddev_Samp_Fields = {
+  __typename?: 'tickets_stddev_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate sum on columns */
+export type Tickets_Sum_Fields = {
+  __typename?: 'tickets_sum_fields';
+  id?: Maybe<Scalars['Int']>;
+};
+
+/** update columns of table "tickets" */
+export enum Tickets_Update_Column {
+  /** column name */
+  ConferenceId = 'conference_id',
+  /** column name */
+  Email = 'email',
+  /** column name */
+  Id = 'id'
+}
+
+/** aggregate var_pop on columns */
+export type Tickets_Var_Pop_Fields = {
+  __typename?: 'tickets_var_pop_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate var_samp on columns */
+export type Tickets_Var_Samp_Fields = {
+  __typename?: 'tickets_var_samp_fields';
+  id?: Maybe<Scalars['Float']>;
+};
+
+/** aggregate variance on columns */
+export type Tickets_Variance_Fields = {
+  __typename?: 'tickets_variance_fields';
+  id?: Maybe<Scalars['Float']>;
 };
 
 export type Timestamptz_Cast_Exp = {
@@ -5019,6 +5318,13 @@ export type DeleteTalkMutationVariables = Exact<{
 
 export type DeleteTalkMutation = { __typename?: 'mutation_root', delete_talks_by_pk?: { __typename?: 'talks', id: any } | null };
 
+export type AddEmailMutationVariables = Exact<{
+  ticket: Tickets_Insert_Input;
+}>;
+
+
+export type AddEmailMutation = { __typename?: 'mutation_root', insert_tickets_one?: { __typename?: 'tickets', id: number } | null };
+
 
 export const ConferencesQueryDocument = `
     query ConferencesQuery {
@@ -5202,3 +5508,20 @@ export const useDeleteTalkMutation = <
       options
     );
 useDeleteTalkMutation.fetcher = (variables: DeleteTalkMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteTalkMutation, DeleteTalkMutationVariables>(DeleteTalkDocument, variables, options);
+export const AddEmailDocument = `
+    mutation AddEmail($ticket: tickets_insert_input!) {
+  insert_tickets_one(object: $ticket) {
+    id
+  }
+}
+    `;
+export const useAddEmailMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<AddEmailMutation, TError, AddEmailMutationVariables, TContext>) =>
+    useMutation<AddEmailMutation, TError, AddEmailMutationVariables, TContext>(
+      ['AddEmail'],
+      (variables?: AddEmailMutationVariables) => fetchData<AddEmailMutation, AddEmailMutationVariables>(AddEmailDocument, variables)(),
+      options
+    );
+useAddEmailMutation.fetcher = (variables: AddEmailMutationVariables, options?: RequestInit['headers']) => fetchData<AddEmailMutation, AddEmailMutationVariables>(AddEmailDocument, variables, options);

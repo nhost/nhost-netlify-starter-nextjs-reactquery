@@ -21,13 +21,7 @@ export function Agenda({ amountOfDays }) {
 
   return (
     <div className="flex flex-col max-w-4xl mx-auto">
-      <div className="text-center">
-        <h1 className="text-dim text-3xl font-medium leading-none text-center">
-          Agenda
-        </h1>
-      </div>
-
-      <div className="flex flex-col py-4 text-center">
+      <div className="flex flex-col py-2 text-center">
         <div
           className={clsx(
             'grid grid-cols-3 py-5 gap-y-12 gap-8 place-content-between',

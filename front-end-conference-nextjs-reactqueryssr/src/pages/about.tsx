@@ -6,7 +6,7 @@ const About = () => {
     <Layout title="Home | Next.js + TypeScript Example">
       <div className="bg-grid bg-header h-screen text-white">
         <Header />
-        <div className="flex flex-col max-w-2xl mx-auto my-20 text-center">
+        <div className="flex flex-col max-w-2xl mx-auto my-12 text-center">
           <h1 className="text-dim text-2xl font-semibold leading-none text-center">
             NextJS and Nhost Starter
           </h1>
