@@ -37,6 +37,7 @@ export function Agenda({ amountOfDays }) {
           {amountOfDays.map((day, index) => {
             return (
               <Day
+                key={day}
                 dayNumber={index + 1}
                 talks={data.conferences[0].talks.filter((talk) => {
                   return (

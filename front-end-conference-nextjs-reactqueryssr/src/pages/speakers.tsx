@@ -11,11 +11,10 @@ import { useAddSpeakerMutation } from '../utils/__generated__/graphql';
 
 const Speakers = () => {
   const { data, isLoading, isError } = useSpeakersQuery();
+  const isAuthenticated = useAuthenticated();
 
   if (isError) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-
-  const isAuthenticated = useAuthenticated();
 
   return (
     <Layout title="Home | Next.js + TypeScript Example">

@@ -26,9 +26,10 @@ const Talks = () => {
 
 function ConferenceTalks() {
   const { data, isLoading, isError } = useTalksQuery();
+  const isAuthenticated = useAuthenticated();
+
   if (isError) return <div>failed to load</div>;
   if (isLoading) return <div>loading...</div>;
-  const isAuthenticated = useAuthenticated();
 
   return (
     <div>

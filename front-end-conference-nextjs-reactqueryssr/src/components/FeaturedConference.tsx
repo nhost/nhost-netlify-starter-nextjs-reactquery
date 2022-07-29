@@ -38,9 +38,8 @@ export function FeaturedConference() {
           <div className="max-w-sm mx-auto mt-2 space-y-1 text-center">
             <p> {featuredConference.location}</p>
             <p className="text-list text-center">
-              {new Date(featuredConference.start_date).toDateString()} to{' '}
-              {new Date(featuredConference.end_date).toDateString()}
-              {console.log(new Date(featuredConference.start_date))}
+              {`${new Date(featuredConference.start_date).toDateString()} to 
+              ${new Date(featuredConference.end_date).toDateString()}`}
             </p>
           </div>
           <div className="max-w-sm mx-auto mt-4">
