@@ -1,8 +1,8 @@
 https://user-images.githubusercontent.com/20285232/181749889-24593a54-2847-466c-8f73-6b3f754ad303.mp4
 
-# Nhost Netlify Starter Template (nextjs-reactquery-graphql)
+# Nhost Netlify Starter Template
 
-This is an example front-end for the multi-conference example app created with Nhost. It uses Next.js, React-Query, Tailwind, and Nhost as a backend (authentication, postgres database, graphql api) and Netlify to host the front-end. This example uses:
+This is an example front-end for the multi-conference example app created with Nhost. It uses Next.js, React-Query, Tailwind, Nhost as the backend (authentication, Postgres Database, GraphQL API) and Netlify to host the front-end.
 
 - [Next.js](https://github.com/vercel/next.js/)
 - [Tailwind v4](https://tailwindcss.com/) for styling
@@ -16,7 +16,7 @@ This is an example front-end for the multi-conference example app created with N
 - Front-end: https://fanciful-concha-7412d8.netlify.app/
 
 ## Table of Contents:
-- [Nhost Netlify Starter Template (nextjs-reactquery-graphql)](#nhost-netlify-starter-template-nextjs-reactquery-graphql)
+- [Nhost Netlify Starter Template](#nhost-netlify-starter-template-nextjs-reactquery-graphql)
   - [Previews:](#previews)
   - [Table of Contents:](#table-of-contents)
   - [Getting Started](#getting-started)
