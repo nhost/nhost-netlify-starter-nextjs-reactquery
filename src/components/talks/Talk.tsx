@@ -5,7 +5,7 @@ import {
 } from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
-import { TalkType } from '../Day';
+import { Talk as TalkType } from '@/types/Talk';
 
 export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 

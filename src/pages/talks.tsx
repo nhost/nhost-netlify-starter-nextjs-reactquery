@@ -2,9 +2,7 @@ import { Header } from '@/components/Header';
 import Layout from '@/components/Layout';
 import { ConferenceTalks } from '@/components/talks/ConferenceTalks';
 import { useTalksQuery } from '@/utils/__generated__/graphql';
-import { queryClient } from '@/utils/react-query-client';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { useEffect, useState } from 'react';
 
 const TalksPage = () => {
   return (

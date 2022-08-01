@@ -1,15 +1,5 @@
-import { Key } from 'react';
-import { Speaker } from './speakers/Speaker';
+import { Talk as TalkType } from '@/types/Talk';
 import { Talk } from './talks/Talk';
-
-export type TalkType = {
-  key: Key;
-  id: string;
-  name: string;
-  speaker: Speaker;
-  start_date: string;
-  end_date: string;
-};
 
 export function Day({ talks, dayNumber }) {
   return (

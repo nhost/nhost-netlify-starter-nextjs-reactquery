@@ -1,4 +1,4 @@
-import SpeakerListbox from '@/components/SpeakerListbox';
+import { SpeakerListbox } from '@/components/speakers/SpeakerListbox';
 import { useAddTalkMutation, useSpeakersQuery, useTalksQuery } from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useEffect, useState } from 'react';

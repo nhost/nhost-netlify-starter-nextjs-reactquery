@@ -3,7 +3,7 @@ import { useAuthenticated } from '@nhost/react';
 
 import { AddNewTalk } from './AddNewTalk';
 import { Talk } from './Talk';
-import { Speaker } from '../speakers/Speaker';
+import { Talk as TalkType } from '@/types/Talk';
 
 export function ConferenceTalks() {
   const { data, isLoading, isError } = useTalksQuery();
@@ -15,7 +15,7 @@ export function ConferenceTalks() {
   return (
     <div>
       <div className="place-content-between grid grid-cols-3 gap-8 py-5 text-center">
-        {data.talks.map((talk) => {
+        {data.talks.map((talk: TalkType) => {
           return (
             <Talk
               key={talk.id}

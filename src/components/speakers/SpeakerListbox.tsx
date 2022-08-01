@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 
-export default function SpeakerListbox({ selected, onChange, speakers }) {
+export function SpeakerListbox({ selected, onChange, speakers }) {
   return (
     <div className="w-full cursor-pointer">
       <Listbox value={selected || speakers[0]} onChange={onChange}>
