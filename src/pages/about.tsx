@@ -3,7 +3,7 @@ import Layout from '@/components/Layout';
 
 const About = () => {
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Nhost & Netlify Starter Template">
       <div className="bg-grid bg-header h-screen text-white">
         <Header />
         <div className="flex flex-col max-w-2xl mx-auto my-12 text-center">

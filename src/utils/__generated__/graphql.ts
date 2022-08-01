@@ -5294,7 +5294,7 @@ export type DeleteSpeakerMutation = { __typename?: 'mutation_root', delete_speak
 export type TalksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type TalksQuery = { __typename?: 'query_root', talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string } }> };
+export type TalksQuery = { __typename?: 'query_root', talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', id: any, name: string, bio?: string | null, social?: string | null, job_description?: string | null, avatar_url?: string | null } }> };
 
 export type UpdateTalkMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5435,6 +5435,12 @@ export const TalksDocument = `
     start_date
     end_date
     speaker {
+      id
+      name
+      bio
+      social
+      job_description
+      avatar_url
       name
     }
   }

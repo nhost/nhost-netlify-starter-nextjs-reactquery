@@ -1,23 +1,15 @@
 import {
+  useConferencesQueryQuery,
   useDeleteTalkMutation,
   useTalksQuery,
 } from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useAuthenticated } from '@nhost/react';
-import { useConferencesQueryQuery } from '@/utils/__generated__/graphql';
-import { Speaker } from './Speaker';
+import { TalkType } from '../Day';
 
 export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
-export type Talk = {
-  id: string;
-  name: string;
-  speaker: PropType<Speaker, 'name'>;
-  startDate: string;
-  endDate: string;
-};
-
-export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
+export function Talk({ id, name, speaker, start_date, end_date }: TalkType) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteTalkMutation({
@@ -28,13 +20,13 @@ export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
   });
 
   const startMinutes =
-    new Date(startDate).getUTCMinutes() === 0
+    new Date(start_date).getUTCMinutes() === 0
       ? '00'
-      : new Date(startDate).getUTCMinutes();
+      : new Date(start_date).getUTCMinutes();
   const endMinutes =
-    new Date(endDate).getUTCMinutes() === 0
+    new Date(end_date).getUTCMinutes() === 0
       ? '00'
-      : new Date(endDate).getUTCMinutes();
+      : new Date(end_date).getUTCMinutes();
 
   return (
     <div className="bg-card shadow-gray-900 relative flex flex-col w-full py-4 space-y-1 border border-gray-900 rounded-md shadow-sm">
@@ -64,14 +56,16 @@ export function Talk({ id, name, speaker, startDate, endDate }: Talk) {
         </button>
       ) : null}
       <h2 className="text-dim text-xs font-medium">
-        {startDate
-          ? `${new Date(startDate).getUTCHours()}:${startMinutes} to ${new Date(
-              endDate,
+        {start_date
+          ? `${new Date(
+              start_date,
+            ).getUTCHours()}:${startMinutes} to ${new Date(
+              end_date,
             ).getUTCHours()}:${endMinutes} UTC`
           : '-'}
       </h2>
       <h1 className="text-lg font-medium text-white"> {name}</h1>
-      <h1 className="text-xs font-medium text-white"> by {speaker}</h1>
+      <h1 className="text-xs font-medium text-white"> by {speaker.name}</h1>
     </div>
   );
 }
