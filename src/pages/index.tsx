@@ -1,9 +1,6 @@
-import { FeaturedConference } from '@/components/FeaturedConference';
+import { FeaturedConference } from '@/components/conferences/FeaturedConference';
 import { IndexContainer } from '@/components/IndexContainer';
-import {
-  ConferencesQueryQuery,
-  useConferencesQueryQuery,
-} from '@/generated/graphql';
+import { ConferencesQueryQuery, useConferencesQueryQuery } from '@/generated/graphql';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 const IndexPage = () => {

@@ -1,5 +1,5 @@
 import { Talk as TalkType } from '@/types/Talk';
-import { Talk } from './talks/Talk';
+import { Talk } from '../talks/Talk';
 
 export function Day({ talks, dayNumber }) {
   return (
