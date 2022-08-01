@@ -8,10 +8,10 @@ const Dashboard = () => {
   const isAuthenticated = useAuthenticated();
 
   return (
-    <Layout title="Home | Next.js + TypeScript Example">
+    <Layout title="Nhost & Netlify NextJS React Query Starter Example">
       <div className="bg-grid bg-header h-full text-white">
         <Header />
-        <div className=" flex flex-col max-w-3xl mx-auto my-20">
+        <div className=" flex flex-col max-w-3xl mx-auto my-8">
           {isAuthenticated ? (
             <div className="w-full max-w-lg py-10 mx-auto">
               <h1 className="text-dim pb-8 text-3xl font-medium leading-none">

@@ -13,7 +13,7 @@ export function Header() {
       <div className="place-content-between flex flex-row max-w-5xl py-4 mx-auto">
         <div className="flex w-48">
           <Link href="/">
-            <a className="text-md text-white self-center cursor-pointer">
+            <a className="text-md self-center text-white cursor-pointer">
               Conference Starter
             </a>
           </Link>
@@ -47,9 +47,11 @@ export function Header() {
         <div className="flex w-48">
           {userEmail ? (
             <div className="flex flex-row space-x-4">
-              <button className="text-list px-2 py-1 text-xs cursor-default">
-                {userEmail}
-              </button>
+              <Link href="/dashboard">
+                <button className="text-list px-2 py-1 text-xs cursor-pointer">
+                  {userEmail}
+                </button>
+              </Link>
               <button
                 onClick={() => signOut()}
                 className="text-list border-list px-2 py-1 text-xs border rounded-md cursor-pointer"
