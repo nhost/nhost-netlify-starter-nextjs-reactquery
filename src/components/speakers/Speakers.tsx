@@ -30,12 +30,12 @@ export const Speakers = () => {
           <Speaker
             key={speaker.id}
             id={speaker.id}
-            avatarUrl={
+            avatar_url={
               speaker.avatar_url || 'https://via.placeholder.com/350x350'
             }
             name={speaker.name}
             social={speaker.social}
-            job={speaker.job_description}
+            job_description={speaker.job_description}
           />
         );
       })}

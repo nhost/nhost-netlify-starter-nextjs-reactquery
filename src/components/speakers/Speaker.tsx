@@ -7,7 +7,7 @@ import { queryClient } from '@/utils/react-query-client';
 import { useSpeakersQuery } from '@/utils/__generated__/graphql';
 import { Speaker } from '@/types/Speaker';
 
-export function Speaker({ id, avatarUrl, name, social, job }: Speaker) {
+export function Speaker({ id, avatar_url, name, social, job_description }: Speaker) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteSpeakerMutation({
@@ -49,12 +49,12 @@ export function Speaker({ id, avatarUrl, name, social, job }: Speaker) {
         className="object-cover rounded-md aspect-square p-0.5"
         width={350}
         height={350}
-        src={avatarUrl}
+        src={avatar_url}
       />
       <div className="py-2">
         <h1 className="text-lg font-medium text-white">{name}</h1>
         <h2 className="text-dim text-xs font-medium">@{social}</h2>
-        <h2 className="text-dim mt-2 text-sm font-medium">{job}</h2>
+        <h2 className="text-dim mt-2 text-sm font-medium">{job_description}</h2>
       </div>
     </div>
   );

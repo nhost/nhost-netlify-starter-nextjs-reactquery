@@ -5270,7 +5270,7 @@ export type Uuid_Comparison_Exp = {
 export type ConferencesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ConferencesQueryQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, location?: string | null, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, bio?: string | null } }> }> };
+export type ConferencesQueryQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, location?: string | null, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
 
 export type SpeakersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5341,6 +5341,10 @@ export const ConferencesQueryDocument = `
       end_date
       speaker {
         name
+        id
+        social
+        job_description
+        avatar_url
         bio
       }
     }

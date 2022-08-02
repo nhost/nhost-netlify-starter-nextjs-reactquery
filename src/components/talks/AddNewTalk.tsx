@@ -1,5 +1,9 @@
 import { SpeakerListbox } from '@/components/speakers/SpeakerListbox';
-import { useAddTalkMutation, useSpeakersQuery, useTalksQuery } from '@/utils/__generated__/graphql';
+import {
+  useAddTalkMutation,
+  useSpeakersQuery,
+  useTalksQuery,
+} from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useEffect, useState } from 'react';
 
@@ -22,7 +26,9 @@ export function AddNewTalk() {
 
   useEffect(() => {
     if (!data) return;
-    setTalk({ ...talk, speaker: data.speakers[0] });
+    setTalk((t) => {
+      return { ...t, speaker: data.speakers[0] };
+    });
   }, [data, setTalk]);
 
   if (!data) return <div>loading...</div>;

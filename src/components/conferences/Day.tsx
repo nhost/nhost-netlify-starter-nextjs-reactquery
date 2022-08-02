@@ -2,7 +2,7 @@ import { Talk as TalkType } from '@/types/Talk';
 import { Talk } from '@/components/talks/Talk';
 
 interface DayProps {
-  talks: TalkType[];
+  talks: TalkType[] | [];
   dayNumber: number;
 }
 

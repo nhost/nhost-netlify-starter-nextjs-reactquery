@@ -12,6 +12,10 @@ query ConferencesQuery {
       end_date
       speaker {
         name
+        id
+        social
+        job_description
+        avatar_url
         bio
       }
     }

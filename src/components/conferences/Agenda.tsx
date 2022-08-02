@@ -1,5 +1,6 @@
 import { useConferencesQueryQuery } from '@/utils/__generated__/graphql';
 import clsx from 'clsx';
+
 import { Day } from './Day';
 
 interface AgendaProps {
@@ -25,11 +26,10 @@ export function Agenda({ amountOfDays }: AgendaProps) {
               <Day
                 key={day.getUTCDay()}
                 dayNumber={index + 1}
-                talks={data.conferences[0].talks.filter((talk) => {
-                  return (
-                    new Date(talk.start_date).getUTCDay() === day.getUTCDay()
-                  );
-                })}
+                talks={data.conferences[0].talks.filter(
+                  (talk) =>
+                    new Date(talk.start_date).getUTCDay() === day.getUTCDay(),
+                )}
               />
             );
           })}
