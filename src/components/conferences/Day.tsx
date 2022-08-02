@@ -1,7 +1,12 @@
 import { Talk as TalkType } from '@/types/Talk';
-import { Talk } from '../talks/Talk';
+import { Talk } from '@/components/talks/Talk';
 
-export function Day({ talks, dayNumber }) {
+interface DayProps {
+  talks: TalkType[];
+  dayNumber: number;
+}
+
+export function Day({ talks, dayNumber }: DayProps) {
   return (
     <div className="gap-y-4 flex flex-col">
       <h2 className="text-xl font-semibold text-white">Day {dayNumber}</h2>
