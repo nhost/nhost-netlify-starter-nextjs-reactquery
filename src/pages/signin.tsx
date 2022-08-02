@@ -3,6 +3,7 @@ import { useForm } from 'react-hook-form';
 
 import Layout from '@/components/Layout';
 import { Header } from '@/components/Header';
+import { useAuthenticatedRedirect } from '@/hooks/useAuthenticatedRedirect';
 
 type SignInFormProps = {
   email: string;
@@ -107,8 +108,10 @@ export function SignInWithEmail() {
     </div>
   );
 }
+
 const IndexPage = () => {
   const isAuthenticated = useAuthenticated();
+  useAuthenticatedRedirect();
   return (
     <Layout title="">
       <div className="bg-header bg-grid h-screen text-white">
