@@ -11,12 +11,12 @@ This is an example front-end for the multi-conference example app created with N
 - [ESLint](https://eslint.org) linting & [Prettier](https://prettier.io) code formatting.
 - [GraphQL](https://graphql.org/) and [GraphQL Code Generator](https://www.graphql-code-generator.com/).
 
-## Previews:
+## Previews
 
 - Backend: https://rhhvmcjwixtxiumktygi.nhost.run/console
 - Front-end: https://fanciful-concha-7412d8.netlify.app/
 
-## Table of Contents:
+## Table of Contents
 
 - [Nhost Netlify Starter Template](#nhost-netlify-starter-template)
   - [Previews:](#previews)
@@ -27,7 +27,7 @@ This is an example front-end for the multi-conference example app created with N
 
 ## Getting Started
 
-<details><h6>Steps for setting up local development</h6>
+<details><summary><h5>Steps for setting up front-end local development</h5></summary>
 
 1. Clone the repository
 
@@ -49,7 +49,7 @@ yarn dev
 
 </details>
 
-<details><summary>Steps for setting up local development with the Nhost CLI</summary>
+<details><summary><h5>Steps for setting up local development with the Nhost CLI</h5></summary>
 
 When you start developing your front-end you will se that there's data already preloaded. This is coming from an environment Nhost has prepared to run the `conference` application. In order to make changes to the back-end (tables, columns, permissions, etc...) you need to start a local Nhost environment yourself.
 
@@ -89,9 +89,9 @@ This is because *there is* no data, you can go to `http://localhost:1337/` to st
 
 </details>
 
-<details><summary>Project structure walkthrough</summary>
+<details><summary><h5>Project structure walkthrough</h5></summary>
 
-Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (Vue):
+Inside this folder you are going to see both the specification for the backend (Nhost) and the front-end (NextJS):
 
 ```
 /
@@ -108,8 +108,8 @@ Inside this folder you are going to see both the specification for the backend (
 - `nhost` is the main specification of your backend: tables, permissions & roles.
 
 </details>
+<details><summary><h5>GraphQL API Schema and Example Queries</h5></summary>
 
-<details><summary>GraphQL API Schema and Example Queries</summary>
 
 ```graphql
 query ConferencesQuery {
@@ -173,7 +173,8 @@ query Talks {
 - Serverless Functions: AWS Lambdas.
 ```
 
-<details><summary>Steps for creating an Nhost application</summary>
+
+<details><summary><h5>Steps for creating an Nhost application</h5></summary>
 
 Log in to your Nhost dashboard and click the **Create your first app** button.
 
@@ -190,7 +191,9 @@ Next, give your new Nhost app a name, select a geographic region for your Nhost 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
 
 </details>
-<details><summary>Connecting this repository to Nhost</summary>
+
+<details><summary><h5>Connecting this repository to Nhost</h5></summary>
+
 Nhost supports a git-based workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost console:
 
 1. Fork/clone this repository to your GitHub account.
@@ -215,12 +218,11 @@ Nhost supports a git-based workflow which means that you can safely work locally
     <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
 </p>
 
-</p>
 </details>
                                                                                                                                  
 ## Deploy to Netlify
                                                                                                                                  
-<details><summary>Steps for deploying this template to Netlify</summary>
+<details><summary><h5>Steps for deploying this template to Netlify</h5></summary>
                                                                                                                             
 1. Clone this repo: `https://github.com/nhost/nhost-netlify-starter-nextjs-reactquery.git`
 2. Make sure you are in the correct directory and run`yarn install` (or `npm install`.)
