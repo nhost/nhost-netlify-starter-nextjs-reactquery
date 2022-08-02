@@ -1,5 +1,6 @@
 import { Header } from '@/components/Header';
 import Layout from '@/components/Layout';
+import { data } from '@/data/info';
 import { ReactNode } from 'react';
 
 interface IndexContainerProps {
@@ -8,7 +9,7 @@ interface IndexContainerProps {
 
 export const IndexContainer = ({ children }: IndexContainerProps) => {
   return (
-    <Layout title="Nhost NextJS React Query Starter Example">
+    <Layout title={data.pageTitle}>
       <div className="bg-header bg-grid h-full text-white">
         <Header />
         {children ? children : null}

@@ -1,9 +1,9 @@
+import { Header } from '@/components/Header';
+import Layout from '@/components/Layout';
+import { data } from '@/data/info';
+import { useAuthenticatedRedirect } from '@/hooks/useAuthenticatedRedirect';
 import { useAuthenticated, useSignInEmailPassword } from '@nhost/react';
 import { useForm } from 'react-hook-form';
-
-import Layout from '@/components/Layout';
-import { Header } from '@/components/Header';
-import { useAuthenticatedRedirect } from '@/hooks/useAuthenticatedRedirect';
 
 type SignInFormProps = {
   email: string;
@@ -113,7 +113,7 @@ const IndexPage = () => {
   const isAuthenticated = useAuthenticated();
   useAuthenticatedRedirect();
   return (
-    <Layout title="">
+    <Layout title={data.pageTitle}>
       <div className="bg-header bg-grid h-screen text-white">
         <Header />
         <div className="max-w-md py-20 mx-auto">
@@ -121,9 +121,7 @@ const IndexPage = () => {
             <div className="flex flex-col">
               <SignInWithEmail />
             </div>
-          ) : (
-            <div>Dashboard</div>
-          )}
+          ) : null}
         </div>
       </div>
     </Layout>

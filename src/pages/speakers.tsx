@@ -2,6 +2,7 @@ import { Header } from '@/components/Header';
 import Layout from '@/components/Layout';
 import { AddNewSpeaker } from '@/components/speakers/AddNewSpeaker';
 import { Speakers } from '@/components/speakers/Speakers';
+import { data } from '@/data/info';
 import { useSpeakersQuery } from '@/utils/__generated__/graphql';
 import { useAuthenticated } from '@nhost/react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
@@ -10,7 +11,7 @@ const SpeakersPage = () => {
   const isAuthenticated = useAuthenticated();
 
   return (
-    <Layout title="Nhost & Netlify Starter Template">
+    <Layout title={data.pageTitle}>
       <div className=" text-white">
         <Header />
         <div className="flex flex-col max-w-5xl mx-auto my-10">
