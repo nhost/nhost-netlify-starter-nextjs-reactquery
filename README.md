@@ -77,7 +77,6 @@ const nhost = new NhostClient({
 
 You will see that no data is returned and shown to the front-end:
 
-
 ```
 {
     "data": {
