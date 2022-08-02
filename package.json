@@ -15,6 +15,7 @@
     "@nhost/nextjs": "^1.7.0",
     "@nhost/react": "^0.12.0",
     "@tanstack/react-query": "^4.0.10",
+    "@types/express": "^4.17.13",
     "autoprefixer": "^10.4.7",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.1",
