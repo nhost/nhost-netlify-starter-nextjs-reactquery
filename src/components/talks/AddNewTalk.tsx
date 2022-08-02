@@ -1,14 +1,11 @@
+import { Loader } from '@/components/common/Loader';
 import { SpeakerListbox } from '@/components/speakers/SpeakerListbox';
-import {
-  useAddTalkMutation,
-  useSpeakersQuery,
-  useTalksQuery,
-} from '@/utils/__generated__/graphql';
+import { useAddTalkMutation, useSpeakersQuery, useTalksQuery } from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
 import { useEffect, useState } from 'react';
 
 export function AddNewTalk() {
-  const { data } = useSpeakersQuery();
+  const { data, isLoading: isLoadingSpeakersQuery } = useSpeakersQuery();
   const { mutateAsync, isLoading } = useAddTalkMutation({
     onSuccess: () => {
       queryClient.fetchQuery(useTalksQuery.getKey());
@@ -31,7 +28,13 @@ export function AddNewTalk() {
     });
   }, [data, setTalk]);
 
-  if (!data) return <div>loading...</div>;
+  if (isLoadingSpeakersQuery) {
+    return (
+      <div className="w-fit flex mx-auto">
+        <Loader />
+      </div>
+    );
+  }
 
   const handleAddTalk = async () => {
     try {
