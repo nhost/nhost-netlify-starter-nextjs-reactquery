@@ -1,23 +1,24 @@
 https://user-images.githubusercontent.com/20285232/181801170-ac201340-4fc1-48ea-8c78-5904ec293a6a.mp4
 
-
 # Nhost Netlify Starter Template
 
 This is an example front-end for the multi-conference example app created with Nhost. It uses Next.js, React-Query, Tailwind, Nhost as the backend (authentication, Postgres Database, GraphQL API) and Netlify to host the front-end.
 
 - [Next.js](https://github.com/vercel/next.js/)
-- [Tailwind v4](https://tailwindcss.com/) for styling
-- [React Query v3](https://github.com/TanStack/query).
+- [Tailwind v3](https://tailwindcss.com/) for styling.
+- [React Query v4](https://github.com/TanStack/query).
 - [TypeScript](https://typescriptlang.org) static type-safety.
 - [ESLint](https://eslint.org) linting & [Prettier](https://prettier.io) code formatting.
 - [GraphQL](https://graphql.org/) and [GraphQL Code Generator](https://www.graphql-code-generator.com/).
 
 ## Previews:
+
 - Backend: https://rhhvmcjwixtxiumktygi.nhost.run/console
 - Front-end: https://fanciful-concha-7412d8.netlify.app/
 
 ## Table of Contents:
-- [Nhost Netlify Starter Template](#nhost-netlify-starter-template-nextjs-reactquery-graphql)
+
+- [Nhost Netlify Starter Template](#nhost-netlify-starter-template)
   - [Previews:](#previews)
   - [Table of Contents:](#table-of-contents)
   - [Getting Started](#getting-started)
@@ -40,17 +41,52 @@ git clone https://github.com/nhost/nhost-netlify-starter-nextjs-reactquery.git
 yarn install
 ```
 
-3. Terminal 1: Start Nhost
-
-```sh
-nhost dev
-```
-
-4. Terminal 2: Start the Next.js application
+3. Start the Next.js application
 
 ```sh
 yarn dev
 ```
+
+</details>
+
+<details><summary>Steps for setting up local development with the Nhost CLI</summary>
+
+When you start developing your front-end you will se that there's data already preloaded. This is coming from an environment Nhost has prepared to run the `conference` application. In order to make changes to the back-end (tables, columns, permissions, etc...) you need to start a local Nhost environment yourself.
+
+1. Install the Nhost CLI
+
+```sh
+sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
+```
+
+2. Start the Nhost application:
+
+```sh
+nhost up
+```
+
+Use localhost:1337 as the subdomain, and skip region when using the CLI and the JavaScript SDK:
+
+```js
+import { NhostClient } from "@nhost/nhost-js";
+
+const nhost = new NhostClient({
+  subdomain: "localhost:1337",
+});
+```
+
+You will see that no data is returned and shown to the front-end:
+
+
+```
+{
+    "data": {
+        "conferences": []
+    }
+}
+```
+
+This is because there's no data, you can go to `http://localhost:1337/` to start adding rows and/or modify your database schema.
 
 </details>
 
@@ -78,7 +114,7 @@ Inside this folder you are going to see both the specification for the backend (
 
 ```graphql
 query ConferencesQuery {
-  conferences(where: {featured: {_eq: true}}) {
+  conferences(where: { featured: { _eq: true } }) {
     id
     name
     speakers {
@@ -125,17 +161,18 @@ query Talks {
 </details>
 
 ## Deploy to Nhost
-    
-<img align="left" width="35%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" > 
+
+<img align="left" width="35%" src="https://user-images.githubusercontent.com/20285232/181691897-1269d9d3-94fb-4958-ac27-83a70ab00309.png" >
 
 [Nhost](https://nhost.io/) is an open source Firebase alternative with GraphQL. More importantly, by creating a project with Nhost you automatically get the following:
-~~~
+
+```
 - Database: PostgreSQL.
 - Instant GraphQL API: Hasura.
 - Authentication: Hasura Auth.
 - Storage: Hasura Storage.
 - Serverless Functions: AWS Lambdas.
-~~~
+```
 
 <details><summary>Steps for creating an Nhost application</summary>
 
@@ -175,7 +212,6 @@ Nhost supports a git-based workflow which means that you can safely work locally
 
 5. Add changes to your application. Any changes you push to your repository will also be automatically be deployed (you can see your deployments on the "Deployments" section of the console)
 
-
 <p align="center" width="100%">
     <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
 </p>
@@ -198,17 +234,16 @@ Nhost supports a git-based workflow which means that you can safely work locally
 NEXT_PUBLIC_NHOST_SUBDOMAIN=YOUR_NHOST_APP_SUBDOMAIN
 NEXT_PUBLIC_NHOST_REGION=YOUR_NHOST_APP_REGION
 ```
-                                                                                                           
+
 You can select these variables from your app overview:
-                                                                                                                                 
+
 <p align="center" width="100%">
 <img width="33%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
 </p>
 
-Then add the variables to your Netlify Deployment:     
-  
+Then add the variables to your Netlify Deployment:
+
 <p align="center" width="100%">
 <img width="50%"" src="https://user-images.githubusercontent.com/20285232/181789867-ebd6a197-8125-47a1-9bd1-8f8f01e24f29.png"> 
 </p>
 </details>
-                                                                                                                             
