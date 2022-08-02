@@ -27,7 +27,7 @@ This is an example front-end for the multi-conference example app created with N
 
 ## Getting Started
 
-<details><summary>Steps for setting up local development</summary>
+<details><h6>Steps for setting up local development</h6>
 
 1. Clone the repository
 
@@ -75,9 +75,9 @@ const nhost = new NhostClient({
 });
 ```
 
-You will see that no data is returned and shown to the front-end:
+If you explore the network tab of the front-end, you will see that no data is returned:
 
-```
+```json
 {
     "data": {
         "conferences": []
@@ -85,7 +85,7 @@ You will see that no data is returned and shown to the front-end:
 }
 ```
 
-This is because there's no data, you can go to `http://localhost:1337/` to start adding rows and/or modify your database schema.
+This is because *there is* no data, you can go to `http://localhost:1337/` to start adding rows and/or modify your database schema.
 
 </details>
 
