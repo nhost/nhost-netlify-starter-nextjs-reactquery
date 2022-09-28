@@ -31,7 +31,7 @@ export default function BaseLayout({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <div className="bg-header bg-grid h-full text-white">
+      <div className="bg-header bg-grid text-white">
         <Header />
 
         <main

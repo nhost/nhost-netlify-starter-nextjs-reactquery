@@ -25,20 +25,18 @@ export function SpeakersGrid() {
   }
 
   if (status === 'loading') {
-    return (
-      <div className="flex mx-auto">
-        <Loader />
-      </div>
-    );
+    return <Loader className="mx-auto" />;
   }
 
   const { speakers } = data?.conferences?.[0] || {};
 
   return (
-    <div className="grid w-full grid-cols-4 gap-6">
-      {speakers.length === 0
-        ? 'There are no speakers yet.'
-        : speakers?.map((speaker) => {
+    <div className="text-white">
+      {speakers.length === 0 ? (
+        'There are no speakers on this conference yet.'
+      ) : (
+        <div className="grid w-full grid-cols-4 gap-6">
+          {speakers?.map((speaker) => {
             return (
               <SpeakerCard
                 key={speaker.id}
@@ -52,6 +50,8 @@ export function SpeakersGrid() {
               />
             );
           })}
+        </div>
+      )}
     </div>
   );
 }

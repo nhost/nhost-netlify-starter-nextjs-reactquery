@@ -56,8 +56,27 @@ select_permissions:
         - slug
         - start_date
       filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - featured
+        - description
+        - location
+        - name
+        - slug
+        - end_date
+        - start_date
+        - creator_user_id
+        - id
+      filter:
+        creator_user_id:
+          _eq: X-Hasura-User-Id
+      check: null
 delete_permissions:
   - role: user
     permission:
       backend_only: false
-      filter: {}
+      filter:
+        creator_user_id:
+          _eq: X-Hasura-User-Id

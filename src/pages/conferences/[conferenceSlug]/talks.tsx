@@ -1,16 +1,16 @@
 import { AddNewTalk } from '@/components/talks/AddNewTalk';
-import { ConferenceTalks } from '@/components/talks/ConferenceTalks';
+import { TalksGrid } from '@/components/talks/TalksGrid';
 import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
 import { useAuthenticationStatus } from '@nhost/react';
 import { ReactElement } from 'react';
 
-const TalksPage = () => {
+function TalksPage() {
   const { isAuthenticated } = useAuthenticationStatus();
 
   return (
-    <div className="flex flex-col max-w-5xl px-4 mx-auto my-10">
-      <ConferenceTalks />
+    <div className="grid grid-flow-row gap-2 py-4">
+      <TalksGrid />
 
       {isAuthenticated && (
         <div className="w-full max-w-lg py-10 mx-auto">
@@ -22,7 +22,7 @@ const TalksPage = () => {
       )}
     </div>
   );
-};
+}
 
 TalksPage.getLayout = function getLayout(page: ReactElement) {
   return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;

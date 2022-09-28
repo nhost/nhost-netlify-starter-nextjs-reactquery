@@ -7,11 +7,19 @@ import {
 } from '@/generated/graphql';
 import BaseLayout from '@/layouts/BaseLayout';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import { ReactElement } from 'react';
+import { useRouter } from 'next/router';
+import { ReactElement, useEffect } from 'react';
 
 function IndexPage() {
+  const router = useRouter();
   const { data, status, error } =
     useFeaturedConferencesQuery<FeaturedConferencesQuery>();
+
+  useEffect(() => {
+    if (status === 'success') {
+      router.push(`/conferences/${data?.conferences[0].slug}`);
+    }
+  }, [data, router, status]);
 
   if (status === 'error' && error) {
     return (

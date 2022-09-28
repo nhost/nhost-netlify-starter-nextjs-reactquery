@@ -1,21 +1,3 @@
-query Talks {
-  talks {
-    id
-    name
-    start_date
-    end_date
-    speaker {
-      id
-      name
-      bio
-      social
-      job_description
-      avatar_url
-      name
-    }
-  }
-}
-
 mutation UpdateTalk($id: uuid!, $talk: talks_set_input!) {
   update_talks_by_pk(pk_columns: { id: $id }, _set: $talk) {
     id

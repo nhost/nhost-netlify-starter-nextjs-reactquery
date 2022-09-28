@@ -39,7 +39,7 @@ export function AddNewSpeaker() {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<AddNewSpeakerValues>({
     reValidateMode: 'onBlur',
     defaultValues: {
@@ -136,7 +136,7 @@ export function AddNewSpeaker() {
           disabled={addSpeakerStatus === 'loading'}
         />
 
-        <div className="flex flex-col">
+        <div className="grid grid-flow-row gap-2">
           <button
             type="submit"
             disabled={addSpeakerStatus === 'loading'}
@@ -144,6 +144,10 @@ export function AddNewSpeaker() {
           >
             {addSpeakerStatus === 'loading' ? 'Loading...' : 'Add New Speaker'}
           </button>
+
+          {isSubmitSuccessful && (
+            <p className="text-center">Speaker was successfully added!</p>
+          )}
         </div>
       </form>
     </div>

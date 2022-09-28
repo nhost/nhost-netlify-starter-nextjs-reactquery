@@ -47,7 +47,7 @@ export function AddNewTalk() {
     register,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = form;
 
   const { speakers } = conferenceBySlug?.conferences?.[0] || {};
@@ -149,7 +149,7 @@ export function AddNewTalk() {
             disabled={addTalkStatus === 'loading'}
           />
 
-          <div className="flex flex-col">
+          <div className="grid grid-flow-row gap-2">
             <button
               disabled={addTalkStatus === 'loading'}
               className="bg-header py-3 text-xs font-medium text-white border-gray-500 rounded-md"
@@ -157,6 +157,10 @@ export function AddNewTalk() {
             >
               {addTalkStatus === 'loading' ? 'Loading...' : 'Add New Talk'}
             </button>
+
+            {isSubmitSuccessful && (
+              <p className="text-center">Talk was successfully added!</p>
+            )}
           </div>
         </form>
       </FormProvider>

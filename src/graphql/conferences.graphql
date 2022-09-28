@@ -1,5 +1,5 @@
 query Conferences {
-  conferences {
+  conferences(order_by: { name: asc }) {
     id
     name
     slug
@@ -32,6 +32,18 @@ mutation AddConference($conference: conferences_insert_input!) {
 
 mutation DeleteConference($id: uuid!) {
   delete_conferences_by_pk(id: $id) {
+    id
+  }
+}
+
+mutation SetConferenceFeatured($id: uuid!) {
+  update_conferences_many(
+    updates: { where: { id: { _neq: $id } }, _set: { featured: false } }
+  ) {
+    affected_rows
+  }
+
+  update_conferences_by_pk(pk_columns: { id: $id }, _set: { featured: true }) {
     id
   }
 }

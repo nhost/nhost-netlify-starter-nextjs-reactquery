@@ -5,7 +5,13 @@ import { useAuthenticated } from '@nhost/react';
 
 export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
-export function Talk({ id, name, speaker, start_date, end_date }: TalkType) {
+export function TalkCard({
+  id,
+  name,
+  speaker,
+  start_date,
+  end_date,
+}: TalkType) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteTalkMutation({
@@ -16,6 +22,7 @@ export function Talk({ id, name, speaker, start_date, end_date }: TalkType) {
     new Date(start_date).getUTCMinutes() === 0
       ? '00'
       : new Date(start_date).getUTCMinutes();
+
   const endMinutes =
     new Date(end_date).getUTCMinutes() === 0
       ? '00'
@@ -50,11 +57,11 @@ export function Talk({ id, name, speaker, start_date, end_date }: TalkType) {
       ) : null}
       <h2 className="text-dim text-xs font-medium">
         {start_date
-          ? `${new Date(
-              start_date,
-            ).getUTCHours()}:${startMinutes} to ${new Date(
+          ? `${new Date(start_date).getUTCHours()}:${startMinutes
+              .toString()
+              .padStart(2, '0')} to ${new Date(
               end_date,
-            ).getUTCHours()}:${endMinutes} UTC`
+            ).getUTCHours()}:${endMinutes.toString().padStart(2, '0')} UTC`
           : '-'}
       </h2>
       <h1 className="text-lg font-medium text-white"> {name}</h1>

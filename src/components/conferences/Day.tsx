@@ -1,8 +1,8 @@
-import { Talk } from '@/components/talks/Talk';
-import { Talk as TalkType } from '@/types/Talk';
+import { TalkCard } from '@/components/talks/TalkCard';
+import { Talk } from '@/types/Talk';
 
 interface DayProps {
-  talks: TalkType[];
+  talks: Talk[];
   dayNumber: number;
 }
 
@@ -13,9 +13,9 @@ export function Day({ talks, dayNumber }: DayProps) {
 
       {talks.length === 0
         ? 'There are no talks yet.'
-        : talks.map((talk: TalkType) => {
+        : talks.map((talk) => {
             return (
-              <Talk
+              <TalkCard
                 key={talk.id}
                 id={talk.id}
                 name={talk.name}

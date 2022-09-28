@@ -5573,7 +5573,7 @@ export type ConferenceBySlugQueryVariables = Exact<{
 }>;
 
 
-export type ConferenceBySlugQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null }>, speakers: Array<{ __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null }> }> };
+export type ConferenceBySlugQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }>, speakers: Array<{ __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null }> }> };
 
 export type ConferencesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5594,15 +5594,17 @@ export type DeleteConferenceMutationVariables = Exact<{
 
 export type DeleteConferenceMutation = { __typename?: 'mutation_root', delete_conferences_by_pk?: { __typename?: 'conferences', id: any } | null };
 
+export type SetConferenceFeaturedMutationVariables = Exact<{
+  id: Scalars['uuid'];
+}>;
+
+
+export type SetConferenceFeaturedMutation = { __typename?: 'mutation_root', update_conferences_many?: Array<{ __typename?: 'conferences_mutation_response', affected_rows: number } | null> | null, update_conferences_by_pk?: { __typename?: 'conferences', id: any } | null };
+
 export type FeaturedConferencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type FeaturedConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
-
-export type SpeakersQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SpeakersQuery = { __typename?: 'query_root', speakers: Array<{ __typename?: 'speakers', id: any, name: string, bio?: string | null, social?: string | null, job_description?: string | null, avatar_url?: string | null }> };
 
 export type AddSpeakerMutationVariables = Exact<{
   speaker: Speakers_Insert_Input;
@@ -5617,11 +5619,6 @@ export type DeleteSpeakerMutationVariables = Exact<{
 
 
 export type DeleteSpeakerMutation = { __typename?: 'mutation_root', delete_speakers_by_pk?: { __typename?: 'speakers', id: any } | null };
-
-export type TalksQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type TalksQuery = { __typename?: 'query_root', talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', id: any, name: string, bio?: string | null, social?: string | null, job_description?: string | null, avatar_url?: string | null } }> };
 
 export type UpdateTalkMutationVariables = Exact<{
   id: Scalars['uuid'];
@@ -5668,6 +5665,14 @@ export const ConferenceBySlugDocument = `
       name
       start_date
       end_date
+      speaker {
+        name
+        id
+        social
+        job_description
+        avatar_url
+        bio
+      }
     }
     speakers {
       name
@@ -5699,7 +5704,7 @@ useConferenceBySlugQuery.getKey = (variables: ConferenceBySlugQueryVariables) =>
 useConferenceBySlugQuery.fetcher = (variables: ConferenceBySlugQueryVariables, options?: RequestInit['headers']) => fetchData<ConferenceBySlugQuery, ConferenceBySlugQueryVariables>(ConferenceBySlugDocument, variables, options);
 export const ConferencesDocument = `
     query Conferences {
-  conferences {
+  conferences(order_by: {name: asc}) {
     id
     name
     slug
@@ -5775,6 +5780,28 @@ export const useDeleteConferenceMutation = <
       options
     );
 useDeleteConferenceMutation.fetcher = (variables: DeleteConferenceMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteConferenceMutation, DeleteConferenceMutationVariables>(DeleteConferenceDocument, variables, options);
+export const SetConferenceFeaturedDocument = `
+    mutation SetConferenceFeatured($id: uuid!) {
+  update_conferences_many(
+    updates: {where: {id: {_neq: $id}}, _set: {featured: false}}
+  ) {
+    affected_rows
+  }
+  update_conferences_by_pk(pk_columns: {id: $id}, _set: {featured: true}) {
+    id
+  }
+}
+    `;
+export const useSetConferenceFeaturedMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<SetConferenceFeaturedMutation, TError, SetConferenceFeaturedMutationVariables, TContext>) =>
+    useMutation<SetConferenceFeaturedMutation, TError, SetConferenceFeaturedMutationVariables, TContext>(
+      ['SetConferenceFeatured'],
+      (variables?: SetConferenceFeaturedMutationVariables) => fetchData<SetConferenceFeaturedMutation, SetConferenceFeaturedMutationVariables>(SetConferenceFeaturedDocument, variables)(),
+      options
+    );
+useSetConferenceFeaturedMutation.fetcher = (variables: SetConferenceFeaturedMutationVariables, options?: RequestInit['headers']) => fetchData<SetConferenceFeaturedMutation, SetConferenceFeaturedMutationVariables>(SetConferenceFeaturedDocument, variables, options);
 export const FeaturedConferencesDocument = `
     query FeaturedConferences {
   conferences(where: {featured: {_eq: true}}) {
@@ -5819,35 +5846,6 @@ useFeaturedConferencesQuery.getKey = (variables?: FeaturedConferencesQueryVariab
 ;
 
 useFeaturedConferencesQuery.fetcher = (variables?: FeaturedConferencesQueryVariables, options?: RequestInit['headers']) => fetchData<FeaturedConferencesQuery, FeaturedConferencesQueryVariables>(FeaturedConferencesDocument, variables, options);
-export const SpeakersDocument = `
-    query Speakers {
-  speakers {
-    id
-    name
-    bio
-    social
-    job_description
-    avatar_url
-  }
-}
-    `;
-export const useSpeakersQuery = <
-      TData = SpeakersQuery,
-      TError = unknown
-    >(
-      variables?: SpeakersQueryVariables,
-      options?: UseQueryOptions<SpeakersQuery, TError, TData>
-    ) =>
-    useQuery<SpeakersQuery, TError, TData>(
-      variables === undefined ? ['Speakers'] : ['Speakers', variables],
-      fetchData<SpeakersQuery, SpeakersQueryVariables>(SpeakersDocument, variables),
-      options
-    );
-
-useSpeakersQuery.getKey = (variables?: SpeakersQueryVariables) => variables === undefined ? ['Speakers'] : ['Speakers', variables];
-;
-
-useSpeakersQuery.fetcher = (variables?: SpeakersQueryVariables, options?: RequestInit['headers']) => fetchData<SpeakersQuery, SpeakersQueryVariables>(SpeakersDocument, variables, options);
 export const AddSpeakerDocument = `
     mutation AddSpeaker($speaker: speakers_insert_input!) {
   insert_speakers_one(object: $speaker) {
@@ -5882,42 +5880,6 @@ export const useDeleteSpeakerMutation = <
       options
     );
 useDeleteSpeakerMutation.fetcher = (variables: DeleteSpeakerMutationVariables, options?: RequestInit['headers']) => fetchData<DeleteSpeakerMutation, DeleteSpeakerMutationVariables>(DeleteSpeakerDocument, variables, options);
-export const TalksDocument = `
-    query Talks {
-  talks {
-    id
-    name
-    start_date
-    end_date
-    speaker {
-      id
-      name
-      bio
-      social
-      job_description
-      avatar_url
-      name
-    }
-  }
-}
-    `;
-export const useTalksQuery = <
-      TData = TalksQuery,
-      TError = unknown
-    >(
-      variables?: TalksQueryVariables,
-      options?: UseQueryOptions<TalksQuery, TError, TData>
-    ) =>
-    useQuery<TalksQuery, TError, TData>(
-      variables === undefined ? ['Talks'] : ['Talks', variables],
-      fetchData<TalksQuery, TalksQueryVariables>(TalksDocument, variables),
-      options
-    );
-
-useTalksQuery.getKey = (variables?: TalksQueryVariables) => variables === undefined ? ['Talks'] : ['Talks', variables];
-;
-
-useTalksQuery.fetcher = (variables?: TalksQueryVariables, options?: RequestInit['headers']) => fetchData<TalksQuery, TalksQueryVariables>(TalksDocument, variables, options);
 export const UpdateTalkDocument = `
     mutation UpdateTalk($id: uuid!, $talk: talks_set_input!) {
   update_talks_by_pk(pk_columns: {id: $id}, _set: $talk) {

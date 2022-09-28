@@ -9,7 +9,7 @@ function SpeakersPage() {
   const { isAuthenticated } = useAuthenticationStatus();
 
   return (
-    <div className="flex flex-col max-w-5xl px-4 mx-auto my-10">
+    <div className="grid grid-flow-row gap-2 py-4">
       <SpeakersGrid />
 
       {isAuthenticated ? (
