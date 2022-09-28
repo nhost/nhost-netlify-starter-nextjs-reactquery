@@ -1,4 +1,4 @@
-import { useConferencesQueryQuery } from '@/utils/__generated__/graphql';
+import { useFeaturedConferencesQuery } from '@/utils/__generated__/graphql';
 
 import { Day } from './Day';
 
@@ -7,7 +7,7 @@ interface AgendaProps {
 }
 
 export function Agenda({ amountOfDays }: AgendaProps) {
-  const { data, isLoading, isError } = useConferencesQueryQuery();
+  const { data, isLoading, isError } = useFeaturedConferencesQuery();
 
   if (isError) return <p>Failed to agenda</p>;
 

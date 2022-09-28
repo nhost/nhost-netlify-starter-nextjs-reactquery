@@ -1,7 +1,5 @@
-query Conferences($filter: String) {
-  conferences(
-    where: { _or: { name: { _ilike: $filter }, slug: { _ilike: $filter } } }
-  ) {
+query FeaturedConferences {
+  conferences(where: { featured: { _eq: true } }) {
     id
     name
     slug
@@ -23,11 +21,5 @@ query Conferences($filter: String) {
         bio
       }
     }
-  }
-}
-
-mutation AddConference($conference: conferences_insert_input!) {
-  insert_conferences_one(object: $conference) {
-    id
   }
 }

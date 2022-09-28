@@ -2,9 +2,7 @@ import { AddNewSpeaker } from '@/components/speakers/AddNewSpeaker';
 import { Speakers } from '@/components/speakers/Speakers';
 import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
-import { useSpeakersQuery } from '@/utils/__generated__/graphql';
 import { useAuthenticationStatus } from '@nhost/react';
-import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ReactElement } from 'react';
 
 const SpeakersPage = () => {
@@ -29,21 +27,5 @@ const SpeakersPage = () => {
 SpeakersPage.getLayout = function getLayout(page: ReactElement) {
   return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;
 };
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery(
-    useSpeakersQuery.getKey(),
-    useSpeakersQuery.fetcher(),
-  );
-
-  return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
-    revalidate: 10,
-  };
-}
 
 export default SpeakersPage;

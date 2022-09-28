@@ -94,8 +94,8 @@ If you explore the network tab of the front-end, you will see that no data is re
 This is because there is no data, you can go to `http://localhost:9695` and start adding rows and/or modifying your database schema. You can also go to `http://localhost:3000/sign-in` and sign in with the following credentials:
 
 ```sh
-email: admin@admin.com
-password: Admin1234!
+email: manager@conferenceplatform.com
+password: Manager1234!
 ```
 
 You can start adding speakers and talks to the database via the front-end.

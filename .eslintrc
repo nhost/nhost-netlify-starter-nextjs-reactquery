@@ -2,5 +2,9 @@
   "extends": ["next", "prettier"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "settings": { "react": { "version": "detect" } }
+  "settings": { "react": { "version": "detect" } },
+  "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"]
+  }
 }

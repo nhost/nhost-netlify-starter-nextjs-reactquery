@@ -1,7 +1,7 @@
 import { getDatesInRange } from '@/utils/getDatesInRange';
 import {
   Conferences,
-  useConferencesQueryQuery,
+  useFeaturedConferencesQuery,
 } from '@/utils/__generated__/graphql';
 
 import { Loader } from '@/components/common/Loader';
@@ -24,7 +24,7 @@ export function FeaturedConferenceContainer({
 }
 
 export function FeaturedConference() {
-  const { data, isLoading, isError } = useConferencesQueryQuery();
+  const { data, isLoading, isError } = useFeaturedConferencesQuery();
 
   if (isError) {
     return (

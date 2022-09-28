@@ -5492,10 +5492,31 @@ export type Uuid_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['uuid']>>;
 };
 
-export type ConferencesQueryQueryVariables = Exact<{ [key: string]: never; }>;
+export type ConferenceBySlugQueryVariables = Exact<{
+  slug: Scalars['String'];
+}>;
 
 
-export type ConferencesQueryQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
+export type ConferenceBySlugQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
+
+export type ConferencesQueryVariables = Exact<{
+  filter?: InputMaybe<Scalars['String']>;
+}>;
+
+
+export type ConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
+
+export type AddConferenceMutationVariables = Exact<{
+  conference: Conferences_Insert_Input;
+}>;
+
+
+export type AddConferenceMutation = { __typename?: 'mutation_root', insert_conferences_one?: { __typename?: 'conferences', id: any } | null };
+
+export type FeaturedConferencesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FeaturedConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
 
 export type SpeakersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5551,11 +5572,12 @@ export type AddEmailMutationVariables = Exact<{
 export type AddEmailMutation = { __typename?: 'mutation_root', insert_tickets?: { __typename?: 'tickets_mutation_response', affected_rows: number } | null };
 
 
-export const ConferencesQueryDocument = `
-    query ConferencesQuery {
-  conferences(where: {featured: {_eq: true}}) {
+export const ConferenceBySlugDocument = `
+    query ConferenceBySlug($slug: String!) {
+  conferences(where: {slug: {_eq: $slug}}) {
     id
     name
+    slug
     location
     featured
     start_date
@@ -5577,23 +5599,128 @@ export const ConferencesQueryDocument = `
   }
 }
     `;
-export const useConferencesQueryQuery = <
-      TData = ConferencesQueryQuery,
+export const useConferenceBySlugQuery = <
+      TData = ConferenceBySlugQuery,
       TError = unknown
     >(
-      variables?: ConferencesQueryQueryVariables,
-      options?: UseQueryOptions<ConferencesQueryQuery, TError, TData>
+      variables: ConferenceBySlugQueryVariables,
+      options?: UseQueryOptions<ConferenceBySlugQuery, TError, TData>
     ) =>
-    useQuery<ConferencesQueryQuery, TError, TData>(
-      variables === undefined ? ['ConferencesQuery'] : ['ConferencesQuery', variables],
-      fetchData<ConferencesQueryQuery, ConferencesQueryQueryVariables>(ConferencesQueryDocument, variables),
+    useQuery<ConferenceBySlugQuery, TError, TData>(
+      ['ConferenceBySlug', variables],
+      fetchData<ConferenceBySlugQuery, ConferenceBySlugQueryVariables>(ConferenceBySlugDocument, variables),
       options
     );
 
-useConferencesQueryQuery.getKey = (variables?: ConferencesQueryQueryVariables) => variables === undefined ? ['ConferencesQuery'] : ['ConferencesQuery', variables];
+useConferenceBySlugQuery.getKey = (variables: ConferenceBySlugQueryVariables) => ['ConferenceBySlug', variables];
 ;
 
-useConferencesQueryQuery.fetcher = (variables?: ConferencesQueryQueryVariables, options?: RequestInit['headers']) => fetchData<ConferencesQueryQuery, ConferencesQueryQueryVariables>(ConferencesQueryDocument, variables, options);
+useConferenceBySlugQuery.fetcher = (variables: ConferenceBySlugQueryVariables, options?: RequestInit['headers']) => fetchData<ConferenceBySlugQuery, ConferenceBySlugQueryVariables>(ConferenceBySlugDocument, variables, options);
+export const ConferencesDocument = `
+    query Conferences($filter: String) {
+  conferences(where: {_or: {name: {_ilike: $filter}, slug: {_ilike: $filter}}}) {
+    id
+    name
+    slug
+    location
+    featured
+    start_date
+    end_date
+    talks(order_by: {start_date: asc}) {
+      id
+      name
+      start_date
+      end_date
+      speaker {
+        name
+        id
+        social
+        job_description
+        avatar_url
+        bio
+      }
+    }
+  }
+}
+    `;
+export const useConferencesQuery = <
+      TData = ConferencesQuery,
+      TError = unknown
+    >(
+      variables?: ConferencesQueryVariables,
+      options?: UseQueryOptions<ConferencesQuery, TError, TData>
+    ) =>
+    useQuery<ConferencesQuery, TError, TData>(
+      variables === undefined ? ['Conferences'] : ['Conferences', variables],
+      fetchData<ConferencesQuery, ConferencesQueryVariables>(ConferencesDocument, variables),
+      options
+    );
+
+useConferencesQuery.getKey = (variables?: ConferencesQueryVariables) => variables === undefined ? ['Conferences'] : ['Conferences', variables];
+;
+
+useConferencesQuery.fetcher = (variables?: ConferencesQueryVariables, options?: RequestInit['headers']) => fetchData<ConferencesQuery, ConferencesQueryVariables>(ConferencesDocument, variables, options);
+export const AddConferenceDocument = `
+    mutation AddConference($conference: conferences_insert_input!) {
+  insert_conferences_one(object: $conference) {
+    id
+  }
+}
+    `;
+export const useAddConferenceMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<AddConferenceMutation, TError, AddConferenceMutationVariables, TContext>) =>
+    useMutation<AddConferenceMutation, TError, AddConferenceMutationVariables, TContext>(
+      ['AddConference'],
+      (variables?: AddConferenceMutationVariables) => fetchData<AddConferenceMutation, AddConferenceMutationVariables>(AddConferenceDocument, variables)(),
+      options
+    );
+useAddConferenceMutation.fetcher = (variables: AddConferenceMutationVariables, options?: RequestInit['headers']) => fetchData<AddConferenceMutation, AddConferenceMutationVariables>(AddConferenceDocument, variables, options);
+export const FeaturedConferencesDocument = `
+    query FeaturedConferences {
+  conferences(where: {featured: {_eq: true}}) {
+    id
+    name
+    slug
+    location
+    featured
+    start_date
+    end_date
+    talks(order_by: {start_date: asc}) {
+      id
+      name
+      start_date
+      end_date
+      speaker {
+        name
+        id
+        social
+        job_description
+        avatar_url
+        bio
+      }
+    }
+  }
+}
+    `;
+export const useFeaturedConferencesQuery = <
+      TData = FeaturedConferencesQuery,
+      TError = unknown
+    >(
+      variables?: FeaturedConferencesQueryVariables,
+      options?: UseQueryOptions<FeaturedConferencesQuery, TError, TData>
+    ) =>
+    useQuery<FeaturedConferencesQuery, TError, TData>(
+      variables === undefined ? ['FeaturedConferences'] : ['FeaturedConferences', variables],
+      fetchData<FeaturedConferencesQuery, FeaturedConferencesQueryVariables>(FeaturedConferencesDocument, variables),
+      options
+    );
+
+useFeaturedConferencesQuery.getKey = (variables?: FeaturedConferencesQueryVariables) => variables === undefined ? ['FeaturedConferences'] : ['FeaturedConferences', variables];
+;
+
+useFeaturedConferencesQuery.fetcher = (variables?: FeaturedConferencesQueryVariables, options?: RequestInit['headers']) => fetchData<FeaturedConferencesQuery, FeaturedConferencesQueryVariables>(FeaturedConferencesDocument, variables, options);
 export const SpeakersDocument = `
     query Speakers {
   speakers {

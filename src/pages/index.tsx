@@ -1,32 +1,34 @@
 import { FeaturedConference } from '@/components/conferences/FeaturedConference';
-import { IndexContainer } from '@/components/IndexContainer';
+import { data } from '@/data/info';
 import {
-  ConferencesQueryQuery,
-  useConferencesQueryQuery,
+  FeaturedConferencesQuery,
+  useFeaturedConferencesQuery,
 } from '@/generated/graphql';
+import BaseLayout from '@/layouts/BaseLayout';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
+import { ReactElement } from 'react';
 
 const IndexPage = () => {
   const { isLoading, isError } =
-    useConferencesQueryQuery<ConferencesQueryQuery>();
+    useFeaturedConferencesQuery<FeaturedConferencesQuery>();
 
-  if (isLoading) return <IndexContainer />;
+  if (isLoading) {
+    return null;
+  }
 
-  if (isError) return <IndexContainer />;
+  if (isError) {
+    return null;
+  }
 
-  return (
-    <IndexContainer>
-      <FeaturedConference />
-    </IndexContainer>
-  );
+  return <FeaturedConference />;
 };
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
 
   await queryClient.prefetchQuery(
-    useConferencesQueryQuery.getKey(),
-    useConferencesQueryQuery.fetcher(),
+    useFeaturedConferencesQuery.getKey(),
+    useFeaturedConferencesQuery.fetcher(),
   );
 
   return {
@@ -36,5 +38,9 @@ export async function getStaticProps() {
     revalidate: 60,
   };
 }
+
+IndexPage.getLayout = function getLayout(page: ReactElement) {
+  return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;
+};
 
 export default IndexPage;

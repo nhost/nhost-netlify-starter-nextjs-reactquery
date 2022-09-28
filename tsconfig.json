@@ -19,18 +19,12 @@
     "useUnknownInCatchVariables": false,
     "paths": {
       "@/components/*": ["components/*"],
-      "@/hooks/*": ["hooks/*"],
+      "@/layouts/*": ["layouts/*"],
       "@/utils/*": ["utils/*"],
-      "@/lib/*": ["lib/*"],
       "@/types/*": ["types/*"],
-      "@/css/*": ["css/*"],
       "@/styles/*": ["styles/*"],
       "@/data/*": ["data/*"],
-      "@/context/*": ["context/*"],
-      "@/theme/*": ["theme/*"],
-      "@/generated/*": ["utils/__generated__/*"],
-      "@/ui/*": ["components/ui/*"],
-      "@/ui": ["components/ui/index.ts"]
+      "@/generated/*": ["utils/__generated__/*"]
     },
     "incremental": true
   },

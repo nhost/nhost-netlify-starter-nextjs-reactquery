@@ -8,7 +8,10 @@ import { useRouter } from 'next/router';
 import { twMerge } from 'tailwind-merge';
 
 export function Header() {
-  const { asPath } = useRouter();
+  const {
+    asPath,
+    query: { conferenceSlug },
+  } = useRouter();
   const userEmail = useUserEmail();
   const { isLoading, isAuthenticated } = useAuthenticationStatus();
   const { signOut } = useSignOut();
@@ -23,43 +26,57 @@ export function Header() {
             </a>
           </Link>
         </div>
-        <div className="text-list w-52 flex flex-row self-center space-x-2 text-sm font-medium list-none">
-          <li
-            className={twMerge(
-              'hover:text-white py-1 px-2 cursor-pointer',
-              asPath === '/speakers' && 'text-white',
-            )}
-          >
-            <Link href="speakers">Speakers</Link>
-          </li>
-          <li
-            className={twMerge(
-              'hover:text-white py-1 px-2 cursor-pointer',
-              asPath === '/talks' && 'text-white',
-            )}
-          >
-            <Link href="talks">Talks</Link>
-          </li>
-          <li
-            className={twMerge(
-              'hover:text-white py-1 px-2 cursor-pointer',
-              asPath === '/about' && 'text-white',
-            )}
-          >
-            <Link href="about">About</Link>
-          </li>
-        </div>
+
+        {conferenceSlug && (
+          <nav className="self-center" aria-label="Main navigation">
+            <ul className="text-list max-w-[208px] w-full items-center grid grid-flow-col gap-2 text-sm font-medium list-none">
+              <>
+                <li
+                  className={twMerge(
+                    'hover:text-white px-2 cursor-pointer',
+                    asPath.endsWith('/speakers') && 'text-white',
+                  )}
+                >
+                  <Link href={`/conferences/${conferenceSlug}/speakers`}>
+                    Speakers
+                  </Link>
+                </li>
+
+                <li
+                  className={twMerge(
+                    'hover:text-white px-2 cursor-pointer',
+                    asPath.endsWith('/talks') && 'text-white',
+                  )}
+                >
+                  <Link href={`/conferences/${conferenceSlug}/talks`}>
+                    Talks
+                  </Link>
+                </li>
+              </>
+
+              <li
+                className={twMerge(
+                  'hover:text-white px-2 cursor-pointer',
+                  asPath.endsWith('/about') && 'text-white',
+                )}
+              >
+                <Link href={`/conferences/${conferenceSlug}/about`}>About</Link>
+              </li>
+            </ul>
+          </nav>
+        )}
+
         <div className="flex">
           {isAuthenticated && userEmail && (
-            <div className="flex flex-row space-x-4">
-              <Link href="/dashboard">
-                <button className="text-list px-2 py-1 text-xs cursor-pointer">
-                  {userEmail}
-                </button>
+            <div className="grid items-center grid-flow-col gap-4">
+              <Link href="/conferences" passHref>
+                <a className="text-list hover:underline px-2 py-1 text-xs">
+                  Manage Conferences
+                </a>
               </Link>
 
               <button
-                onClick={() => signOut()}
+                onClick={signOut}
                 className="text-list border-list px-2 py-1 text-xs border rounded-md"
               >
                 Sign Out
@@ -68,10 +85,10 @@ export function Header() {
           )}
 
           {!isAuthenticated && !isLoading && (
-            <Link href="/sign-in">
-              <button className="border text-xs py-1.5 px-2 text-list hover:border-white hover:text-white transition-colors duration-200 border-list rounded-md flex w-full items-center justify-center">
-                Organizer Dashboard
-              </button>
+            <Link href="/sign-in" passHref>
+              <a className="text-list hover:border-white hover:text-white border-list flex items-center justify-center w-full px-2 py-1 text-xs transition-colors duration-200 border rounded-md">
+                Sign In as Organizer
+              </a>
             </Link>
           )}
         </div>
