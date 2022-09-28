@@ -1,13 +1,19 @@
-import { useAuthenticated } from '@nhost/react';
-import {
-  useDeleteSpeakerMutation,
-  useConferencesQueryQuery,
-} from '@/utils/__generated__/graphql';
-import { queryClient } from '@/utils/react-query-client';
-import { useSpeakersQuery } from '@/utils/__generated__/graphql';
 import { Speaker } from '@/types/Speaker';
+import { queryClient } from '@/utils/react-query-client';
+import {
+  useConferencesQueryQuery,
+  useDeleteSpeakerMutation,
+  useSpeakersQuery,
+} from '@/utils/__generated__/graphql';
+import { useAuthenticated } from '@nhost/react';
 
-export function Speaker({ id, avatar_url, name, social, job_description }: Speaker) {
+export function Speaker({
+  id,
+  avatar_url,
+  name,
+  social,
+  job_description,
+}: Speaker) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteSpeakerMutation({
@@ -44,13 +50,10 @@ export function Speaker({ id, avatar_url, name, social, job_description }: Speak
           </svg>
         </button>
       ) : null}
-      <img
-        alt="Speaker's photo"
-        className="object-cover rounded-md aspect-square p-0.5"
-        width={350}
-        height={350}
-        src={avatar_url}
-      />
+      <picture className="object-cover rounded-md aspect-square p-0.5">
+        <source srcSet={avatar_url} type="image/webp" />
+        <img alt="Speaker's photo" src={avatar_url} />
+      </picture>
       <div className="py-2">
         <h1 className="text-lg font-medium text-white">{name}</h1>
         <h2 className="text-dim text-xs font-medium">@{social}</h2>

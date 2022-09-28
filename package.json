@@ -4,6 +4,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "lint": "next lint",
     "type-check": "tsc",
     "codegen": "graphql-codegen --config graphql.config.yaml --errors-only"
   },

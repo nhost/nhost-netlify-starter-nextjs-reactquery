@@ -75,7 +75,7 @@ export function AddNewSpeaker() {
   return (
     <div className="bg-card flex flex-col w-full px-12 pt-10 pb-10 space-y-8 border border-gray-700 rounded-md">
       {error ? (
-        <div className="bg-opacity-10 px-4 py-4 text-sm bg-red-900 rounded-md">
+        <div className="bg-opacity-10 px-4 py-4 text-sm text-white bg-red-500 rounded-md">
           Error: {error.message}
         </div>
       ) : null}

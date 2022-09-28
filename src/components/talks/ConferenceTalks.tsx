@@ -12,7 +12,7 @@ export function ConferenceTalks() {
 
   if (isError) {
     return (
-      <div className="bg-opacity-10 w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-900 rounded-md">
+      <div className="bg-opacity-10 w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md">
         <h1 className="pb-2 text-xl font-medium leading-none text-center text-white">
           Error
         </h1>
