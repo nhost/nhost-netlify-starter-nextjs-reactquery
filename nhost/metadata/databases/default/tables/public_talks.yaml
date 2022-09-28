@@ -2,58 +2,58 @@ table:
   name: talks
   schema: public
 object_relationships:
-- name: conference
-  using:
-    foreign_key_constraint_on: conference_id
-- name: speaker
-  using:
-    foreign_key_constraint_on: speaker_id
+  - name: conference
+    using:
+      foreign_key_constraint_on: conference_id
+  - name: speaker
+    using:
+      foreign_key_constraint_on: speaker_id
 insert_permissions:
-- permission:
-    check:
-      conference:
-        creator_user_id:
-          _eq: X-Hasura-User-Id
-    columns:
-    - id
-    - name
-    - description
-    - duration
-    - conference_id
-    - speaker_id
-    - start_date
-    - end_date
-  role: user
+  - role: user
+    permission:
+      check:
+        conference:
+          creator_user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+        - id
+        - name
+        - description
+        - duration
+        - conference_id
+        - speaker_id
+        - start_date
+        - end_date
 select_permissions:
-- permission:
-    columns:
-    - conference_id
-    - description
-    - duration
-    - end_date
-    - id
-    - name
-    - speaker_id
-    - start_date
-    filter: {}
-  role: public
-- permission:
-    columns:
-    - conference_id
-    - description
-    - duration
-    - end_date
-    - id
-    - name
-    - speaker_id
-    - start_date
-    filter: {}
-  role: user
+  - role: public
+    permission:
+      columns:
+        - conference_id
+        - description
+        - duration
+        - end_date
+        - id
+        - name
+        - speaker_id
+        - start_date
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - conference_id
+        - description
+        - duration
+        - end_date
+        - id
+        - name
+        - speaker_id
+        - start_date
+      filter: {}
 delete_permissions:
-- permission:
-    backend_only: false
-    filter:
-      conference:
-        creator_user_id:
-          _eq: X-Hasura-User-Id
-  role: user
+  - role: user
+    permission:
+      backend_only: false
+      filter:
+        conference:
+          creator_user_id:
+            _eq: X-Hasura-User-Id

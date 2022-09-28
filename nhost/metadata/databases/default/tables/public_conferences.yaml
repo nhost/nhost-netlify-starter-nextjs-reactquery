@@ -2,35 +2,35 @@ table:
   name: conferences
   schema: public
 array_relationships:
-- name: talks
-  using:
-    foreign_key_constraint_on:
-      column: conference_id
-      table:
-        name: talks
-        schema: public
+  - name: talks
+    using:
+      foreign_key_constraint_on:
+        column: conference_id
+        table:
+          name: talks
+          schema: public
 select_permissions:
-- permission:
-    columns:
-    - creator_user_id
-    - end_date
-    - featured
-    - id
-    - location
-    - name
-    - slug
-    - start_date
-    filter: {}
-  role: public
-- permission:
-    columns:
-    - creator_user_id
-    - end_date
-    - featured
-    - id
-    - location
-    - name
-    - slug
-    - start_date
-    filter: {}
-  role: user
+  - role: public
+    permission:
+      columns:
+        - creator_user_id
+        - end_date
+        - featured
+        - id
+        - location
+        - name
+        - slug
+        - start_date
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - creator_user_id
+        - end_date
+        - featured
+        - id
+        - location
+        - name
+        - slug
+        - start_date
+      filter: {}

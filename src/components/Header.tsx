@@ -1,7 +1,7 @@
 import { useSignOut, useUserEmail } from '@nhost/react';
-import clsx from 'clsx';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { twMerge } from 'tailwind-merge';
 
 export function Header() {
   const { asPath } = useRouter();
@@ -20,7 +20,7 @@ export function Header() {
         </div>
         <div className="text-list w-52 flex flex-row self-center space-x-2 text-sm font-medium list-none">
           <li
-            className={clsx(
+            className={twMerge(
               'hover:text-white py-1 px-2 cursor-pointer',
               asPath === '/speakers' && 'text-white',
             )}
@@ -28,7 +28,7 @@ export function Header() {
             <Link href="speakers">Speakers</Link>
           </li>
           <li
-            className={clsx(
+            className={twMerge(
               'hover:text-white py-1 px-2 cursor-pointer',
               asPath === '/talks' && 'text-white',
             )}
@@ -36,7 +36,7 @@ export function Header() {
             <Link href="talks">Talks</Link>
           </li>
           <li
-            className={clsx(
+            className={twMerge(
               'hover:text-white py-1 px-2 cursor-pointer',
               asPath === '/about' && 'text-white',
             )}
@@ -54,13 +54,13 @@ export function Header() {
               </Link>
               <button
                 onClick={() => signOut()}
-                className="text-list border-list px-2 py-1 text-xs border rounded-md cursor-pointer"
+                className="text-list border-list px-2 py-1 text-xs border rounded-md"
               >
                 Sign Out
               </button>
             </div>
           ) : (
-            <Link href="signin">
+            <Link href="/sign-in">
               <button className="border text-xs py-1.5 text-list hover:border-white hover:text-white transition-colors duration-200 border-list rounded-md flex w-full items-center justify-center">
                 Organizer Dashboard
               </button>

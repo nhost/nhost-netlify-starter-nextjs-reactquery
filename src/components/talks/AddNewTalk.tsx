@@ -1,7 +1,11 @@
 import { Loader } from '@/components/common/Loader';
 import { SpeakerListbox } from '@/components/speakers/SpeakerListbox';
-import { useAddTalkMutation, useSpeakersQuery, useTalksQuery } from '@/utils/__generated__/graphql';
 import { queryClient } from '@/utils/react-query-client';
+import {
+  useAddTalkMutation,
+  useSpeakersQuery,
+  useTalksQuery,
+} from '@/utils/__generated__/graphql';
 import { useEffect, useState } from 'react';
 
 export function AddNewTalk() {
@@ -67,13 +71,12 @@ export function AddNewTalk() {
         </div>
         <div className="flex w-[230px]">
           <input
-            tabIndex={1}
             onChange={(e) => {
               setTalk({ ...talk, name: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
-            autoFocus
             id="Talk Title"
+            autoFocus
             placeholder="Talk Title"
             required
             minLength={2}
@@ -105,13 +108,11 @@ export function AddNewTalk() {
         </div>
         <div className="flex w-[230px]">
           <input
-            tabIndex={1}
             value={talk.startDate}
             onChange={(e) => {
               setTalk({ ...talk, startDate: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
-            autoFocus
             id="Starting Time"
             placeholder="Starting Time"
             required
@@ -132,13 +133,11 @@ export function AddNewTalk() {
         </div>
         <div className="flex w-[230px]">
           <input
-            tabIndex={4}
             value={talk.endDate}
             onChange={(e) => {
               setTalk({ ...talk, endDate: e.target.value });
             }}
             className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
-            autoFocus
             id="Ending Time"
             placeholder="Ending Time"
             required

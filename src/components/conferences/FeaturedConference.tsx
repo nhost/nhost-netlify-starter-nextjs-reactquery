@@ -1,14 +1,17 @@
+import { getDatesInRange } from '@/utils/getDatesInRange';
 import {
   Conferences,
   useConferencesQueryQuery,
 } from '@/utils/__generated__/graphql';
-import { getDatesInRange } from '@/utils/getDatesInRange';
 
+import { Loader } from '@/components/common/Loader';
+import { PropsWithChildren } from 'react';
 import { Agenda } from './Agenda';
 import { SubscribeToConference } from './SubscribeToConference';
-import { Loader } from '@/components/common/Loader';
 
-export function FeaturedConferenceContainer({ children }) {
+export function FeaturedConferenceContainer({
+  children,
+}: PropsWithChildren<unknown>) {
   return (
     <div className="max-w-lg mx-auto">
       <div className="flex flex-row py-20 text-center">

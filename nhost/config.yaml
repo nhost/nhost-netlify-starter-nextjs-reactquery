@@ -113,7 +113,7 @@ auth:
         from: ""
         messaging_service_id: ""
   smtp:
-    host: nhost_mailhog
+    host: mailhog
     method: ""
     pass: password
     port: 1987

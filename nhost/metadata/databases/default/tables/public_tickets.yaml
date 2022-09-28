@@ -2,25 +2,25 @@ table:
   name: tickets
   schema: public
 insert_permissions:
-- permission:
-    check: {}
-    columns:
-    - conference_id
-    - email
-    - id
-  role: public
-- permission:
-    check: {}
-    columns:
-    - conference_id
-    - email
-    - id
-  role: user
+  - role: public
+    permission:
+      check: {}
+      columns:
+        - conference_id
+        - email
+        - id
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - conference_id
+        - email
+        - id
 select_permissions:
-- permission:
-    columns:
-    - conference_id
-    - email
-    - id
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      columns:
+        - conference_id
+        - email
+        - id
+      filter: {}

@@ -1,18 +1,18 @@
-- definition:
+- comment: null
+  definition:
     query:
       collection_name: allowed-queries
       query_name: getConferences
-  url: conferences
   methods:
-  - GET
+    - GET
   name: getConferences
-  comment: null
-- definition:
+  url: conferences
+- comment: null
+  definition:
     query:
       collection_name: allowed-queries
       query_name: featuredConference
-  url: featuredConference
   methods:
-  - GET
+    - GET
   name: featuredConference
-  comment: null
+  url: featuredConference

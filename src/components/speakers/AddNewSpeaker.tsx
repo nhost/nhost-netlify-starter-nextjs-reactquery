@@ -1,8 +1,8 @@
+import { queryClient } from '@/utils/react-query-client';
 import {
   useAddSpeakerMutation,
   useSpeakersQuery,
 } from '@/utils/__generated__/graphql';
-import { queryClient } from '@/utils/react-query-client';
 import { ChangeEventHandler, useState } from 'react';
 
 interface AddNewSpeakerInputProps {
@@ -23,7 +23,6 @@ function AddNewSpeakerInput({
       </div>
       <div className="flex w-[230px]">
         <input
-          tabIndex={1}
           value={inputValue}
           onChange={onChange}
           className="bg-input w-full px-3 py-2 text-xs text-white border border-gray-700 rounded-md"
@@ -36,7 +35,6 @@ function AddNewSpeakerInput({
           spellCheck="false"
           aria-label="Speaker Name"
           autoCapitalize="none"
-          type="Speaker Name"
         />
       </div>
     </div>
@@ -81,6 +79,7 @@ export function AddNewSpeaker() {
           Error: {error.message}
         </div>
       ) : null}
+
       <AddNewSpeakerInput
         name="Speaker Name"
         onChange={(e) => {

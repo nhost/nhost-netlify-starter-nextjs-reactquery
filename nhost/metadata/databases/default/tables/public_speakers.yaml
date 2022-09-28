@@ -2,42 +2,42 @@ table:
   name: speakers
   schema: public
 insert_permissions:
-- permission:
-    check: {}
-    columns:
-    - avatar_url
-    - bio
-    - id
-    - job_description
-    - name
-    - social
-    - user_id
-  role: user
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - avatar_url
+        - bio
+        - id
+        - job_description
+        - name
+        - social
+        - user_id
 select_permissions:
-- permission:
-    columns:
-    - avatar_url
-    - bio
-    - id
-    - job_description
-    - name
-    - social
-    - user_id
-    filter: {}
-  role: public
-- permission:
-    columns:
-    - avatar_url
-    - bio
-    - id
-    - job_description
-    - name
-    - social
-    - user_id
-    filter: {}
-  role: user
+  - role: public
+    permission:
+      columns:
+        - avatar_url
+        - bio
+        - id
+        - job_description
+        - name
+        - social
+        - user_id
+      filter: {}
+  - role: user
+    permission:
+      columns:
+        - avatar_url
+        - bio
+        - id
+        - job_description
+        - name
+        - social
+        - user_id
+      filter: {}
 delete_permissions:
-- permission:
-    backend_only: false
-    filter: {}
-  role: user
+  - role: user
+    permission:
+      backend_only: false
+      filter: {}

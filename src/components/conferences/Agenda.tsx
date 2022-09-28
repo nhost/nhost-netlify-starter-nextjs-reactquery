@@ -1,5 +1,4 @@
 import { useConferencesQueryQuery } from '@/utils/__generated__/graphql';
-import clsx from 'clsx';
 
 import { Day } from './Day';
 
@@ -16,11 +15,7 @@ export function Agenda({ amountOfDays }: AgendaProps) {
   return (
     <div className="flex flex-col max-w-4xl mx-auto">
       <div className="flex flex-col py-2 text-center">
-        <div
-          className={clsx(
-            'grid grid-cols-3 py-5 gap-y-12 gap-8 place-content-between',
-          )}
-        >
+        <div className="gap-y-12 place-content-between grid grid-cols-3 gap-8 py-5">
           {amountOfDays.map((day, index) => {
             return (
               <Day

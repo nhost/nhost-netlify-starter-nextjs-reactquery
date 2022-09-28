@@ -1,69 +1,89 @@
 import { useAddEmailMutation } from '@/utils/__generated__/graphql';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 
-type SUBMIT_STATE = 'UNSUBMITTED' | 'SUCCESS' | 'ERROR';
+type SubscribeFormValues = {
+  email: string;
+};
 
-export function SubscribeToConference({ featuredConferenceId }) {
-  const [email, setEmail] = useState('');
-  const { mutateAsync, isLoading: addEmailIsLoading } = useAddEmailMutation();
-  const [submitState, setSubmitState] = useState<SUBMIT_STATE>('UNSUBMITTED');
-  const [error, setError] = useState<Error | null>(null);
+export interface SubscribeToConferenceProps {
+  /**
+   * ID of the featured conference
+   */
+  featuredConferenceId: string;
+}
+
+export function SubscribeToConference({
+  featuredConferenceId,
+}: SubscribeToConferenceProps) {
+  const { mutateAsync, error, reset } = useAddEmailMutation();
+
+  const {
+    register,
+    formState: { isSubmitSuccessful, isSubmitting },
+    handleSubmit,
+  } = useForm<SubscribeFormValues>({
+    reValidateMode: 'onSubmit',
+    defaultValues: {
+      email: '',
+    },
+  });
+
+  async function onSubmit(values: SubscribeFormValues) {
+    try {
+      await mutateAsync({
+        ticket: {
+          conference_id: featuredConferenceId,
+          email: values.email,
+        },
+      });
+    } catch {
+      // This error is handled by the useAddEmailMutation hook.
+    }
+  }
+
   return (
     <div className="mx-auto mt-6">
-      {submitState === 'SUCCESS' && (
+      {isSubmitSuccessful && (
         <h1 className="text-list mt-1 font-medium">
           Thank you for subscribing!
         </h1>
       )}
-      {submitState === 'ERROR' && (
+
+      {error && (
         <div className="flex flex-col space-y-3">
-          <p className="text-list font-medium">{error.message}</p>
+          <p className="text-list font-medium">
+            {error instanceof Error
+              ? error.message
+              : 'Unknown error occurred. Please try again later.'}
+          </p>
+
           <button
             className="bg-card flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md"
-            onClick={() => {
-              setSubmitState('UNSUBMITTED');
-            }}
+            onClick={reset}
           >
-            Try again
+            Clear Error
           </button>
         </div>
       )}
-      {submitState === 'UNSUBMITTED' && (
+
+      {!isSubmitSuccessful && (
         <form
           className="bg-card bg-opacity-80 w-fit flex px-1 py-2 mx-auto space-x-3 border-gray-800 rounded-lg"
-          onSubmit={async (e) => {
-            e.preventDefault();
-            if (email === '') return;
-
-            try {
-              await mutateAsync({
-                ticket: {
-                  conference_id: featuredConferenceId,
-                  email,
-                },
-              });
-              setSubmitState('SUCCESS');
-            } catch (error) {
-              setSubmitState('ERROR');
-              setError(error);
-            }
-          }}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <input
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            {...register('email', { required: 'This field is required.' })}
             placeholder="Enter email to register..."
             type="email"
-            className="focus:outline-none px-3 py-1 text-sm text-white bg-transparent rounded-md outline-none"
+            className="px-3 py-1 text-sm text-white bg-transparent rounded-md"
           />
-          <div className="">
+
+          <div>
             <button
               className="w-[66px] bg-gradient-to-r from-indigo-800 to-pink-900 flex flex-col px-2 py-2 text-sm font-medium text-white rounded-md"
               type="submit"
             >
-              {!addEmailIsLoading ? (
-                'Register'
-              ) : (
+              {isSubmitting ? (
                 <div className=" self-center pl-2 mx-auto align-middle">
                   <svg
                     role="status"
@@ -82,6 +102,8 @@ export function SubscribeToConference({ featuredConferenceId }) {
                     />
                   </svg>
                 </div>
+              ) : (
+                'Register'
               )}
             </button>
           </div>

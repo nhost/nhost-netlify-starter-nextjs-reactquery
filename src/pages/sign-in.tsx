@@ -46,7 +46,6 @@ export function SignInWithEmail() {
               onChange={(e) => {
                 setValue('email', e.target.value);
               }}
-              tabIndex={1}
               className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
               autoFocus
               id="email"
@@ -74,7 +73,6 @@ export function SignInWithEmail() {
                 setValue('password', e.target.value);
               }}
               className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
-              tabIndex={2}
               id="password"
               placeholder="Password"
               required
@@ -91,7 +89,6 @@ export function SignInWithEmail() {
         <div className="flex flex-col">
           <button
             className="text-list hover:border-white hover:text-white border-list flex items-center justify-center w-full py-2 mt-4 text-sm transition-colors duration-200 border rounded-md"
-            tabIndex={3}
             type="submit"
             disabled={isLoading}
           >
@@ -109,9 +106,10 @@ export function SignInWithEmail() {
   );
 }
 
-const IndexPage = () => {
+const SignInPage = () => {
   const isAuthenticated = useAuthenticated();
   useAuthenticatedRedirect();
+
   return (
     <Layout title={data.pageTitle}>
       <div className="bg-header bg-grid h-screen text-white">
@@ -127,4 +125,5 @@ const IndexPage = () => {
     </Layout>
   );
 };
-export default IndexPage;
+
+export default SignInPage;

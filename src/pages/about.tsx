@@ -64,7 +64,11 @@ const About = () => {
           </h1>
           <p className="pt-2 text-center">{data.description}</p>
           <div className="flex flex-col mt-10">
-            <a target="blank" href={data.repoLink}>
+            <a
+              target="blank"
+              href={data.repoLink}
+              className="hover:underline text-blue-500"
+            >
               {data.repoLink}
             </a>
           </div>
