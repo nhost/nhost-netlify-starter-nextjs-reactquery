@@ -1,54 +1,11 @@
+import { Input } from '@/components/common/Input';
 import { queryClient } from '@/utils/react-query-client';
 import {
   useAddSpeakerMutation,
-  useSpeakersQuery,
+  useConferenceBySlugQuery,
 } from '@/utils/__generated__/graphql';
-import { DetailedHTMLProps, ForwardedRef, forwardRef, HTMLProps } from 'react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { twMerge } from 'tailwind-merge';
-
-interface AddNewSpeakerInputProps
-  extends DetailedHTMLProps<HTMLProps<HTMLInputElement>, HTMLInputElement> {
-  /**
-   * Error message
-   */
-  error?: string;
-}
-
-const AddNewSpeakerInput = forwardRef(function AddNewSpeakerInput(
-  { className, error, ...props }: AddNewSpeakerInputProps,
-  ref: ForwardedRef<HTMLInputElement>,
-) {
-  return (
-    <div className="grid grid-cols-3">
-      <div className="col-span-1">
-        <label
-          htmlFor={props.id}
-          className="text-list self-center text-xs font-medium"
-        >
-          {props.label}
-        </label>
-      </div>
-
-      <div className="grid grid-flow-row col-span-2 gap-1">
-        <input
-          ref={ref}
-          className={twMerge(
-            'bg-input px-3 py-2 text-xs text-white border border-gray-700 rounded-md',
-            className,
-          )}
-          minLength={2}
-          maxLength={128}
-          spellCheck="false"
-          autoCapitalize="none"
-          {...props}
-        />
-
-        {error && <p className="text-xs text-red-500">{error}</p>}
-      </div>
-    </div>
-  );
-});
 
 type AddNewSpeakerValues = {
   name: string;
@@ -58,11 +15,25 @@ type AddNewSpeakerValues = {
 };
 
 export function AddNewSpeaker() {
-  const { mutateAsync, isLoading, error } = useAddSpeakerMutation({
-    onSuccess: () => {
-      queryClient.fetchQuery(useSpeakersQuery.getKey());
-    },
+  const {
+    query: { conferenceSlug },
+  } = useRouter();
+
+  const {
+    data: conferenceBySlug,
+    status: conferenceBySlugStatus,
+    error: conferenceBySlugError,
+  } = useConferenceBySlugQuery({ slug: conferenceSlug as string });
+
+  const {
+    mutateAsync: addSpeaker,
+    status: addSpeakerStatus,
+    error: addSpeakerError,
+  } = useAddSpeakerMutation({
+    onSuccess: () => queryClient.refetchQueries({ type: 'active' }),
   });
+
+  const error = addSpeakerError || conferenceBySlugError;
 
   const {
     register,
@@ -81,12 +52,13 @@ export function AddNewSpeaker() {
 
   async function onSubmit(values: AddNewSpeakerValues) {
     try {
-      await mutateAsync({
+      await addSpeaker({
         speaker: {
           name: values.name,
           social: values.social,
           job_description: values.jobTitle,
           avatar_url: values.avatarUrl,
+          conference_id: conferenceBySlug.conferences?.[0].id,
         },
       });
 
@@ -100,6 +72,11 @@ export function AddNewSpeaker() {
       // This error is handled by useAddSpeakerMutatio
     }
   }
+
+  if (conferenceBySlugStatus === 'loading') {
+    return null;
+  }
+
   return (
     <div className="bg-card w-full px-12 pt-10 pb-10 border border-gray-700 rounded-md">
       <form
@@ -115,7 +92,7 @@ export function AddNewSpeaker() {
           </div>
         ) : null}
 
-        <AddNewSpeakerInput
+        <Input
           {...register('avatarUrl', {
             required: { value: true, message: 'This field is required.' },
           })}
@@ -123,10 +100,10 @@ export function AddNewSpeaker() {
           label="Avatar URL"
           placeholder="Avatar URL"
           error={errors?.avatarUrl?.message}
-          disabled={isLoading}
+          disabled={addSpeakerStatus === 'loading'}
         />
 
-        <AddNewSpeakerInput
+        <Input
           {...register('name', {
             required: { value: true, message: 'This field is required.' },
           })}
@@ -134,10 +111,10 @@ export function AddNewSpeaker() {
           label="Name"
           placeholder="Name"
           error={errors?.name?.message}
-          disabled={isLoading}
+          disabled={addSpeakerStatus === 'loading'}
         />
 
-        <AddNewSpeakerInput
+        <Input
           {...register('social', {
             required: { value: true, message: 'This field is required.' },
           })}
@@ -145,10 +122,10 @@ export function AddNewSpeaker() {
           label="Twitter Tag"
           placeholder="Twitter Tag"
           error={errors?.social?.message}
-          disabled={isLoading}
+          disabled={addSpeakerStatus === 'loading'}
         />
 
-        <AddNewSpeakerInput
+        <Input
           {...register('jobTitle', {
             required: { value: true, message: 'This field is required.' },
           })}
@@ -156,16 +133,16 @@ export function AddNewSpeaker() {
           label="Job Title"
           placeholder="Job Title"
           error={errors?.jobTitle?.message}
-          disabled={isLoading}
+          disabled={addSpeakerStatus === 'loading'}
         />
 
         <div className="flex flex-col">
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={addSpeakerStatus === 'loading'}
             className="bg-header py-3 text-xs font-medium text-white border-gray-500 rounded-md"
           >
-            {isLoading ? 'Loading...' : 'Add New Speaker'}
+            {addSpeakerStatus === 'loading' ? 'Loading...' : 'Add New Speaker'}
           </button>
         </div>
       </form>

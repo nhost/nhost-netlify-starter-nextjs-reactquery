@@ -14,17 +14,15 @@ export function Header() {
   return (
     <header className="bg-header border-b-brd sticky border-b">
       <div className="place-content-between flex flex-row max-w-5xl p-4 mx-auto">
-        <div className="flex w-48">
-          <Link href="/">
-            <a className="text-md self-center font-medium text-white">
-              Conference Template
-            </a>
-          </Link>
-        </div>
+        <Link href="/" passHref>
+          <a className="text-md hover:underline self-center font-medium text-white">
+            Conference Template
+          </a>
+        </Link>
 
         {conferenceSlug && (
           <nav className="self-center" aria-label="Main navigation">
-            <ul className="text-list max-w-[208px] w-full items-center grid grid-flow-col gap-2 text-sm font-medium list-none">
+            <ul className="text-list grid items-center w-full grid-flow-col gap-2 text-sm font-medium list-none">
               <li
                 className={twMerge(
                   'hover:text-white px-2 cursor-pointer',
@@ -91,6 +89,8 @@ export function Header() {
               </a>
             </Link>
           )}
+
+          {isLoading && <div className="w-16" />}
         </div>
       </div>
     </header>

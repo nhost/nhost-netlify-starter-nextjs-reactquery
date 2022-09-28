@@ -7,6 +7,7 @@ import {
   useConferencesQuery,
 } from '@/utils/__generated__/graphql';
 import { useUserId } from '@nhost/react';
+import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 import { useForm } from 'react-hook-form';
 
@@ -19,8 +20,14 @@ type AddConferenceFormValues = {
 };
 
 function AddConferencePage() {
+  const router = useRouter();
   const userId = useUserId();
-  const { mutateAsync, isLoading, error } = useAddConferenceMutation({
+
+  const {
+    mutateAsync: addConference,
+    status,
+    error,
+  } = useAddConferenceMutation({
     onSuccess: () => {
       queryClient.fetchQuery(
         useConferencesQuery.getKey(),
@@ -29,7 +36,11 @@ function AddConferencePage() {
     },
   });
 
-  const { register, handleSubmit, reset } = useForm<AddConferenceFormValues>({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<AddConferenceFormValues>({
     defaultValues: {
       name: '',
       slug: '',
@@ -41,7 +52,7 @@ function AddConferencePage() {
 
   async function onSubmit(values: AddConferenceFormValues) {
     try {
-      await mutateAsync({
+      await addConference({
         conference: {
           name: values.name,
           slug: values.slug,
@@ -52,13 +63,7 @@ function AddConferencePage() {
         },
       });
 
-      reset({
-        name: '',
-        slug: '',
-        location: '',
-        startDate: new Date().toISOString(),
-        endDate: new Date().toISOString(),
-      });
+      await router.push(`/conferences/${values.slug}/edit`);
     } catch {
       // This error is handled by useAddConferenceMutation
     }
@@ -84,18 +89,52 @@ function AddConferencePage() {
           onSubmit={handleSubmit(onSubmit)}
           className="grid grid-flow-row gap-8"
         >
-          <Input {...register('name')} id="name" label="Name" />
-          <Input {...register('slug')} id="slug" label="Slug" />
-          <Input {...register('location')} id="location" label="Location" />
-          <Input {...register('startDate')} id="startDate" label="Start Date" />
-          <Input {...register('endDate')} id="endDate" label="End Date" />
+          <Input
+            {...register('name')}
+            id="name"
+            label="Name"
+            placeholder="Name"
+            error={errors?.name?.message}
+          />
+
+          <Input
+            {...register('slug')}
+            id="slug"
+            label="Slug"
+            placeholder="Slug"
+            error={errors?.slug?.message}
+          />
+
+          <Input
+            {...register('location')}
+            id="location"
+            label="Location"
+            placeholder="Location"
+            error={errors?.location?.message}
+          />
+
+          <Input
+            {...register('startDate')}
+            id="startDate"
+            label="Start Date"
+            placeholder="Start Date"
+            error={errors?.startDate?.message}
+          />
+
+          <Input
+            {...register('endDate')}
+            id="endDate"
+            label="End Date"
+            placeholder="End Date"
+            error={errors?.endDate?.message}
+          />
 
           <button
-            disabled={isLoading}
+            disabled={status === 'loading'}
             className="bg-header py-3 text-xs font-medium text-white border-gray-500 rounded-md"
             type="submit"
           >
-            {isLoading ? 'Loading...' : 'Add New Talk'}
+            {status === 'loading' ? 'Loading...' : 'Create Conference'}
           </button>
         </form>
       </div>

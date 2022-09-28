@@ -1,16 +1,16 @@
 import { AddNewSpeaker } from '@/components/speakers/AddNewSpeaker';
-import { Speakers } from '@/components/speakers/Speakers';
+import { SpeakersGrid } from '@/components/speakers/SpeakersGrid';
 import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
 import { useAuthenticationStatus } from '@nhost/react';
 import { ReactElement } from 'react';
 
-const SpeakersPage = () => {
+function SpeakersPage() {
   const { isAuthenticated } = useAuthenticationStatus();
 
   return (
     <div className="flex flex-col max-w-5xl px-4 mx-auto my-10">
-      <Speakers />
+      <SpeakersGrid />
 
       {isAuthenticated ? (
         <div className="w-full max-w-lg py-10 mx-auto">
@@ -22,7 +22,7 @@ const SpeakersPage = () => {
       ) : null}
     </div>
   );
-};
+}
 
 SpeakersPage.getLayout = function getLayout(page: ReactElement) {
   return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;

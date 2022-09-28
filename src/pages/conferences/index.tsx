@@ -1,10 +1,15 @@
 import { data } from '@/data/info';
 import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
-import { useConferencesQuery } from '@/utils/__generated__/graphql';
-import { StarIcon } from '@heroicons/react/solid';
+import { queryClient } from '@/utils/react-query-client';
+import {
+  useConferencesQuery,
+  useDeleteConferenceMutation,
+} from '@/utils/__generated__/graphql';
+import { PencilIcon, StarIcon, TrashIcon } from '@heroicons/react/solid';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import Link from 'next/link';
-import { ReactElement } from 'react';
+import { ReactElement, useState } from 'react';
+import { twMerge } from 'tailwind-merge';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -23,7 +28,22 @@ export async function getStaticProps() {
 }
 
 function ConferencesPage() {
+  const [deletableConferenceId, setDeletableConferenceId] = useState<string>();
+  const { mutateAsync, status: deleteStatus } = useDeleteConferenceMutation({
+    onSuccess: () => queryClient.refetchQueries({ type: 'active' }),
+  });
+
   const { data, status, error } = useConferencesQuery();
+
+  async function handleDelete(conferenceId: string) {
+    setDeletableConferenceId(conferenceId);
+
+    try {
+      await mutateAsync({ id: conferenceId });
+    } finally {
+      setDeletableConferenceId(undefined);
+    }
+  }
 
   return (
     <div className="grid grid-flow-row gap-4">
@@ -55,7 +75,12 @@ function ConferencesPage() {
             return (
               <li
                 key={conference.id}
-                className="bg-card gap-y-1 grid grid-cols-2 px-4 py-3 rounded-md"
+                className={twMerge(
+                  'group bg-card gap-y-1 grid items-center grid-cols-2 px-4 py-3 rounded-md motion-safe:transition-opacity',
+                  deleteStatus === 'loading' &&
+                    deletableConferenceId === conference.id &&
+                    'opacity-50',
+                )}
               >
                 <div className="col-span-1">
                   <Link href={`/conferences/${conference.slug}`}>
@@ -65,17 +90,32 @@ function ConferencesPage() {
                   </Link>
                 </div>
 
+                <div className="group-hover:opacity-100 grid justify-end grid-flow-col col-span-1 gap-2 opacity-0">
+                  <Link href={`/conferences/${conference.slug}/edit`}>
+                    <a className="hover:underline inline-grid items-center grid-flow-col gap-1">
+                      <PencilIcon className="w-4 h-4" /> Edit
+                    </a>
+                  </Link>
+
+                  <button
+                    className="hover:underline grid items-center grid-flow-col gap-1 bg-transparent"
+                    onClick={() => handleDelete(conference.id)}
+                  >
+                    <TrashIcon className="w-4 h-4" /> Delete
+                  </button>
+                </div>
+
                 {conference.featured && (
-                  <span className="grid items-center justify-end grid-flow-col col-span-1 gap-1 text-sm">
+                  <div className="grid items-center justify-start grid-flow-col col-span-1 gap-1 text-sm">
                     <StarIcon className="fill-yellow-500 w-4 h-4" /> Featured
-                  </span>
+                  </div>
                 )}
 
-                <span className="col-span-2 text-sm">
+                <div className="col-span-2 text-sm">
                   {numberOfTalks === 0 && 'No talks'}
                   {numberOfTalks === 1 && '1 talk'}
                   {numberOfTalks > 1 && `${numberOfTalks} talks`}
-                </span>
+                </div>
               </li>
             );
           })}

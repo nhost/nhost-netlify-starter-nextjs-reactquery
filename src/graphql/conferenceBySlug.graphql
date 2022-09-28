@@ -12,14 +12,14 @@ query ConferenceBySlug($slug: String!) {
       name
       start_date
       end_date
-      speaker {
-        name
-        id
-        social
-        job_description
-        avatar_url
-        bio
-      }
+    }
+    speakers {
+      name
+      id
+      social
+      job_description
+      avatar_url
+      bio
     }
   }
 }

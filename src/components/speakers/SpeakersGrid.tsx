@@ -1,21 +1,30 @@
 import { Loader } from '@/components/common/Loader';
-import { Speaker } from '@/components/speakers/Speaker';
-import { useSpeakersQuery } from '@/utils/__generated__/graphql';
+import { SpeakerCard } from '@/components/speakers/SpeakerCard';
+import { useConferenceBySlugQuery } from '@/utils/__generated__/graphql';
+import { useRouter } from 'next/router';
 
-export const Speakers = () => {
-  const { data, isLoading, isError } = useSpeakersQuery();
+export function SpeakersGrid() {
+  const {
+    query: { conferenceSlug },
+  } = useRouter();
 
-  if (isError) {
+  const { data, status, error } = useConferenceBySlugQuery({
+    slug: conferenceSlug as string,
+  });
+
+  if (status === 'error' && error) {
     return (
       <div className="bg-opacity-10 w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md">
         <h1 className="pb-2 text-xl font-medium leading-none text-center text-white">
-          Error:
+          {error instanceof Error
+            ? error.message
+            : 'Unknown error occurred. Please try again.'}
         </h1>
       </div>
     );
   }
 
-  if (isLoading) {
+  if (status === 'loading') {
     return (
       <div className="flex mx-auto">
         <Loader />
@@ -23,13 +32,15 @@ export const Speakers = () => {
     );
   }
 
+  const { speakers } = data?.conferences?.[0] || {};
+
   return (
     <div className="grid w-full grid-cols-4 gap-6">
-      {data?.speakers.length === 0
+      {speakers.length === 0
         ? 'There are no speakers yet.'
-        : data?.speakers.map((speaker) => {
+        : speakers?.map((speaker) => {
             return (
-              <Speaker
+              <SpeakerCard
                 key={speaker.id}
                 id={speaker.id}
                 avatar_url={
@@ -43,4 +54,4 @@ export const Speakers = () => {
           })}
     </div>
   );
-};
+}

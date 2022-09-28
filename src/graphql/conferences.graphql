@@ -29,3 +29,9 @@ mutation AddConference($conference: conferences_insert_input!) {
     id
   }
 }
+
+mutation DeleteConference($id: uuid!) {
+  delete_conferences_by_pk(id: $id) {
+    id
+  }
+}

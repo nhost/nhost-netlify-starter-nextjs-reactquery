@@ -1,3 +1,4 @@
+import { Loader } from '@/components/common/Loader';
 import { ConferenceDetails } from '@/components/conferences/ConferenceDetails';
 import { data } from '@/data/info';
 import {
@@ -9,15 +10,21 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ReactElement } from 'react';
 
 function IndexPage() {
-  const { data, isLoading, isError } =
+  const { data, status, error } =
     useFeaturedConferencesQuery<FeaturedConferencesQuery>();
 
-  if (isLoading) {
-    return null;
+  if (status === 'error' && error) {
+    return (
+      <p className="text-red-500">
+        {error instanceof Error
+          ? error.message
+          : 'Unknown error occurred. Please try again.'}
+      </p>
+    );
   }
 
-  if (isError) {
-    return null;
+  if (status === 'loading') {
+    return <Loader className="mx-auto" />;
   }
 
   return <ConferenceDetails conference={data?.conferences?.[0]} />;

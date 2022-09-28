@@ -5,7 +5,14 @@ import { Fragment } from 'react';
 import { useFormContext, useWatch } from 'react-hook-form';
 import { AddTalkFormValues } from '../talks/AddNewTalk';
 
-export function SpeakerListbox({ speakers }) {
+export interface SpeakerListboxProps {
+  /**
+   * List of speakers to display in the listbox
+   */
+  speakers: Speaker[];
+}
+
+export function SpeakerListbox({ speakers }: SpeakerListboxProps) {
   const { setValue } = useFormContext<AddTalkFormValues>();
   const speaker: Speaker = useWatch({ name: 'speaker' });
   const selectedSpeaker = speaker || speakers[0];
