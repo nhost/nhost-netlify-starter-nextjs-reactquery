@@ -1,18 +1,34 @@
+import { Speaker } from '@/types/Speaker';
 import { Listbox, Transition } from '@headlessui/react';
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid';
 import { Fragment } from 'react';
+import { useFormContext, useWatch } from 'react-hook-form';
+import { AddTalkFormValues } from '../talks/AddNewTalk';
 
-export function SpeakerListbox({ selected, onChange, speakers }) {
+export function SpeakerListbox({ speakers }) {
+  const { setValue } = useFormContext<AddTalkFormValues>();
+  const speaker: Speaker = useWatch({ name: 'speaker' });
+  const selectedSpeaker = speaker || speakers[0];
+
   return (
     <div className="w-full cursor-pointer">
-      <Listbox value={selected || speakers[0]} onChange={onChange}>
+      <Listbox
+        value={selectedSpeaker?.id}
+        onChange={(id) =>
+          setValue(
+            'speaker',
+            speakers.find((speaker: Speaker) => speaker.id === id),
+          )
+        }
+      >
         <div className="relative mt-1">
           <Listbox.Button
             className="bg-input relative w-full py-2 pl-3 pr-10 text-left text-white bg-transparent border border-gray-700 rounded-lg cursor-default"
-            disabled={!selected?.name}
+            disabled={!selectedSpeaker?.name}
+            id="speaker"
           >
             <span className="block text-xs truncate">
-              {selected?.name || '--'}
+              {selectedSpeaker?.name || '--'}
             </span>
             <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
               <SelectorIcon className="text-list w-4 h-4" aria-hidden="true" />
@@ -25,15 +41,15 @@ export function SpeakerListbox({ selected, onChange, speakers }) {
             leaveTo="opacity-0"
           >
             <Listbox.Options className="max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm bg-card absolute w-full py-1 mt-1 overflow-auto text-base rounded-md shadow-lg cursor-pointer">
-              {speakers.map((person, personIdx) => (
+              {speakers.map((person: Speaker) => (
                 <Listbox.Option
-                  key={personIdx}
+                  key={person.id}
                   className={({ active }) =>
                     `relative cursor-pointer select-none py-2 pl-10 pr-4 ${
                       active ? 'bg-gray-900 text-white' : 'text-list'
                     }`
                   }
-                  value={person}
+                  value={person.id}
                 >
                   {({ selected }) => (
                     <>

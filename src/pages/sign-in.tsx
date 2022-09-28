@@ -36,18 +36,17 @@ export function SignInWithEmail() {
       >
         <div className="space-y-2">
           <div className="flex flex-col pt-2">
-            <h1 className="text-list text-sm font-medium leading-none">
+            <label
+              htmlFor="email"
+              className="text-list text-sm font-medium leading-none"
+            >
               Email
-            </h1>
+            </label>
           </div>
           <div className="flex w-full">
             <input
               {...register('email')}
-              onChange={(e) => {
-                setValue('email', e.target.value);
-              }}
               className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
-              autoFocus
               id="email"
               placeholder="Email"
               required
@@ -62,16 +61,16 @@ export function SignInWithEmail() {
         </div>
         <div className="space-y-2">
           <div className="flex flex-col pt-2">
-            <h1 className="text-list text-sm font-medium leading-none">
+            <label
+              htmlFor="password"
+              className="text-list text-sm font-medium leading-none"
+            >
               Password
-            </h1>
+            </label>
           </div>
           <div className="flex mt-1">
             <input
               {...register('password')}
-              onChange={(e) => {
-                setValue('password', e.target.value);
-              }}
               className="bg-input text-list w-full px-2 py-3 text-sm rounded-md"
               id="password"
               placeholder="Password"
@@ -92,7 +91,7 @@ export function SignInWithEmail() {
             type="submit"
             disabled={isLoading}
           >
-            Sign In
+            {isLoading ? 'Loading...' : 'Sign In'}
           </button>
         </div>
       </form>

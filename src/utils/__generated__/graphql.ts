@@ -20,13 +20,8 @@ export type Scalars = {
   uuid: any;
 };
 
-export type Boolean_Cast_Exp = {
-  String?: InputMaybe<String_Comparison_Exp>;
-};
-
 /** Boolean expression to compare columns of type "Boolean". All fields are combined with logical 'AND'. */
 export type Boolean_Comparison_Exp = {
-  _cast?: InputMaybe<Boolean_Cast_Exp>;
   _eq?: InputMaybe<Scalars['Boolean']>;
   _gt?: InputMaybe<Scalars['Boolean']>;
   _gte?: InputMaybe<Scalars['Boolean']>;
@@ -38,13 +33,8 @@ export type Boolean_Comparison_Exp = {
   _nin?: InputMaybe<Array<Scalars['Boolean']>>;
 };
 
-export type Int_Cast_Exp = {
-  String?: InputMaybe<String_Comparison_Exp>;
-};
-
 /** Boolean expression to compare columns of type "Int". All fields are combined with logical 'AND'. */
 export type Int_Comparison_Exp = {
-  _cast?: InputMaybe<Int_Cast_Exp>;
   _eq?: InputMaybe<Scalars['Int']>;
   _gt?: InputMaybe<Scalars['Int']>;
   _gte?: InputMaybe<Scalars['Int']>;
@@ -231,6 +221,22 @@ export enum AuthProviderRequests_Update_Column {
   Options = 'options'
 }
 
+export type AuthProviderRequests_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<AuthProviderRequests_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<AuthProviderRequests_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<AuthProviderRequests_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<AuthProviderRequests_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<AuthProviderRequests_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthProviderRequests_Set_Input>;
+  where: AuthProviderRequests_Bool_Exp;
+};
+
 /** List of available Oauth providers. Don't modify its structure as Hasura Auth relies on it to function properly. */
 export type AuthProviders = {
   __typename?: 'authProviders';
@@ -366,6 +372,12 @@ export enum AuthProviders_Update_Column {
   /** column name */
   Id = 'id'
 }
+
+export type AuthProviders_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthProviders_Set_Input>;
+  where: AuthProviders_Bool_Exp;
+};
 
 /** User refresh tokens. Hasura auth uses them to rotate new access tokens as long as the refresh token is not expired. Don't modify its structure as Hasura Auth relies on it to function properly. */
 export type AuthRefreshTokens = {
@@ -537,6 +549,12 @@ export enum AuthRefreshTokens_Update_Column {
   UserId = 'userId'
 }
 
+export type AuthRefreshTokens_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthRefreshTokens_Set_Input>;
+  where: AuthRefreshTokens_Bool_Exp;
+};
+
 /** Persistent Hasura roles for users. Don't modify its structure as Hasura Auth relies on it to function properly. */
 export type AuthRoles = {
   __typename?: 'authRoles';
@@ -700,6 +718,12 @@ export enum AuthRoles_Update_Column {
   Role = 'role'
 }
 
+export type AuthRoles_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthRoles_Set_Input>;
+  where: AuthRoles_Bool_Exp;
+};
+
 /** User webauthn authenticators. Don't modify its structure as Hasura Auth relies on it to function properly. */
 export type AuthUserAuthenticators = {
   __typename?: 'authUserAuthenticators';
@@ -707,6 +731,7 @@ export type AuthUserAuthenticators = {
   credentialId: Scalars['String'];
   credentialPublicKey?: Maybe<Scalars['bytea']>;
   id: Scalars['uuid'];
+  nickname?: Maybe<Scalars['String']>;
   transports: Scalars['String'];
   /** An object relationship */
   user: Users;
@@ -785,6 +810,7 @@ export type AuthUserAuthenticators_Bool_Exp = {
   credentialId?: InputMaybe<String_Comparison_Exp>;
   credentialPublicKey?: InputMaybe<Bytea_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
+  nickname?: InputMaybe<String_Comparison_Exp>;
   transports?: InputMaybe<String_Comparison_Exp>;
   user?: InputMaybe<Users_Bool_Exp>;
   userId?: InputMaybe<Uuid_Comparison_Exp>;
@@ -809,6 +835,7 @@ export type AuthUserAuthenticators_Insert_Input = {
   credentialId?: InputMaybe<Scalars['String']>;
   credentialPublicKey?: InputMaybe<Scalars['bytea']>;
   id?: InputMaybe<Scalars['uuid']>;
+  nickname?: InputMaybe<Scalars['String']>;
   transports?: InputMaybe<Scalars['String']>;
   user?: InputMaybe<Users_Obj_Rel_Insert_Input>;
   userId?: InputMaybe<Scalars['uuid']>;
@@ -820,6 +847,7 @@ export type AuthUserAuthenticators_Max_Fields = {
   counter?: Maybe<Scalars['bigint']>;
   credentialId?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  nickname?: Maybe<Scalars['String']>;
   transports?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -829,6 +857,7 @@ export type AuthUserAuthenticators_Max_Order_By = {
   counter?: InputMaybe<Order_By>;
   credentialId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  nickname?: InputMaybe<Order_By>;
   transports?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
@@ -839,6 +868,7 @@ export type AuthUserAuthenticators_Min_Fields = {
   counter?: Maybe<Scalars['bigint']>;
   credentialId?: Maybe<Scalars['String']>;
   id?: Maybe<Scalars['uuid']>;
+  nickname?: Maybe<Scalars['String']>;
   transports?: Maybe<Scalars['String']>;
   userId?: Maybe<Scalars['uuid']>;
 };
@@ -848,6 +878,7 @@ export type AuthUserAuthenticators_Min_Order_By = {
   counter?: InputMaybe<Order_By>;
   credentialId?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  nickname?: InputMaybe<Order_By>;
   transports?: InputMaybe<Order_By>;
   userId?: InputMaybe<Order_By>;
 };
@@ -874,6 +905,7 @@ export type AuthUserAuthenticators_Order_By = {
   credentialId?: InputMaybe<Order_By>;
   credentialPublicKey?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
+  nickname?: InputMaybe<Order_By>;
   transports?: InputMaybe<Order_By>;
   user?: InputMaybe<Users_Order_By>;
   userId?: InputMaybe<Order_By>;
@@ -895,6 +927,8 @@ export enum AuthUserAuthenticators_Select_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Nickname = 'nickname',
+  /** column name */
   Transports = 'transports',
   /** column name */
   UserId = 'userId'
@@ -906,6 +940,7 @@ export type AuthUserAuthenticators_Set_Input = {
   credentialId?: InputMaybe<Scalars['String']>;
   credentialPublicKey?: InputMaybe<Scalars['bytea']>;
   id?: InputMaybe<Scalars['uuid']>;
+  nickname?: InputMaybe<Scalars['String']>;
   transports?: InputMaybe<Scalars['String']>;
   userId?: InputMaybe<Scalars['uuid']>;
 };
@@ -965,10 +1000,20 @@ export enum AuthUserAuthenticators_Update_Column {
   /** column name */
   Id = 'id',
   /** column name */
+  Nickname = 'nickname',
+  /** column name */
   Transports = 'transports',
   /** column name */
   UserId = 'userId'
 }
+
+export type AuthUserAuthenticators_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<AuthUserAuthenticators_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthUserAuthenticators_Set_Input>;
+  where: AuthUserAuthenticators_Bool_Exp;
+};
 
 /** aggregate var_pop on columns */
 export type AuthUserAuthenticators_Var_Pop_Fields = {
@@ -1077,7 +1122,7 @@ export type AuthUserProviders_Bool_Exp = {
 export enum AuthUserProviders_Constraint {
   /** unique or primary key constraint on columns "id" */
   UserProvidersPkey = 'user_providers_pkey',
-  /** unique or primary key constraint on columns "provider_user_id", "provider_id" */
+  /** unique or primary key constraint on columns "provider_id", "provider_user_id" */
   UserProvidersProviderIdProviderUserIdKey = 'user_providers_provider_id_provider_user_id_key',
   /** unique or primary key constraint on columns "provider_id", "user_id" */
   UserProvidersUserIdProviderIdKey = 'user_providers_user_id_provider_id_key'
@@ -1234,6 +1279,12 @@ export enum AuthUserProviders_Update_Column {
   UserId = 'userId'
 }
 
+export type AuthUserProviders_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthUserProviders_Set_Input>;
+  where: AuthUserProviders_Bool_Exp;
+};
+
 /** Roles of users. Don't modify its structure as Hasura Auth relies on it to function properly. */
 export type AuthUserRoles = {
   __typename?: 'authUserRoles';
@@ -1300,7 +1351,7 @@ export type AuthUserRoles_Bool_Exp = {
 export enum AuthUserRoles_Constraint {
   /** unique or primary key constraint on columns "id" */
   UserRolesPkey = 'user_roles_pkey',
-  /** unique or primary key constraint on columns "role", "user_id" */
+  /** unique or primary key constraint on columns "user_id", "role" */
   UserRolesUserIdRoleKey = 'user_roles_user_id_role_key'
 }
 
@@ -1411,13 +1462,14 @@ export enum AuthUserRoles_Update_Column {
   UserId = 'userId'
 }
 
-export type Bigint_Cast_Exp = {
-  String?: InputMaybe<String_Comparison_Exp>;
+export type AuthUserRoles_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<AuthUserRoles_Set_Input>;
+  where: AuthUserRoles_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "bigint". All fields are combined with logical 'AND'. */
 export type Bigint_Comparison_Exp = {
-  _cast?: InputMaybe<Bigint_Cast_Exp>;
   _eq?: InputMaybe<Scalars['bigint']>;
   _gt?: InputMaybe<Scalars['bigint']>;
   _gte?: InputMaybe<Scalars['bigint']>;
@@ -1695,6 +1747,14 @@ export enum Buckets_Update_Column {
   UpdatedAt = 'updatedAt'
 }
 
+export type Buckets_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Buckets_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Buckets_Set_Input>;
+  where: Buckets_Bool_Exp;
+};
+
 /** aggregate var_pop on columns */
 export type Buckets_Var_Pop_Fields = {
   __typename?: 'buckets_var_pop_fields';
@@ -1769,6 +1829,7 @@ export type Citext_Comparison_Exp = {
 export type Conferences = {
   __typename?: 'conferences';
   creator_user_id: Scalars['uuid'];
+  description?: Maybe<Scalars['String']>;
   end_date?: Maybe<Scalars['timestamptz']>;
   featured: Scalars['Boolean'];
   id: Scalars['uuid'];
@@ -1830,6 +1891,7 @@ export type Conferences_Bool_Exp = {
   _not?: InputMaybe<Conferences_Bool_Exp>;
   _or?: InputMaybe<Array<Conferences_Bool_Exp>>;
   creator_user_id?: InputMaybe<Uuid_Comparison_Exp>;
+  description?: InputMaybe<String_Comparison_Exp>;
   end_date?: InputMaybe<Timestamptz_Comparison_Exp>;
   featured?: InputMaybe<Boolean_Comparison_Exp>;
   id?: InputMaybe<Uuid_Comparison_Exp>;
@@ -1851,6 +1913,7 @@ export enum Conferences_Constraint {
 /** input type for inserting data into table "conferences" */
 export type Conferences_Insert_Input = {
   creator_user_id?: InputMaybe<Scalars['uuid']>;
+  description?: InputMaybe<Scalars['String']>;
   end_date?: InputMaybe<Scalars['timestamptz']>;
   featured?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['uuid']>;
@@ -1865,6 +1928,7 @@ export type Conferences_Insert_Input = {
 export type Conferences_Max_Fields = {
   __typename?: 'conferences_max_fields';
   creator_user_id?: Maybe<Scalars['uuid']>;
+  description?: Maybe<Scalars['String']>;
   end_date?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   location?: Maybe<Scalars['String']>;
@@ -1877,6 +1941,7 @@ export type Conferences_Max_Fields = {
 export type Conferences_Min_Fields = {
   __typename?: 'conferences_min_fields';
   creator_user_id?: Maybe<Scalars['uuid']>;
+  description?: Maybe<Scalars['String']>;
   end_date?: Maybe<Scalars['timestamptz']>;
   id?: Maybe<Scalars['uuid']>;
   location?: Maybe<Scalars['String']>;
@@ -1911,6 +1976,7 @@ export type Conferences_On_Conflict = {
 /** Ordering options when selecting data from "conferences". */
 export type Conferences_Order_By = {
   creator_user_id?: InputMaybe<Order_By>;
+  description?: InputMaybe<Order_By>;
   end_date?: InputMaybe<Order_By>;
   featured?: InputMaybe<Order_By>;
   id?: InputMaybe<Order_By>;
@@ -1931,6 +1997,8 @@ export enum Conferences_Select_Column {
   /** column name */
   CreatorUserId = 'creator_user_id',
   /** column name */
+  Description = 'description',
+  /** column name */
   EndDate = 'end_date',
   /** column name */
   Featured = 'featured',
@@ -1949,6 +2017,7 @@ export enum Conferences_Select_Column {
 /** input type for updating data in table "conferences" */
 export type Conferences_Set_Input = {
   creator_user_id?: InputMaybe<Scalars['uuid']>;
+  description?: InputMaybe<Scalars['String']>;
   end_date?: InputMaybe<Scalars['timestamptz']>;
   featured?: InputMaybe<Scalars['Boolean']>;
   id?: InputMaybe<Scalars['uuid']>;
@@ -1962,6 +2031,8 @@ export type Conferences_Set_Input = {
 export enum Conferences_Update_Column {
   /** column name */
   CreatorUserId = 'creator_user_id',
+  /** column name */
+  Description = 'description',
   /** column name */
   EndDate = 'end_date',
   /** column name */
@@ -1977,6 +2048,12 @@ export enum Conferences_Update_Column {
   /** column name */
   StartDate = 'start_date'
 }
+
+export type Conferences_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Conferences_Set_Input>;
+  where: Conferences_Bool_Exp;
+};
 
 /** columns and relationships of "storage.files" */
 export type Files = {
@@ -2298,6 +2375,14 @@ export enum Files_Update_Column {
   UploadedByUserId = 'uploadedByUserId'
 }
 
+export type Files_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Files_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Files_Set_Input>;
+  where: Files_Bool_Exp;
+};
+
 /** aggregate var_pop on columns */
 export type Files_Var_Pop_Fields = {
   __typename?: 'files_var_pop_fields';
@@ -2514,22 +2599,50 @@ export type Mutation_Root = {
   updateUser?: Maybe<Users>;
   /** update data of the table: "auth.users" */
   updateUsers?: Maybe<Users_Mutation_Response>;
+  /** update multiples rows of table: "auth.provider_requests" */
+  update_authProviderRequests_many?: Maybe<Array<Maybe<AuthProviderRequests_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.providers" */
+  update_authProviders_many?: Maybe<Array<Maybe<AuthProviders_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.refresh_tokens" */
+  update_authRefreshTokens_many?: Maybe<Array<Maybe<AuthRefreshTokens_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.roles" */
+  update_authRoles_many?: Maybe<Array<Maybe<AuthRoles_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.user_authenticators" */
+  update_authUserAuthenticators_many?: Maybe<Array<Maybe<AuthUserAuthenticators_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.user_providers" */
+  update_authUserProviders_many?: Maybe<Array<Maybe<AuthUserProviders_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.user_roles" */
+  update_authUserRoles_many?: Maybe<Array<Maybe<AuthUserRoles_Mutation_Response>>>;
+  /** update multiples rows of table: "storage.buckets" */
+  update_buckets_many?: Maybe<Array<Maybe<Buckets_Mutation_Response>>>;
   /** update data of the table: "conferences" */
   update_conferences?: Maybe<Conferences_Mutation_Response>;
   /** update single row of the table: "conferences" */
   update_conferences_by_pk?: Maybe<Conferences>;
+  /** update multiples rows of table: "conferences" */
+  update_conferences_many?: Maybe<Array<Maybe<Conferences_Mutation_Response>>>;
+  /** update multiples rows of table: "storage.files" */
+  update_files_many?: Maybe<Array<Maybe<Files_Mutation_Response>>>;
   /** update data of the table: "speakers" */
   update_speakers?: Maybe<Speakers_Mutation_Response>;
   /** update single row of the table: "speakers" */
   update_speakers_by_pk?: Maybe<Speakers>;
+  /** update multiples rows of table: "speakers" */
+  update_speakers_many?: Maybe<Array<Maybe<Speakers_Mutation_Response>>>;
   /** update data of the table: "talks" */
   update_talks?: Maybe<Talks_Mutation_Response>;
   /** update single row of the table: "talks" */
   update_talks_by_pk?: Maybe<Talks>;
+  /** update multiples rows of table: "talks" */
+  update_talks_many?: Maybe<Array<Maybe<Talks_Mutation_Response>>>;
   /** update data of the table: "tickets" */
   update_tickets?: Maybe<Tickets_Mutation_Response>;
   /** update single row of the table: "tickets" */
   update_tickets_by_pk?: Maybe<Tickets>;
+  /** update multiples rows of table: "tickets" */
+  update_tickets_many?: Maybe<Array<Maybe<Tickets_Mutation_Response>>>;
+  /** update multiples rows of table: "auth.users" */
+  update_users_many?: Maybe<Array<Maybe<Users_Mutation_Response>>>;
 };
 
 
@@ -3064,6 +3177,54 @@ export type Mutation_RootUpdateUsersArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_AuthProviderRequests_ManyArgs = {
+  updates: Array<AuthProviderRequests_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthProviders_ManyArgs = {
+  updates: Array<AuthProviders_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthRefreshTokens_ManyArgs = {
+  updates: Array<AuthRefreshTokens_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthRoles_ManyArgs = {
+  updates: Array<AuthRoles_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthUserAuthenticators_ManyArgs = {
+  updates: Array<AuthUserAuthenticators_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthUserProviders_ManyArgs = {
+  updates: Array<AuthUserProviders_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_AuthUserRoles_ManyArgs = {
+  updates: Array<AuthUserRoles_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Buckets_ManyArgs = {
+  updates: Array<Buckets_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_ConferencesArgs = {
   _set?: InputMaybe<Conferences_Set_Input>;
   where: Conferences_Bool_Exp;
@@ -3078,6 +3239,18 @@ export type Mutation_RootUpdate_Conferences_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Conferences_ManyArgs = {
+  updates: Array<Conferences_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Files_ManyArgs = {
+  updates: Array<Files_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_SpeakersArgs = {
   _set?: InputMaybe<Speakers_Set_Input>;
   where: Speakers_Bool_Exp;
@@ -3088,6 +3261,12 @@ export type Mutation_RootUpdate_SpeakersArgs = {
 export type Mutation_RootUpdate_Speakers_By_PkArgs = {
   _set?: InputMaybe<Speakers_Set_Input>;
   pk_columns: Speakers_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Speakers_ManyArgs = {
+  updates: Array<Speakers_Updates>;
 };
 
 
@@ -3108,6 +3287,12 @@ export type Mutation_RootUpdate_Talks_By_PkArgs = {
 
 
 /** mutation root */
+export type Mutation_RootUpdate_Talks_ManyArgs = {
+  updates: Array<Talks_Updates>;
+};
+
+
+/** mutation root */
 export type Mutation_RootUpdate_TicketsArgs = {
   _inc?: InputMaybe<Tickets_Inc_Input>;
   _set?: InputMaybe<Tickets_Set_Input>;
@@ -3120,6 +3305,18 @@ export type Mutation_RootUpdate_Tickets_By_PkArgs = {
   _inc?: InputMaybe<Tickets_Inc_Input>;
   _set?: InputMaybe<Tickets_Set_Input>;
   pk_columns: Tickets_Pk_Columns_Input;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Tickets_ManyArgs = {
+  updates: Array<Tickets_Updates>;
+};
+
+
+/** mutation root */
+export type Mutation_RootUpdate_Users_ManyArgs = {
+  updates: Array<Users_Updates>;
 };
 
 /** column ordering options */
@@ -3724,6 +3921,12 @@ export enum Speakers_Update_Column {
   /** column name */
   UserId = 'user_id'
 }
+
+export type Speakers_Updates = {
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Speakers_Set_Input>;
+  where: Speakers_Bool_Exp;
+};
 
 export type Subscription_Root = {
   __typename?: 'subscription_root';
@@ -4438,6 +4641,14 @@ export enum Talks_Update_Column {
   StartDate = 'start_date'
 }
 
+export type Talks_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Talks_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Talks_Set_Input>;
+  where: Talks_Bool_Exp;
+};
+
 /** aggregate var_pop on columns */
 export type Talks_Var_Pop_Fields = {
   __typename?: 'talks_var_pop_fields';
@@ -4640,6 +4851,14 @@ export enum Tickets_Update_Column {
   Id = 'id'
 }
 
+export type Tickets_Updates = {
+  /** increments the numeric columns with given value of the filtered values */
+  _inc?: InputMaybe<Tickets_Inc_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Tickets_Set_Input>;
+  where: Tickets_Bool_Exp;
+};
+
 /** aggregate var_pop on columns */
 export type Tickets_Var_Pop_Fields = {
   __typename?: 'tickets_var_pop_fields';
@@ -4658,13 +4877,8 @@ export type Tickets_Variance_Fields = {
   id?: Maybe<Scalars['Float']>;
 };
 
-export type Timestamptz_Cast_Exp = {
-  String?: InputMaybe<String_Comparison_Exp>;
-};
-
 /** Boolean expression to compare columns of type "timestamptz". All fields are combined with logical 'AND'. */
 export type Timestamptz_Comparison_Exp = {
-  _cast?: InputMaybe<Timestamptz_Cast_Exp>;
   _eq?: InputMaybe<Scalars['timestamptz']>;
   _gt?: InputMaybe<Scalars['timestamptz']>;
   _gte?: InputMaybe<Scalars['timestamptz']>;
@@ -5249,13 +5463,24 @@ export enum Users_Update_Column {
   UpdatedAt = 'updatedAt'
 }
 
-export type Uuid_Cast_Exp = {
-  String?: InputMaybe<String_Comparison_Exp>;
+export type Users_Updates = {
+  /** append existing jsonb value of filtered columns with new jsonb value */
+  _append?: InputMaybe<Users_Append_Input>;
+  /** delete the field or element with specified path (for JSON arrays, negative integers count from the end) */
+  _delete_at_path?: InputMaybe<Users_Delete_At_Path_Input>;
+  /** delete the array element with specified index (negative integers count from the end). throws an error if top level container is not an array */
+  _delete_elem?: InputMaybe<Users_Delete_Elem_Input>;
+  /** delete key/value pair or string element. key/value pairs are matched based on their key value */
+  _delete_key?: InputMaybe<Users_Delete_Key_Input>;
+  /** prepend existing jsonb value of filtered columns with new jsonb value */
+  _prepend?: InputMaybe<Users_Prepend_Input>;
+  /** sets the columns of the filtered rows to the given values */
+  _set?: InputMaybe<Users_Set_Input>;
+  where: Users_Bool_Exp;
 };
 
 /** Boolean expression to compare columns of type "uuid". All fields are combined with logical 'AND'. */
 export type Uuid_Comparison_Exp = {
-  _cast?: InputMaybe<Uuid_Cast_Exp>;
   _eq?: InputMaybe<Scalars['uuid']>;
   _gt?: InputMaybe<Scalars['uuid']>;
   _gte?: InputMaybe<Scalars['uuid']>;
@@ -5270,7 +5495,7 @@ export type Uuid_Comparison_Exp = {
 export type ConferencesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ConferencesQueryQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, location?: string | null, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
+export type ConferencesQueryQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
 
 export type SpeakersQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -5332,6 +5557,7 @@ export const ConferencesQueryDocument = `
     id
     name
     location
+    featured
     start_date
     end_date
     talks(order_by: {start_date: asc}) {

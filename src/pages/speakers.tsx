@@ -4,18 +4,19 @@ import { AddNewSpeaker } from '@/components/speakers/AddNewSpeaker';
 import { Speakers } from '@/components/speakers/Speakers';
 import { data } from '@/data/info';
 import { useSpeakersQuery } from '@/utils/__generated__/graphql';
-import { useAuthenticated } from '@nhost/react';
+import { useAuthenticationStatus } from '@nhost/react';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 
 const SpeakersPage = () => {
-  const isAuthenticated = useAuthenticated();
+  const { isAuthenticated } = useAuthenticationStatus();
 
   return (
     <Layout title={data.pageTitle}>
       <div className=" text-white">
         <Header />
-        <div className="flex flex-col max-w-5xl mx-auto my-10">
+        <div className="flex flex-col max-w-5xl px-4 mx-auto my-10">
           <Speakers />
+
           {isAuthenticated ? (
             <div className="w-full max-w-lg py-10 mx-auto">
               <h1 className="text-dim pb-8 text-3xl font-medium leading-none text-center">
@@ -45,4 +46,5 @@ export async function getStaticProps() {
     revalidate: 10,
   };
 }
+
 export default SpeakersPage;

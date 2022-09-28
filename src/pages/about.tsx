@@ -4,7 +4,7 @@ import { data } from '@/data/info';
 
 const About = () => {
   return (
-    <Layout title="Nhost & Netlify Starter Template">
+    <Layout title={data.pageTitle}>
       <div className="bg-grid bg-header text-dim h-screen">
         <Header />
         <div className="flex flex-col max-w-2xl mx-auto my-6 text-center">
@@ -59,13 +59,14 @@ const About = () => {
               </defs>
             </svg>
           </div>
-          <h1 className="text-dim mt-4 text-2xl font-semibold leading-none text-center">
+          <h1 className="text-dim mt-4 text-2xl font-semibold text-center">
             {data.pageTitle}
           </h1>
           <p className="pt-2 text-center">{data.description}</p>
           <div className="flex flex-col mt-10">
             <a
-              target="blank"
+              target="_blank"
+              rel="noopener noreferrer"
               href={data.repoLink}
               className="hover:underline text-blue-500"
             >

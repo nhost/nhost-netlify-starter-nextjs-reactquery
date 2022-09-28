@@ -1,11 +1,7 @@
-import {
-  useConferencesQueryQuery,
-  useDeleteTalkMutation,
-  useTalksQuery,
-} from '@/utils/__generated__/graphql';
-import { queryClient } from '@/utils/react-query-client';
-import { useAuthenticated } from '@nhost/react';
 import { Talk as TalkType } from '@/types/Talk';
+import { queryClient } from '@/utils/react-query-client';
+import { useDeleteTalkMutation } from '@/utils/__generated__/graphql';
+import { useAuthenticated } from '@nhost/react';
 
 export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
 
@@ -13,10 +9,7 @@ export function Talk({ id, name, speaker, start_date, end_date }: TalkType) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteTalkMutation({
-    onSuccess: () => {
-      queryClient.fetchQuery(useTalksQuery.getKey());
-      queryClient.fetchQuery(useConferencesQueryQuery.getKey());
-    },
+    onSuccess: () => queryClient.refetchQueries({ type: 'active' }),
   });
 
   const startMinutes =

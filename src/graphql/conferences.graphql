@@ -3,6 +3,7 @@ query ConferencesQuery {
     id
     name
     location
+    featured
     start_date
     end_date
     talks(order_by: { start_date: asc }) {

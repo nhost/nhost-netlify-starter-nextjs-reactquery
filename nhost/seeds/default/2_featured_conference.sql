@@ -1,0 +1,1 @@
+INSERT INTO conferences (id,name,slug,creator_user_id,featured,location,start_date,end_date,description) VALUES ('1b92282d-b09d-4a79-9087-c734a788a058','The Conference Platform for Developers','the-conference-platform-for-developers','6f089b4e-ae01-478c-a70c-de4f5649ec8f','true','Berlin, DE','2022-09-28T09:13:08.288+00:00','2022-09-28T09:13:08.288+00:00',NULL);

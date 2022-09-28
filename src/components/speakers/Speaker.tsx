@@ -1,10 +1,6 @@
 import { Speaker } from '@/types/Speaker';
 import { queryClient } from '@/utils/react-query-client';
-import {
-  useConferencesQueryQuery,
-  useDeleteSpeakerMutation,
-  useSpeakersQuery,
-} from '@/utils/__generated__/graphql';
+import { useDeleteSpeakerMutation } from '@/utils/__generated__/graphql';
 import { useAuthenticated } from '@nhost/react';
 
 export function Speaker({
@@ -17,10 +13,7 @@ export function Speaker({
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteSpeakerMutation({
-    onSuccess: () => {
-      queryClient.fetchQuery(useSpeakersQuery.getKey());
-      queryClient.fetchQuery(useConferencesQueryQuery.getKey());
-    },
+    onSuccess: () => queryClient.refetchQueries({ type: 'active' }),
   });
 
   return (

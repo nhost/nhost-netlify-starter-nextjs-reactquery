@@ -25,20 +25,22 @@ export const Speakers = () => {
 
   return (
     <div className="grid w-full grid-cols-4 gap-6">
-      {data.speakers.map((speaker) => {
-        return (
-          <Speaker
-            key={speaker.id}
-            id={speaker.id}
-            avatar_url={
-              speaker.avatar_url || 'https://via.placeholder.com/350x350'
-            }
-            name={speaker.name}
-            social={speaker.social}
-            job_description={speaker.job_description}
-          />
-        );
-      })}
+      {data?.speakers.length === 0
+        ? 'There are no speakers yet.'
+        : data?.speakers.map((speaker) => {
+            return (
+              <Speaker
+                key={speaker.id}
+                id={speaker.id}
+                avatar_url={
+                  speaker.avatar_url || 'https://via.placeholder.com/350x350'
+                }
+                name={speaker.name}
+                social={speaker.social}
+                job_description={speaker.job_description}
+              />
+            );
+          })}
     </div>
   );
 };
