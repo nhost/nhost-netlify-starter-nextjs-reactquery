@@ -43,9 +43,21 @@ export function Speaker({
           </svg>
         </button>
       ) : null}
-      <picture className="object-cover rounded-md aspect-square p-0.5">
-        <source srcSet={avatar_url} type="image/webp" />
-        <img alt="Speaker's photo" src={avatar_url} />
+      <picture>
+        <source
+          srcSet={avatar_url}
+          type="image/webp"
+          width={350}
+          height={350}
+          className="aspect-square object-cover rounded-md"
+        />
+        <img
+          alt="Speaker's photo"
+          src={avatar_url}
+          width={350}
+          height={350}
+          className="aspect-square object-cover rounded-md"
+        />
       </picture>
       <div className="py-2">
         <h1 className="text-lg font-medium text-white">{name}</h1>
