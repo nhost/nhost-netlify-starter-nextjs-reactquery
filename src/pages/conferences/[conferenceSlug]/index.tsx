@@ -1,5 +1,8 @@
+import { Loader } from '@/components/common/Loader';
+import { ConferenceDetails } from '@/components/conferences/ConferenceDetails';
 import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
+import { useConferenceBySlugQuery } from '@/utils/__generated__/graphql';
 import { useRouter } from 'next/router';
 import { ReactElement } from 'react';
 
@@ -8,9 +11,25 @@ function ConferenceDetailsPage() {
     query: { conferenceSlug },
   } = useRouter();
 
-  console.log(conferenceSlug);
+  const { data, status, error } = useConferenceBySlugQuery({
+    slug: conferenceSlug as string,
+  });
 
-  return <span>Conference</span>;
+  if (status === 'error' && error) {
+    return (
+      <p className="text-red-500">
+        {error instanceof Error
+          ? error.message
+          : 'Unknown error occurred. Please try again later.'}
+      </p>
+    );
+  }
+
+  if (status === 'loading') {
+    return <Loader className="mx-auto" />;
+  }
+
+  return <ConferenceDetails conference={data?.conferences?.[0]} />;
 }
 
 ConferenceDetailsPage.getLayout = function getLayout(page: ReactElement) {

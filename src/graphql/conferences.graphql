@@ -1,7 +1,5 @@
-query Conferences($filter: String) {
-  conferences(
-    where: { _or: { name: { _ilike: $filter }, slug: { _ilike: $filter } } }
-  ) {
+query Conferences {
+  conferences {
     id
     name
     slug

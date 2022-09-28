@@ -9,6 +9,20 @@ array_relationships:
         table:
           name: talks
           schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - featured
+        - description
+        - location
+        - name
+        - slug
+        - end_date
+        - start_date
+        - creator_user_id
+        - id
 select_permissions:
   - role: public
     permission:

@@ -9,11 +9,11 @@ export interface SubscribeToConferenceProps {
   /**
    * ID of the featured conference
    */
-  featuredConferenceId: string;
+  conferenceId: string;
 }
 
 export function SubscribeToConference({
-  featuredConferenceId,
+  conferenceId,
 }: SubscribeToConferenceProps) {
   const { mutateAsync, error, reset } = useAddEmailMutation();
 
@@ -32,7 +32,7 @@ export function SubscribeToConference({
     try {
       await mutateAsync({
         ticket: {
-          conference_id: featuredConferenceId,
+          conference_id: conferenceId,
           email: values.email,
         },
       });

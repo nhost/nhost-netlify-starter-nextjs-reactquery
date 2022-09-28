@@ -5499,9 +5499,7 @@ export type ConferenceBySlugQueryVariables = Exact<{
 
 export type ConferenceBySlugQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
 
-export type ConferencesQueryVariables = Exact<{
-  filter?: InputMaybe<Scalars['String']>;
-}>;
+export type ConferencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type ConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
@@ -5617,8 +5615,8 @@ useConferenceBySlugQuery.getKey = (variables: ConferenceBySlugQueryVariables) =>
 
 useConferenceBySlugQuery.fetcher = (variables: ConferenceBySlugQueryVariables, options?: RequestInit['headers']) => fetchData<ConferenceBySlugQuery, ConferenceBySlugQueryVariables>(ConferenceBySlugDocument, variables, options);
 export const ConferencesDocument = `
-    query Conferences($filter: String) {
-  conferences(where: {_or: {name: {_ilike: $filter}, slug: {_ilike: $filter}}}) {
+    query Conferences {
+  conferences {
     id
     name
     slug

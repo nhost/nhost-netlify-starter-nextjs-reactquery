@@ -1,4 +1,4 @@
-import { FeaturedConference } from '@/components/conferences/FeaturedConference';
+import { ConferenceDetails } from '@/components/conferences/ConferenceDetails';
 import { data } from '@/data/info';
 import {
   FeaturedConferencesQuery,
@@ -8,8 +8,8 @@ import BaseLayout from '@/layouts/BaseLayout';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { ReactElement } from 'react';
 
-const IndexPage = () => {
-  const { isLoading, isError } =
+function IndexPage() {
+  const { data, isLoading, isError } =
     useFeaturedConferencesQuery<FeaturedConferencesQuery>();
 
   if (isLoading) {
@@ -20,8 +20,8 @@ const IndexPage = () => {
     return null;
   }
 
-  return <FeaturedConference />;
-};
+  return <ConferenceDetails conference={data?.conferences?.[0]} />;
+}
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();

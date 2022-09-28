@@ -3,9 +3,8 @@ import AuthenticatedLayout from '@/layouts/AuthenticatedLayout';
 import { useConferencesQuery } from '@/utils/__generated__/graphql';
 import { StarIcon } from '@heroicons/react/solid';
 import { dehydrate, QueryClient } from '@tanstack/react-query';
-import debounce from 'lodash.debounce';
 import Link from 'next/link';
-import { ChangeEvent, ReactElement, useState } from 'react';
+import { ReactElement } from 'react';
 
 export async function getStaticProps() {
   const queryClient = new QueryClient();
@@ -24,30 +23,13 @@ export async function getStaticProps() {
 }
 
 function ConferencesPage() {
-  const [filter, setFilter] = useState<string>();
-  const { data, status, error } = useConferencesQuery({
-    filter: filter ? `%${filter}%` : `%`,
-  });
-
-  const handleFilterChange = debounce(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFilter(event.target.value);
-    },
-    500,
-  );
+  const { data, status, error } = useConferencesQuery();
 
   return (
     <div className="grid grid-flow-row gap-4">
-      <div className="grid items-center justify-between grid-flow-col">
-        <input
-          aria-label="Filter conferences"
-          placeholder="Filter conferences"
-          className="bg-input text-list max-h-11 px-2 py-3 text-sm rounded-md"
-          onChange={handleFilterChange}
-        />
-
+      <div className="grid items-center justify-end grid-flow-col">
         <Link href="/conferences/add" passHref>
-          <a className="text-list hover:border-white hover:text-white border-list flex items-center justify-center w-full px-2 py-1 text-xs transition-colors duration-200 border rounded-md">
+          <a className="text-list hover:border-white hover:text-white border-list flex items-center self-end justify-center w-full px-2 py-1 text-xs transition-colors duration-200 border rounded-md">
             Add Conference
           </a>
         </Link>
@@ -64,13 +46,9 @@ function ConferencesPage() {
       )}
 
       {data?.conferences.length === 0 ? (
-        <p>
-          {filter.length > 0
-            ? 'No conferences match the criteria.'
-            : 'There are no conferences yet.'}
-        </p>
+        <p>There are no conferences yet.</p>
       ) : (
-        <ul>
+        <ul className="grid grid-flow-row gap-4">
           {data?.conferences.map((conference) => {
             const numberOfTalks = conference.talks.length;
 
@@ -89,11 +67,11 @@ function ConferencesPage() {
 
                 {conference.featured && (
                   <span className="grid items-center justify-end grid-flow-col col-span-1 gap-1 text-sm">
-                    <StarIcon className="w-4 h-4" /> Featured
+                    <StarIcon className="fill-yellow-500 w-4 h-4" /> Featured
                   </span>
                 )}
 
-                <span>
+                <span className="col-span-2 text-sm">
                   {numberOfTalks === 0 && 'No talks'}
                   {numberOfTalks === 1 && '1 talk'}
                   {numberOfTalks > 1 && `${numberOfTalks} talks`}
