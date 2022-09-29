@@ -1,17 +1,33 @@
-import type { AppProps } from 'next/app';
 import '@/styles/globals.css';
-import '@fontsource/inter';
-import { NhostNextProvider } from '@nhost/nextjs';
 import { nhost } from '@/utils/nhost';
-import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
 import { queryClient } from '@/utils/react-query-client';
+import '@fontsource/inter';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
+import { NhostNextProvider } from '@nhost/nextjs';
+import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
+import { NextPage } from 'next';
+import type { AppProps } from 'next/app';
+import { ReactElement } from 'react';
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout = NextPage & {
+  getLayout?: (page: ReactElement) => ReactElement;
+};
+export interface MyAppProps extends AppProps {
+  /**
+   * Page component
+   */
+  Component: NextPageWithLayout;
+}
+
+export default function MyApp({ Component, pageProps }: MyAppProps) {
+  const getLayout = Component.getLayout ?? ((page: ReactElement) => page);
+
   return (
     <NhostNextProvider nhost={nhost}>
       <QueryClientProvider client={queryClient}>
         <Hydrate state={pageProps.dehydratedState}>
-          <Component {...pageProps} />
+          {getLayout(<Component {...pageProps} />)}
         </Hydrate>
       </QueryClientProvider>
     </NhostNextProvider>

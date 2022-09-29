@@ -6,36 +6,41 @@ insert_permissions:
     permission:
       check: {}
       columns:
-        - avatar_url
-        - bio
         - id
-        - job_description
         - name
-        - social
         - user_id
+        - bio
+        - social
+        - job_description
+        - avatar_url
+        - conference_id
 select_permissions:
   - role: public
     permission:
       columns:
         - avatar_url
         - bio
-        - id
         - job_description
         - name
         - social
+        - conference_id
+        - id
         - user_id
       filter: {}
+      allow_aggregations: true
   - role: user
     permission:
       columns:
         - avatar_url
         - bio
-        - id
         - job_description
         - name
         - social
+        - conference_id
+        - id
         - user_id
       filter: {}
+      allow_aggregations: true
 delete_permissions:
   - role: user
     permission:

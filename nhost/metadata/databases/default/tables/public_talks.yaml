@@ -28,7 +28,6 @@ select_permissions:
   - role: public
     permission:
       columns:
-        - conference_id
         - description
         - duration
         - end_date
@@ -37,10 +36,10 @@ select_permissions:
         - speaker_id
         - start_date
       filter: {}
+      allow_aggregations: true
   - role: user
     permission:
       columns:
-        - conference_id
         - description
         - duration
         - end_date
@@ -49,6 +48,26 @@ select_permissions:
         - speaker_id
         - start_date
       filter: {}
+      allow_aggregations: true
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - description
+        - duration
+        - end_date
+        - id
+        - name
+        - speaker_id
+        - start_date
+      filter:
+        conference:
+          creator_user_id:
+            _eq: X-Hasura-User-Id
+      check:
+        conference:
+          creator_user_id:
+            _eq: X-Hasura-User-Id
 delete_permissions:
   - role: user
     permission:

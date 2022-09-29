@@ -2,6 +2,13 @@ table:
   name: conferences
   schema: public
 array_relationships:
+  - name: speakers
+    using:
+      foreign_key_constraint_on:
+        column: conference_id
+        table:
+          name: speakers
+          schema: public
   - name: talks
     using:
       foreign_key_constraint_on:
@@ -9,6 +16,20 @@ array_relationships:
         table:
           name: talks
           schema: public
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - featured
+        - description
+        - location
+        - name
+        - slug
+        - end_date
+        - start_date
+        - creator_user_id
+        - id
 select_permissions:
   - role: public
     permission:
@@ -26,6 +47,7 @@ select_permissions:
     permission:
       columns:
         - creator_user_id
+        - description
         - end_date
         - featured
         - id
@@ -34,3 +56,26 @@ select_permissions:
         - slug
         - start_date
       filter: {}
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - creator_user_id
+        - description
+        - end_date
+        - featured
+        - id
+        - location
+        - name
+        - start_date
+      filter:
+        creator_user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+delete_permissions:
+  - role: user
+    permission:
+      backend_only: false
+      filter:
+        creator_user_id:
+          _eq: X-Hasura-User-Id

@@ -9,16 +9,17 @@ export interface SubscribeToConferenceProps {
   /**
    * ID of the featured conference
    */
-  featuredConferenceId: string;
+  conferenceId: string;
 }
 
 export function SubscribeToConference({
-  featuredConferenceId,
+  conferenceId,
 }: SubscribeToConferenceProps) {
   const { mutateAsync, error, reset } = useAddEmailMutation();
 
   const {
     register,
+    reset: resetForm,
     formState: { isSubmitSuccessful, isSubmitting },
     handleSubmit,
   } = useForm<SubscribeFormValues>({
@@ -32,7 +33,7 @@ export function SubscribeToConference({
     try {
       await mutateAsync({
         ticket: {
-          conference_id: featuredConferenceId,
+          conference_id: conferenceId,
           email: values.email,
         },
       });
@@ -41,34 +42,40 @@ export function SubscribeToConference({
     }
   }
 
+  const errorMessage =
+    error instanceof Error
+      ? error.message
+      : 'Unknown error occurred. Please try again later.';
+
   return (
     <div className="mx-auto mt-6">
-      {isSubmitSuccessful && (
-        <h1 className="text-list mt-1 font-medium">
-          Thank you for subscribing!
-        </h1>
+      {!error && isSubmitSuccessful && (
+        <p className="mt-1 font-medium text-list">Thank you for subscribing!</p>
       )}
 
       {error && (
         <div className="flex flex-col space-y-3">
-          <p className="text-list font-medium">
-            {error instanceof Error
-              ? error.message
-              : 'Unknown error occurred. Please try again later.'}
+          <p className="font-medium text-list">
+            {errorMessage.startsWith('Uniqueness violation.')
+              ? 'You are already subscribed to this conference.'
+              : errorMessage}
           </p>
 
           <button
-            className="bg-card flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md"
-            onClick={reset}
+            className="flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md bg-card"
+            onClick={() => {
+              reset();
+              resetForm();
+            }}
           >
-            Clear Error
+            Try Again
           </button>
         </div>
       )}
 
       {!isSubmitSuccessful && (
         <form
-          className="bg-card bg-opacity-80 w-fit flex px-1 py-2 mx-auto space-x-3 border-gray-800 rounded-lg"
+          className="flex px-1 py-2 mx-auto space-x-3 border-gray-800 rounded-lg bg-card bg-opacity-80 w-fit"
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
@@ -84,10 +91,10 @@ export function SubscribeToConference({
               type="submit"
             >
               {isSubmitting ? (
-                <div className=" self-center pl-2 mx-auto align-middle">
+                <div className="self-center pl-2 mx-auto align-middle ">
                   <svg
                     role="status"
-                    className="animate-spin self-center inline w-4 h-4 mr-2 text-white align-middle"
+                    className="self-center inline w-4 h-4 mr-2 text-white align-middle animate-spin"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

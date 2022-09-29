@@ -3,7 +3,7 @@ import { queryClient } from '@/utils/react-query-client';
 import { useDeleteSpeakerMutation } from '@/utils/__generated__/graphql';
 import { useAuthenticated } from '@nhost/react';
 
-export function Speaker({
+export function SpeakerCard({
   id,
   avatar_url,
   name,
