@@ -69,10 +69,9 @@ sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
 nhost up
 ```
 
-The CLI uses seed data (`nhost/seed`) to populate the database with a user and
-a conference.
+> The CLI uses seed data (`nhost/seed`) to populate the database with a user and a conference. Learn more in the [Nhost CLI documentation](https://docs.nhost.io/platform/database#seed-data).
 
-3. Create a `.env.development.local` file in the root with the following content:
+3. Create a `.env.local` file in the root with the following content:
 
 ```sh
 NEXT_PUBLIC_NHOST_SUBDOMAIN=localhost:1337

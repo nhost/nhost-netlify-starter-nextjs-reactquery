@@ -21,5 +21,13 @@ query FeaturedConferences {
         bio
       }
     }
+    speakers {
+      name
+      id
+      social
+      job_description
+      avatar_url
+      bio
+    }
   }
 }

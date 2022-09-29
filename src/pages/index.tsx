@@ -15,11 +15,13 @@ function IndexPage() {
   const { data, status, error } =
     useFeaturedConferencesQuery<FeaturedConferencesQuery>();
 
+  const featuredConference = data?.conferences?.[0];
+
   useEffect(() => {
-    if (status === 'success') {
-      router.push(`/conferences/${data?.conferences[0].slug}`);
+    if (status === 'success' && featuredConference) {
+      router.push(`/conferences/${featuredConference.slug}`);
     }
-  }, [data, router, status]);
+  }, [featuredConference, router, status]);
 
   if (status === 'error' && error) {
     return (
@@ -31,7 +33,7 @@ function IndexPage() {
     );
   }
 
-  if (status === 'loading') {
+  if (status === 'loading' || !featuredConference) {
     return <Loader className="mx-auto" />;
   }
 

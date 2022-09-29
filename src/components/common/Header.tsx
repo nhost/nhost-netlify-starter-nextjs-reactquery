@@ -18,7 +18,7 @@ export function Header() {
     useFeaturedConferencesQuery<FeaturedConferencesQuery>();
 
   const slug =
-    status === 'success' ? data?.conferences[0].slug : conferenceSlug;
+    status === 'success' ? data?.conferences?.[0]?.slug : conferenceSlug;
 
   return (
     <header className="sticky border-b bg-header border-b-brd">

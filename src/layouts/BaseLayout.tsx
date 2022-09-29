@@ -24,14 +24,14 @@ export default function BaseLayout({
   mainContainerProps,
 }: BaseLayoutProps) {
   return (
-    <div className="bg-grid bg-header min-h-screen">
+    <div className="min-h-screen bg-grid bg-header">
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <div className="bg-header bg-grid text-white">
+      <div className="text-white bg-header bg-grid">
         <Header />
 
         <main
