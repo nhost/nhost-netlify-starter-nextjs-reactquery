@@ -1,9 +1,14 @@
-import { Talk as TalkType } from '@/types/Talk';
+import { Talk } from '@/types/Talk';
 import { queryClient } from '@/utils/react-query-client';
 import { useDeleteTalkMutation } from '@/utils/__generated__/graphql';
 import { useAuthenticated } from '@nhost/react';
 
-export type PropType<TObj, TProp extends keyof TObj> = TObj[TProp];
+export interface TalkCardProps extends Talk {
+  /**
+   * Determines whether or not the date should be displayed
+   */
+  hideDate?: boolean;
+}
 
 export function TalkCard({
   id,
@@ -11,28 +16,28 @@ export function TalkCard({
   speaker,
   start_date,
   end_date,
-}: TalkType) {
+  hideDate,
+}: TalkCardProps) {
   const isAuthenticated = useAuthenticated();
 
   const { mutateAsync } = useDeleteTalkMutation({
     onSuccess: () => queryClient.refetchQueries({ type: 'active' }),
   });
 
-  const startMinutes =
-    new Date(start_date).getUTCMinutes() === 0
-      ? '00'
-      : new Date(start_date).getUTCMinutes();
+  const startDate = new Date(start_date);
+  const endDate = new Date(end_date);
 
-  const endMinutes =
-    new Date(end_date).getUTCMinutes() === 0
-      ? '00'
-      : new Date(end_date).getUTCMinutes();
+  const startHours = startDate.getUTCHours().toString().padStart(2, '0');
+  const startMinutes = startDate.getUTCMinutes().toString().padStart(2, '0');
+
+  const endHours = endDate.getUTCHours().toString().padStart(2, '0');
+  const endMinutes = endDate.getUTCMinutes().toString().padStart(2, '0');
 
   return (
-    <div className="bg-card shadow-gray-900 relative flex flex-col w-full py-4 space-y-1 border border-gray-900 rounded-md shadow-sm">
+    <div className="relative flex flex-col w-full p-4 space-y-1 border border-gray-900 rounded-md bg-card">
       {isAuthenticated ? (
         <button
-          className="right-2 top-3 opacity-80 absolute text-red-500"
+          className="absolute text-red-500 right-2 top-3 opacity-80"
           onClick={async () => {
             await mutateAsync({
               id,
@@ -55,17 +60,23 @@ export function TalkCard({
           </svg>
         </button>
       ) : null}
-      <h2 className="text-dim text-xs font-medium">
+
+      {!hideDate && (
+        <p className="text-xs">
+          {startDate.getUTCFullYear()}-
+          {(startDate.getUTCMonth() + 1).toString().padStart(2, '0')}-
+          {startDate.getUTCDate().toString().padStart(2, '0')}
+        </p>
+      )}
+
+      <p className="text-xs font-medium text-dim">
         {start_date
-          ? `${new Date(start_date).getUTCHours()}:${startMinutes
-              .toString()
-              .padStart(2, '0')} to ${new Date(
-              end_date,
-            ).getUTCHours()}:${endMinutes.toString().padStart(2, '0')} UTC`
+          ? `${startHours}:${startMinutes} to ${endHours}:${endMinutes} UTC`
           : '-'}
-      </h2>
-      <h1 className="text-lg font-medium text-white"> {name}</h1>
-      <h1 className="text-xs font-medium text-white"> by {speaker.name}</h1>
+      </p>
+
+      <h2 className="text-lg font-medium text-white"> {name}</h2>
+      <p className="text-xs font-medium text-white"> by {speaker.name}</p>
     </div>
   );
 }

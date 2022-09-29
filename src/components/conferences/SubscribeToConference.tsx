@@ -44,21 +44,19 @@ export function SubscribeToConference({
   return (
     <div className="mx-auto mt-6">
       {isSubmitSuccessful && (
-        <h1 className="text-list mt-1 font-medium">
-          Thank you for subscribing!
-        </h1>
+        <p className="mt-1 font-medium text-list">Thank you for subscribing!</p>
       )}
 
       {error && (
         <div className="flex flex-col space-y-3">
-          <p className="text-list font-medium">
+          <p className="font-medium text-list">
             {error instanceof Error
               ? error.message
               : 'Unknown error occurred. Please try again later.'}
           </p>
 
           <button
-            className="bg-card flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md"
+            className="flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md bg-card"
             onClick={reset}
           >
             Clear Error
@@ -68,7 +66,7 @@ export function SubscribeToConference({
 
       {!isSubmitSuccessful && (
         <form
-          className="bg-card bg-opacity-80 w-fit flex px-1 py-2 mx-auto space-x-3 border-gray-800 rounded-lg"
+          className="flex px-1 py-2 mx-auto space-x-3 border-gray-800 rounded-lg bg-card bg-opacity-80 w-fit"
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
@@ -84,10 +82,10 @@ export function SubscribeToConference({
               type="submit"
             >
               {isSubmitting ? (
-                <div className=" self-center pl-2 mx-auto align-middle">
+                <div className="self-center pl-2 mx-auto align-middle ">
                   <svg
                     role="status"
-                    className="animate-spin self-center inline w-4 h-4 mr-2 text-white align-middle"
+                    className="self-center inline w-4 h-4 mr-2 text-white align-middle animate-spin"
                     viewBox="0 0 100 101"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"

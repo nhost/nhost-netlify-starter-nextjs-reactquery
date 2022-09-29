@@ -50,7 +50,7 @@ function EditConferencePage() {
     register,
     reset,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitSuccessful },
   } = useForm<EditConferenceFormValues>();
 
   const conference = data?.conferences?.[0];
@@ -172,6 +172,10 @@ function EditConferencePage() {
               ? 'Loading...'
               : 'Edit Conference'}
           </button>
+
+          {isSubmitSuccessful && (
+            <p className="text-center">Conference was successfully edited!</p>
+          )}
         </form>
       </div>
 

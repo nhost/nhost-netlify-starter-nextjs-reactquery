@@ -40,7 +40,6 @@ export function AddNewTalk() {
   });
 
   const error = addTalkError || conferenceBySlugError;
-
   const form = useForm<AddTalkFormValues>();
 
   const {
@@ -93,9 +92,9 @@ export function AddNewTalk() {
   }
 
   return (
-    <div className="bg-card flex flex-col w-full px-12 pt-10 pb-10 space-y-8 border border-gray-700 rounded-md">
+    <div className="flex flex-col w-full px-12 pt-10 pb-10 space-y-8 border border-gray-700 rounded-md bg-card">
       {error ? (
-        <div className="bg-opacity-10 px-4 py-4 text-sm text-white bg-red-500 rounded-md">
+        <div className="px-4 py-4 text-sm text-white bg-red-500 rounded-md bg-opacity-10">
           Error:{' '}
           {error instanceof Error
             ? error.message
@@ -109,7 +108,9 @@ export function AddNewTalk() {
           onSubmit={handleSubmit(onSubmit)}
         >
           <Input
-            {...register('title')}
+            {...register('title', {
+              required: { value: true, message: 'This field is required.' },
+            })}
             id="talk-title"
             label="Talk Title"
             placeholder="Talk Title"
@@ -121,7 +122,7 @@ export function AddNewTalk() {
             <div className="col-span-1">
               <label
                 htmlFor="speaker"
-                className="text-list self-center text-xs font-medium"
+                className="self-center text-xs font-medium text-list"
               >
                 Speaker
               </label>
@@ -152,7 +153,7 @@ export function AddNewTalk() {
           <div className="grid grid-flow-row gap-2">
             <button
               disabled={addTalkStatus === 'loading'}
-              className="bg-header py-3 text-xs font-medium text-white border-gray-500 rounded-md"
+              className="py-3 text-xs font-medium text-white border-gray-500 rounded-md bg-header"
               type="submit"
             >
               {addTalkStatus === 'loading' ? 'Loading...' : 'Add New Talk'}
