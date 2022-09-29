@@ -1,5 +1,4 @@
 import { Loader } from '@/components/common/Loader';
-import { ConferenceDetails } from '@/components/conferences/ConferenceDetails';
 import { data } from '@/data/info';
 import {
   FeaturedConferencesQuery,
@@ -10,6 +9,21 @@ import { dehydrate, QueryClient } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { ReactElement, useEffect } from 'react';
 
+export async function getStaticProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery(
+    useFeaturedConferencesQuery.getKey(),
+    useFeaturedConferencesQuery.fetcher(),
+  );
+
+  return {
+    props: {
+      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
+    },
+    revalidate: 60,
+  };
+}
 function IndexPage() {
   const router = useRouter();
   const { data, status, error } =
@@ -45,23 +59,7 @@ function IndexPage() {
     );
   }
 
-  return <ConferenceDetails conference={data?.conferences?.[0]} />;
-}
-
-export async function getStaticProps() {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery(
-    useFeaturedConferencesQuery.getKey(),
-    useFeaturedConferencesQuery.fetcher(),
-  );
-
-  return {
-    props: {
-      dehydratedState: JSON.parse(JSON.stringify(dehydrate(queryClient))),
-    },
-    revalidate: 60,
-  };
+  return null;
 }
 
 IndexPage.getLayout = function getLayout(page: ReactElement) {
