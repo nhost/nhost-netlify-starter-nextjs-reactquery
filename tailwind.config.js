@@ -11,7 +11,6 @@ module.exports = {
         primary: '#0f1218',
         header: '#16171a',
         secondary: '#1b212a',
-        grayish: '#fafafa',
         list: '#bfbfbf',
         brd: '#363739',
         dim: '#e1dfdf',

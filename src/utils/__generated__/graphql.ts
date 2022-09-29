@@ -5587,6 +5587,14 @@ export type AddConferenceMutationVariables = Exact<{
 
 export type AddConferenceMutation = { __typename?: 'mutation_root', insert_conferences_one?: { __typename?: 'conferences', id: any } | null };
 
+export type UpdateConferenceMutationVariables = Exact<{
+  id: Scalars['uuid'];
+  object: Conferences_Set_Input;
+}>;
+
+
+export type UpdateConferenceMutation = { __typename?: 'mutation_root', update_conferences_by_pk?: { __typename?: 'conferences', id: any } | null };
+
 export type DeleteConferenceMutationVariables = Exact<{
   id: Scalars['uuid'];
 }>;
@@ -5763,6 +5771,23 @@ export const useAddConferenceMutation = <
       options
     );
 useAddConferenceMutation.fetcher = (variables: AddConferenceMutationVariables, options?: RequestInit['headers']) => fetchData<AddConferenceMutation, AddConferenceMutationVariables>(AddConferenceDocument, variables, options);
+export const UpdateConferenceDocument = `
+    mutation UpdateConference($id: uuid!, $object: conferences_set_input!) {
+  update_conferences_by_pk(pk_columns: {id: $id}, _set: $object) {
+    id
+  }
+}
+    `;
+export const useUpdateConferenceMutation = <
+      TError = unknown,
+      TContext = unknown
+    >(options?: UseMutationOptions<UpdateConferenceMutation, TError, UpdateConferenceMutationVariables, TContext>) =>
+    useMutation<UpdateConferenceMutation, TError, UpdateConferenceMutationVariables, TContext>(
+      ['UpdateConference'],
+      (variables?: UpdateConferenceMutationVariables) => fetchData<UpdateConferenceMutation, UpdateConferenceMutationVariables>(UpdateConferenceDocument, variables)(),
+      options
+    );
+useUpdateConferenceMutation.fetcher = (variables: UpdateConferenceMutationVariables, options?: RequestInit['headers']) => fetchData<UpdateConferenceMutation, UpdateConferenceMutationVariables>(UpdateConferenceDocument, variables, options);
 export const DeleteConferenceDocument = `
     mutation DeleteConference($id: uuid!) {
   delete_conferences_by_pk(id: $id) {

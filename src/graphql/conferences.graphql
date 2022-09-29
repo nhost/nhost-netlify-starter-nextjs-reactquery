@@ -30,6 +30,12 @@ mutation AddConference($conference: conferences_insert_input!) {
   }
 }
 
+mutation UpdateConference($id: uuid!, $object: conferences_set_input!) {
+  update_conferences_by_pk(pk_columns: { id: $id }, _set: $object) {
+    id
+  }
+}
+
 mutation DeleteConference($id: uuid!) {
   delete_conferences_by_pk(id: $id) {
     id

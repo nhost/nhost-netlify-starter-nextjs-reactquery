@@ -60,15 +60,14 @@ update_permissions:
   - role: user
     permission:
       columns:
-        - featured
+        - creator_user_id
         - description
+        - end_date
+        - featured
+        - id
         - location
         - name
-        - slug
-        - end_date
         - start_date
-        - creator_user_id
-        - id
       filter:
         creator_user_id:
           _eq: X-Hasura-User-Id

@@ -78,13 +78,13 @@ export function AddNewSpeaker() {
   }
 
   return (
-    <div className="bg-card w-full px-12 pt-10 pb-10 border border-gray-700 rounded-md">
+    <div className="w-full px-12 pt-10 pb-10 border border-gray-700 rounded-md bg-card">
       <form
         className="grid grid-flow-row gap-8"
         onSubmit={handleSubmit(onSubmit)}
       >
         {error ? (
-          <div className="bg-opacity-10 px-4 py-4 text-sm text-white bg-red-500 rounded-md">
+          <div className="px-4 py-4 text-sm text-white bg-red-500 rounded-md bg-opacity-10">
             Error:{' '}
             {error instanceof Error
               ? error.message
@@ -140,7 +140,7 @@ export function AddNewSpeaker() {
           <button
             type="submit"
             disabled={addSpeakerStatus === 'loading'}
-            className="bg-header py-3 text-xs font-medium text-white border-gray-500 rounded-md"
+            className="py-3 text-xs font-medium text-white border-gray-500 rounded-md bg-header"
           >
             {addSpeakerStatus === 'loading' ? 'Loading...' : 'Add New Speaker'}
           </button>

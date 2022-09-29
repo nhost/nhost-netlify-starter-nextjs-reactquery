@@ -14,12 +14,12 @@ export function TalksGrid() {
 
   if (status === 'error' && error) {
     return (
-      <div className="bg-opacity-10 w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md">
-        <h1 className="pb-2 text-xl font-medium leading-none text-center text-white">
+      <div className="w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md bg-opacity-10">
+        <p className="pb-2 text-xl font-medium leading-none text-center text-white">
           {error instanceof Error
             ? error.message
             : 'Unknown error occurred. Please try again.'}
-        </h1>
+        </p>
       </div>
     );
   }
@@ -35,7 +35,7 @@ export function TalksGrid() {
       {talks.length === 0 ? (
         'There are no talks on this conference yet.'
       ) : (
-        <div className="place-content-between grid grid-cols-3 gap-8 py-5 text-center text-white">
+        <div className="grid grid-cols-3 gap-8 py-5 text-center text-white place-content-between">
           {talks.map((talk) => {
             return (
               <TalkCard
