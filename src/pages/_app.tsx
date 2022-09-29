@@ -2,6 +2,8 @@ import '@/styles/globals.css';
 import { nhost } from '@/utils/nhost';
 import { queryClient } from '@/utils/react-query-client';
 import '@fontsource/inter';
+import '@fontsource/inter/500.css';
+import '@fontsource/inter/600.css';
 import { NhostNextProvider } from '@nhost/nextjs';
 import { Hydrate, QueryClientProvider } from '@tanstack/react-query';
 import { NextPage } from 'next';

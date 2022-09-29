@@ -12,14 +12,10 @@ query Conferences {
       name
       start_date
       end_date
-      speaker {
-        name
-        id
-        social
-        job_description
-        avatar_url
-        bio
-      }
+    }
+    speakers(order_by: { name: asc }) {
+      id
+      avatar_url
     }
   }
 }

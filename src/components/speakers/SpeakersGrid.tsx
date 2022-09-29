@@ -14,7 +14,7 @@ export function SpeakersGrid() {
 
   if (status === 'error' && error) {
     return (
-      <div className="bg-opacity-10 w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md">
+      <div className="w-full max-w-xl px-4 py-4 mx-auto text-sm bg-red-500 rounded-md bg-opacity-10">
         <h1 className="pb-2 text-xl font-medium leading-none text-center text-white">
           {error instanceof Error
             ? error.message
@@ -35,7 +35,7 @@ export function SpeakersGrid() {
       {speakers.length === 0 ? (
         'There are no speakers on this conference yet.'
       ) : (
-        <div className="grid w-full grid-cols-4 gap-6">
+        <div className="grid w-full grid-cols-2 gap-6 sm:grid-cols-3 md:grid-cols-4">
           {speakers?.map((speaker) => {
             return (
               <SpeakerCard

@@ -35,7 +35,7 @@ export function TalksGrid() {
       {talks.length === 0 ? (
         'There are no talks on this conference yet.'
       ) : (
-        <div className="grid grid-cols-3 gap-8 py-5 text-center text-white place-content-between">
+        <div className="grid grid-cols-2 gap-6 text-center text-white sm:grid-cols-3 md:grid-cols-4 place-content-between">
           {talks.map((talk) => {
             return (
               <TalkCard

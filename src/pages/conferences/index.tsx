@@ -75,7 +75,7 @@ function ConferencesPage() {
       {isAuthenticated && (
         <div className="grid items-center justify-end grid-flow-col">
           <Link href="/conferences/add" passHref>
-            <a className="text-list hover:border-white hover:text-white border-list flex items-center self-end justify-center w-full px-2 py-1 text-xs transition-colors duration-200 border rounded-md">
+            <a className="flex items-center self-end justify-center w-full px-2 py-1 text-xs transition-colors duration-200 border rounded-md text-list hover:border-white hover:text-white border-list">
               Add Conference
             </a>
           </Link>
@@ -97,8 +97,6 @@ function ConferencesPage() {
       ) : (
         <ul className="grid grid-flow-row gap-4">
           {data?.conferences.map((conference) => {
-            const numberOfTalks = conference.talks.length;
-
             return (
               <li
                 key={conference.id}
@@ -111,33 +109,35 @@ function ConferencesPage() {
               >
                 <div
                   className={twMerge(
-                    !isAuthenticated ? 'col-span-2' : 'col-span-1',
+                    !isAuthenticated
+                      ? 'col-span-2'
+                      : 'col-span-2 sm:col-span-1',
                   )}
                 >
                   <Link href={`/conferences/${conference.slug}`}>
-                    <a className="hover:underline text-xl font-medium">
+                    <a className="text-xl font-medium hover:underline">
                       {conference.name}
                     </a>
                   </Link>
                 </div>
 
                 {isAuthenticated && (
-                  <div className="group-hover:opacity-100 grid justify-end grid-flow-col col-span-1 gap-2 opacity-0">
+                  <div className="grid justify-start mt-2 sm:mt-0 order-4 grid-flow-col col-span-2 gap-2 opacity-100 sm:order-[initial] sm:justify-end sm:col-span-1 group-hover:opacity-100 sm:opacity-0">
                     <Link href={`/conferences/${conference.slug}/edit`}>
-                      <a className="hover:underline inline-grid items-center grid-flow-col gap-1">
+                      <a className="grid items-center justify-center w-full grid-flow-col gap-1 px-2 py-1 text-xs transition-colors duration-200 border rounded-md text-list hover:border-white hover:text-white border-list">
                         <PencilIcon className="w-4 h-4" /> Edit
                       </a>
                     </Link>
 
                     <button
-                      className="hover:underline grid items-center grid-flow-col gap-1 bg-transparent"
+                      className="grid items-center justify-center w-full grid-flow-col gap-1 px-2 py-1 text-xs transition-colors duration-200 border rounded-md text-list hover:border-white hover:text-white border-list"
                       onClick={() => handleDelete(conference.id)}
                     >
                       <TrashIcon className="w-4 h-4" /> Delete
                     </button>
 
                     <button
-                      className="hover:underline grid items-center grid-flow-col gap-1 bg-transparent"
+                      className="grid items-center justify-center w-full grid-flow-col gap-1 px-2 py-1 text-xs transition-colors duration-200 border rounded-md text-list hover:border-white hover:text-white border-list"
                       onClick={() => handleSetFeatured(conference.id)}
                     >
                       <StarIcon className="w-4 h-4" /> Set Featured
@@ -146,15 +146,39 @@ function ConferencesPage() {
                 )}
 
                 {conference.featured && (
-                  <div className="grid items-center justify-start grid-flow-col col-span-1 gap-1 text-sm">
-                    <StarIcon className="fill-yellow-500 w-4 h-4" /> Featured
+                  <div className="grid items-center justify-start grid-flow-col col-span-2 gap-1 text-sm sm:col-span-1">
+                    <StarIcon className="w-4 h-4 fill-yellow-500" /> Featured
                   </div>
                 )}
 
-                <div className="col-span-2 text-sm">
-                  {numberOfTalks === 0 && 'No talks'}
-                  {numberOfTalks === 1 && '1 talk'}
-                  {numberOfTalks > 1 && `${numberOfTalks} talks`}
+                <div className="grid justify-start grid-flow-col col-span-2">
+                  {conference.speakers.slice(0, 8).map(({ id, avatar_url }) => (
+                    <div
+                      key={id}
+                      className="w-6 h-6 -ml-2 overflow-hidden rounded-full shadow-sm shadow-gray-900 first-of-type:ml-0"
+                    >
+                      <picture>
+                        <source
+                          srcSet={avatar_url}
+                          type="image/webp"
+                          width={50}
+                          height={50}
+                          className="object-cover aspect-square"
+                        />
+                        <img
+                          alt="Speaker's photo"
+                          src={avatar_url}
+                          width={50}
+                          height={50}
+                          className="object-cover aspect-square"
+                        />
+                      </picture>
+                    </div>
+                  ))}
+
+                  {conference.speakers.length === 0 && (
+                    <p className="text-sm">No speakers</p>
+                  )}
                 </div>
               </li>
             );
@@ -164,7 +188,6 @@ function ConferencesPage() {
     </div>
   );
 }
-
 ConferencesPage.getLayout = function getLayout(page: ReactElement) {
   return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;
 };

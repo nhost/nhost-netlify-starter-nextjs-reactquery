@@ -19,6 +19,7 @@ export function SubscribeToConference({
 
   const {
     register,
+    reset: resetForm,
     formState: { isSubmitSuccessful, isSubmitting },
     handleSubmit,
   } = useForm<SubscribeFormValues>({
@@ -41,25 +42,33 @@ export function SubscribeToConference({
     }
   }
 
+  const errorMessage =
+    error instanceof Error
+      ? error.message
+      : 'Unknown error occurred. Please try again later.';
+
   return (
     <div className="mx-auto mt-6">
-      {isSubmitSuccessful && (
+      {!error && isSubmitSuccessful && (
         <p className="mt-1 font-medium text-list">Thank you for subscribing!</p>
       )}
 
       {error && (
         <div className="flex flex-col space-y-3">
           <p className="font-medium text-list">
-            {error instanceof Error
-              ? error.message
-              : 'Unknown error occurred. Please try again later.'}
+            {errorMessage.startsWith('Uniqueness violation.')
+              ? 'You are already subscribed to this conference.'
+              : errorMessage}
           </p>
 
           <button
             className="flex flex-col px-2 py-2 mx-auto text-xs text-center rounded-md bg-card"
-            onClick={reset}
+            onClick={() => {
+              reset();
+              resetForm();
+            }}
           >
-            Clear Error
+            Try Again
           </button>
         </div>
       )}

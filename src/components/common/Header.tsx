@@ -84,10 +84,16 @@ export function Header() {
 
         <div className="flex">
           {isAuthenticated && (
-            <div className="grid items-center grid-flow-col gap-4">
+            <div className="grid items-center grid-flow-col gap-2 md:gap-4">
               <Link href="/conferences" passHref>
-                <a className="px-2 py-1 text-xs text-list hover:underline">
+                <a className="hidden px-2 py-1 text-xs text-list hover:underline md:block">
                   Manage Conferences
+                </a>
+              </Link>
+
+              <Link href="/conferences" passHref>
+                <a className="block px-2 py-1 text-xs text-list hover:underline md:hidden">
+                  Manage
                 </a>
               </Link>
 
@@ -101,10 +107,16 @@ export function Header() {
           )}
 
           {!isAuthenticated && !isLoading && (
-            <div className="grid items-center grid-flow-col gap-4">
+            <div className="grid items-center grid-flow-col gap-2 md:gap-4">
               <Link href="/conferences" passHref>
-                <a className="px-2 py-1 text-xs text-list hover:underline">
+                <a className="hidden px-2 py-1 text-xs text-list hover:underline md:block">
                   Browse Conferences
+                </a>
+              </Link>
+
+              <Link href="/conferences" passHref>
+                <a className="block px-2 py-1 text-xs text-list hover:underline md:hidden">
+                  Browse
                 </a>
               </Link>
 

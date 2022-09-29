@@ -8,7 +8,7 @@ interface DayProps {
 
 export function Day({ talks, dayNumber }: DayProps) {
   return (
-    <div className="grid content-start justify-center grid-flow-row gap-y-4">
+    <div className="grid content-start grid-flow-row gap-y-4">
       <h2 className="text-xl font-semibold text-white">Day {dayNumber}</h2>
 
       {talks.length === 0 ? (

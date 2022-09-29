@@ -4814,8 +4814,8 @@ export type Tickets_Bool_Exp = {
 
 /** unique or primary key constraints on table "tickets" */
 export enum Tickets_Constraint {
-  /** unique or primary key constraint on columns "email" */
-  TicketsEmailKey = 'tickets_email_key',
+  /** unique or primary key constraint on columns "email", "conference_id" */
+  TicketsEmailConferenceIdKey = 'tickets_email_conference_id_key',
   /** unique or primary key constraint on columns "id" */
   TicketsPkey = 'tickets_pkey'
 }
@@ -5578,7 +5578,7 @@ export type ConferenceBySlugQuery = { __typename?: 'query_root', conferences: Ar
 export type ConferencesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type ConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null, speaker: { __typename?: 'speakers', name: string, id: any, social?: string | null, job_description?: string | null, avatar_url?: string | null, bio?: string | null } }> }> };
+export type ConferencesQuery = { __typename?: 'query_root', conferences: Array<{ __typename?: 'conferences', id: any, name: string, slug: string, location?: string | null, featured: boolean, start_date?: any | null, end_date?: any | null, talks: Array<{ __typename?: 'talks', id: any, name: string, start_date?: any | null, end_date?: any | null }>, speakers: Array<{ __typename?: 'speakers', id: any, avatar_url?: string | null }> }> };
 
 export type AddConferenceMutationVariables = Exact<{
   conference: Conferences_Insert_Input;
@@ -5725,14 +5725,10 @@ export const ConferencesDocument = `
       name
       start_date
       end_date
-      speaker {
-        name
-        id
-        social
-        job_description
-        avatar_url
-        bio
-      }
+    }
+    speakers(order_by: {name: asc}) {
+      id
+      avatar_url
     }
   }
 }
