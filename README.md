@@ -55,7 +55,7 @@ yarn dev
 
 <details><summary><h5>Steps for setting up local development with the Nhost CLI</h5></summary>
 
-When you start developing your front-end you will see that there's data already preloaded. This is coming from an environment Nhost has prepared to run the `conference` application. In order to make changes to the backend (tables, columns, permissions, etc...) you need to start a local Nhost environment yourself.
+When you start developing your front-end you will see that there's data already preloaded. This is coming from an environment Nhost has prepared to run the `conference` project. In order to make changes to the backend (tables, columns, permissions, etc...) you need to start a local Nhost environment yourself.
 
 1. Install the [Nhost CLI](https://docs.nhost.io/platform/overview/get-started-with-nhost-cli):
 
@@ -63,7 +63,7 @@ When you start developing your front-end you will see that there's data already 
 sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
 ```
 
-2. Start the Nhost application:
+2. Start the Nhost project:
 
 ```sh
 nhost up
@@ -210,9 +210,9 @@ This will generate the hooks in `src/utils/__generated__/graphql.ts`.
 - Serverless Functions: AWS Lambdas.
 ```
 
-<details><summary><h5>Steps for creating an Nhost application</h5></summary>
+<details><summary><h5>Steps for creating an Nhost project</h5></summary>
 
-Log in to your Nhost dashboard and click the **Create Your First Project** button.
+Log in to your [Nhost Dashboard](https://app.nhost.io) and click the **Create Your First Project** button.
 
 <p align="center" width="100%">
     <img width="55%"" src="https://docs.nhost.io/assets/images/nhost-dashboard-8e4da43291a39f8f9b127c470d75c079.png"> 
@@ -221,16 +221,20 @@ Log in to your Nhost dashboard and click the **Create Your First Project** butto
 Next, give your new Nhost app a name, select a geographic region for your Nhost services and click Create App.
 
 <p align="center" width="100%">
-    <img width="55%"" src="https://docs.nhost.io/assets/images/new-nhost-project-fc7763b2a8df9513ead5280e305bd554.png"> 
+    <img width="55%" src="https://docs.nhost.io/assets/images/new-nhost-project-fc7763b2a8df9513ead5280e305bd554.png"> 
 </p>
 
 After a few seconds, you should get a PostgreSQL database, a GraphQL API with Hasura, file storage, and authentication set up.
+
+**(Optional):** Any user you add to the project through the "Users" section of the Nhost Dashboard can access the manager dashboard of the `conference` project. You'll need to verify the email address of the user before they can sign in.
+
+Learn more about email verification in the [Nhost documentation](https://docs.nhost.io/platform/authentication/sign-in-with-email-and-password#verified-emails).
 
 </details>
 
 <details><summary><h5>Connecting this repository to Nhost</h5></summary>
 
-Nhost supports a Git workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your application will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost Dashboard:
+Nhost supports a Git workflow which means that you can safely work locally with the CLI and when you are ~~confident~~ with your changes, you can push to your repository and your project will be automatically deployed (any following updates you push to your code will also be automatically be deployed.) To allow this, you need to connect this repository to your Nhost projects through the Nhost Dashboard:
 
 1. Fork/clone this repository to your GitHub account.
 
@@ -239,19 +243,19 @@ Nhost supports a Git workflow which means that you can safely work locally with 
 3. Find your repository on the Nhost Dashboard & connect it:
 
 <p align="center" width="100%">
-    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png"> 
+    <img width="55%" src="https://user-images.githubusercontent.com/20285232/181070306-851187ca-6595-4cdc-b458-b62b479479db.png"> 
 </p>
 
-4. Once connected, the application will automatically deploy.
+4. Once connected, the project will automatically deploy.
 
 <p align="center" width="100%" height="100%">
-    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070624-f12571a4-6b77-4a2f-acab-9e156306b392.png"> 
+    <img width="55%" src="https://user-images.githubusercontent.com/20285232/181070624-f12571a4-6b77-4a2f-acab-9e156306b392.png"> 
 </p>
 
-5. Add changes to your application. Any changes you push to your repository will also be automatically be deployed (you can see your deployments on the "Deployments" section of the console)
+5. Add changes to your project. Any changes you push to your repository will also be automatically be deployed (you can see your deployments on the "Deployments" section of the console).
 
 <p align="center" width="100%">
-    <img width="55%"" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
+    <img width="55%" src="https://user-images.githubusercontent.com/20285232/181070633-c3c67e94-981c-4574-954b-c643448f387e.png"> 
 </p>
 
 </details>
@@ -265,7 +269,7 @@ Nhost supports a Git workflow which means that you can safely work locally with 
 3. Run `yarn dev` (or `npm run dev`.)
 4. Make your desired changes to the front-end.
 5. Provide the necessary permissions to the Netlify application for your GitHub repository.
-6. Once you import the repository, add the correct environment variables from your Nhost application:
+6. Once you import the repository, add the correct environment variables from your Nhost project:
 
 ```
 NEXT_PUBLIC_NHOST_SUBDOMAIN=YOUR_NHOST_APP_SUBDOMAIN
@@ -275,12 +279,12 @@ NEXT_PUBLIC_NHOST_REGION=YOUR_NHOST_APP_REGION
 You can select these variables from your app overview:
 
 <p align="center" width="100%">
-<img width="33%"" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
+<img width="33%" src="https://user-images.githubusercontent.com/20285232/181790261-065d7e61-6986-4acc-94d7-5a7f828da76d.png"> 
 </p>
 
 Then add the variables to your Netlify Deployment:
 
 <p align="center" width="100%">
-<img width="50%"" src="https://user-images.githubusercontent.com/20285232/181789867-ebd6a197-8125-47a1-9bd1-8f8f01e24f29.png"> 
+<img width="50%" src="https://user-images.githubusercontent.com/20285232/181789867-ebd6a197-8125-47a1-9bd1-8f8f01e24f29.png"> 
 </p>
 </details>
