@@ -25,7 +25,11 @@ export function SpeakersGrid() {
   }
 
   if (status === 'loading') {
-    return <Loader className="mx-auto" />;
+    return (
+      <p className="grid justify-start grid-flow-col gap-1">
+        <Loader /> Loading speakers...
+      </p>
+    );
   }
 
   const { speakers } = data?.conferences?.[0] || {};

@@ -1,3 +1,4 @@
+import { Loader } from '@/components/common/Loader';
 import { useAuthenticationStatus } from '@nhost/react';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
@@ -19,7 +20,13 @@ export default function AuthenticatedLayout({
   }, [isLoading, isAuthenticated, router]);
 
   if (isLoading || !isAuthenticated) {
-    return <BaseLayout {...props}>Loading user...</BaseLayout>;
+    return (
+      <BaseLayout {...props}>
+        <p className="grid justify-start grid-flow-col gap-1">
+          <Loader /> Loading user...
+        </p>
+      </BaseLayout>
+    );
   }
 
   return <BaseLayout {...props}>{children}</BaseLayout>;

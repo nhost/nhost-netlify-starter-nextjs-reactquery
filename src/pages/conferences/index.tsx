@@ -1,3 +1,4 @@
+import { Loader } from '@/components/common/Loader';
 import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
 import { queryClient } from '@/utils/react-query-client';
@@ -82,7 +83,11 @@ function ConferencesPage() {
         </div>
       )}
 
-      {status === 'loading' && <p>Loading conferences...</p>}
+      {status === 'loading' && (
+        <p className="grid justify-start grid-flow-col gap-1">
+          <Loader /> Loading conferences...
+        </p>
+      )}
 
       {error && (
         <p className="text-red-500">

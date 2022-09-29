@@ -25,7 +25,11 @@ export function TalksGrid() {
   }
 
   if (status === 'loading') {
-    return <Loader className="mx-auto" />;
+    return (
+      <p className="grid justify-start grid-flow-col gap-1">
+        <Loader /> Loading talks...
+      </p>
+    );
   }
 
   const { talks } = data?.conferences?.[0] || {};

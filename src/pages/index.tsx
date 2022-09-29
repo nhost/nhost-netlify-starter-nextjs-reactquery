@@ -21,6 +21,10 @@ function IndexPage() {
     if (status === 'success' && featuredConference) {
       router.push(`/conferences/${featuredConference.slug}`);
     }
+
+    if (status === 'success' && !featuredConference) {
+      router.push('/conferences');
+    }
   }, [featuredConference, router, status]);
 
   if (status === 'error' && error) {
@@ -34,7 +38,11 @@ function IndexPage() {
   }
 
   if (status === 'loading' || !featuredConference) {
-    return <Loader className="mx-auto" />;
+    return (
+      <p className="grid justify-start grid-flow-col gap-1">
+        <Loader /> Loading featured conference...
+      </p>
+    );
   }
 
   return <ConferenceDetails conference={data?.conferences?.[0]} />;

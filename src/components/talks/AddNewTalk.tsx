@@ -88,7 +88,11 @@ export function AddNewTalk() {
   }
 
   if (conferenceBySlugStatus === 'loading') {
-    return <Loader className="mx-auto" />;
+    return (
+      <p className="grid justify-start grid-flow-col gap-1">
+        <Loader /> Loading conference...
+      </p>
+    );
   }
 
   return (

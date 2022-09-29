@@ -26,7 +26,11 @@ function ConferenceDetailsPage() {
   }
 
   if (status === 'loading') {
-    return <Loader className="mx-auto" />;
+    return (
+      <p className="grid justify-start grid-flow-col gap-1">
+        <Loader /> Loading conference...
+      </p>
+    );
   }
 
   return <ConferenceDetails conference={data?.conferences?.[0]} />;

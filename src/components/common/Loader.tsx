@@ -8,7 +8,7 @@ export function Loader({ className, ...props }: LoaderProps) {
     <svg
       aria-label="Loading"
       className={twMerge(
-        'animate-spin dark:text-gray-600 fill-gray-300 w-8 h-8 mr-2 text-gray-400',
+        'animate-spin dark:text-gray-600 fill-gray-300 w-6 h-6 mr-2 text-gray-400',
         className,
       )}
       viewBox="0 0 100 101"
