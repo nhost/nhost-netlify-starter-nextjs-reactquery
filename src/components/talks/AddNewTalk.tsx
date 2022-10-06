@@ -1,13 +1,13 @@
 import { Input } from '@/components/common/Input';
 import { Loader } from '@/components/common/Loader';
 import { SpeakerListbox } from '@/components/speakers/SpeakerListbox';
+import { DEFAULT_CONFERENCE_SLUG } from '@/data/constants';
 import { Speaker } from '@/types/Speaker';
 import { queryClient } from '@/utils/react-query-client';
 import {
   useAddTalkMutation,
   useConferenceBySlugQuery,
 } from '@/utils/__generated__/graphql';
-import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
@@ -22,14 +22,10 @@ export function AddNewTalk() {
   const [formInitialized, setFormInitialized] = useState(false);
 
   const {
-    query: { conferenceSlug },
-  } = useRouter();
-
-  const {
     data: conferenceBySlug,
     status: conferenceBySlugStatus,
     error: conferenceBySlugError,
-  } = useConferenceBySlugQuery({ slug: conferenceSlug as string });
+  } = useConferenceBySlugQuery({ slug: DEFAULT_CONFERENCE_SLUG });
 
   const {
     mutateAsync: addTalk,

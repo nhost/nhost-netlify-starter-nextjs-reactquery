@@ -2,7 +2,7 @@ import { data } from '@/data/info';
 import BaseLayout from '@/layouts/BaseLayout';
 import { ReactElement } from 'react';
 
-const AboutPage = () => {
+function AboutPage() {
   return (
     <div className="flex flex-col max-w-2xl mx-auto my-6 text-center">
       <div className="mx-auto text-center">
@@ -56,7 +56,7 @@ const AboutPage = () => {
           </defs>
         </svg>
       </div>
-      <h1 className="text-dim mt-4 text-2xl font-semibold text-center">
+      <h1 className="mt-4 text-2xl font-semibold text-center text-dim">
         {data.pageTitle}
       </h1>
       <p className="pt-2 text-center">{data.description}</p>
@@ -65,14 +65,14 @@ const AboutPage = () => {
           target="_blank"
           rel="noopener noreferrer"
           href={data.repoLink}
-          className="hover:underline text-blue-500"
+          className="text-blue-500 hover:underline"
         >
           {data.repoLink}
         </a>
       </div>
     </div>
   );
-};
+}
 
 AboutPage.getLayout = function getLayout(page: ReactElement) {
   return <BaseLayout title={data.pageTitle}>{page}</BaseLayout>;

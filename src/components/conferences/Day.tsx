@@ -2,7 +2,13 @@ import { TalkCard } from '@/components/talks/TalkCard';
 import { Talk } from '@/types/Talk';
 
 interface DayProps {
+  /**
+   * List of talks for the day
+   */
   talks: Talk[];
+  /**
+   * Number of the day
+   */
   dayNumber: number;
 }
 

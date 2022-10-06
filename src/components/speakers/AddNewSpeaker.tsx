@@ -4,7 +4,6 @@ import {
   useAddSpeakerMutation,
   useConferenceBySlugQuery,
 } from '@/utils/__generated__/graphql';
-import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 type AddNewSpeakerValues = {
@@ -16,14 +15,12 @@ type AddNewSpeakerValues = {
 
 export function AddNewSpeaker() {
   const {
-    query: { conferenceSlug },
-  } = useRouter();
-
-  const {
     data: conferenceBySlug,
     status: conferenceBySlugStatus,
     error: conferenceBySlugError,
-  } = useConferenceBySlugQuery({ slug: conferenceSlug as string });
+  } = useConferenceBySlugQuery({
+    slug: 'the-conference-platform-for-developers',
+  });
 
   const {
     mutateAsync: addSpeaker,

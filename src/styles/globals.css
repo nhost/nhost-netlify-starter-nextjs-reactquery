@@ -27,12 +27,6 @@ body {
     1px 1px 0 #000;
 }
 
-.gradient {
-  color: transparent;
-  background-clip: text;
-  background-image: linear-gradient(89.97deg, #9819a0 0.02%, #0d7f8c 123.85%);
-}
-
 .text-shadow {
   text-shadow: 5px 1px 10px #00000005;
 }

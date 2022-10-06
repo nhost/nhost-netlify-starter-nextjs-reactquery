@@ -1,5 +1,5 @@
 {
-  "extends": ["next", "prettier"],
+  "extends": ["next/core-web-vitals", "prettier"],
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
   "settings": { "react": { "version": "detect" } },

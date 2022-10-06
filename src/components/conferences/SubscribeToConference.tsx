@@ -87,7 +87,7 @@ export function SubscribeToConference({
 
           <div>
             <button
-              className="w-[66px] bg-gradient-to-r from-indigo-800 to-pink-900 flex flex-col px-2 py-2 text-sm font-medium text-white rounded-md"
+              className="w-[66px] bg-gradient-to-r from-indigo-700 to-pink-700 flex flex-col px-2 py-2 text-sm font-medium text-white rounded-md"
               type="submit"
             >
               {isSubmitting ? (

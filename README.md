@@ -57,13 +57,15 @@ yarn dev
 
 When you start developing your front-end you will see that there's data already preloaded. This is coming from an environment Nhost has prepared to run the `conference` project. In order to make changes to the backend (tables, columns, permissions, etc...) you need to start a local Nhost environment yourself.
 
-1. Install the [Nhost CLI](https://docs.nhost.io/platform/overview/get-started-with-nhost-cli):
+1. Install [Docker](https://docs.docker.com/get-docker/).
+
+2. Install the [Nhost CLI](https://docs.nhost.io/platform/overview/get-started-with-nhost-cli):
 
 ```sh
 sudo curl -L https://raw.githubusercontent.com/nhost/cli/main/get.sh | bash
 ```
 
-2. Start the Nhost project:
+3. Start the Nhost project:
 
 ```sh
 nhost up
@@ -71,13 +73,13 @@ nhost up
 
 > The CLI uses seed data (`nhost/seed`) to populate the database with a user and a conference. Learn more in the [Nhost CLI documentation](https://docs.nhost.io/platform/database#seed-data).
 
-3. Create a `.env.local` file in the root with the following content:
+4. Create a `.env.local` file in the root with the following content:
 
 ```sh
 NEXT_PUBLIC_NHOST_SUBDOMAIN=localhost:1337
 ```
 
-4. Start (or restart) the Next.js application:
+5. Start (or restart) the Next.js application:
 
 ```sh
 yarn dev
@@ -111,9 +113,7 @@ Inside this folder you are going to see both the specification for the backend (
 │   ├── graphql/
 │   │   └── *.gql
 │   ├── pages/
-│   │   ├── conferences/
-│   |   |   └── [conferenceSlug]/
-│   |   └── *.tsx
+│   |   └── *.tsx (every )
 │   ├── types/
 │   │   └── *.ts
 │   └── utils/

@@ -1,15 +1,11 @@
 import { Loader } from '@/components/common/Loader';
+import { DEFAULT_CONFERENCE_SLUG } from '@/data/constants';
 import { useConferenceBySlugQuery } from '@/utils/__generated__/graphql';
-import { useRouter } from 'next/router';
 import { TalkCard } from './TalkCard';
 
 export function TalksGrid() {
-  const {
-    query: { conferenceSlug },
-  } = useRouter();
-
   const { data, status, error } = useConferenceBySlugQuery({
-    slug: conferenceSlug as string,
+    slug: DEFAULT_CONFERENCE_SLUG,
   });
 
   if (status === 'error' && error) {
