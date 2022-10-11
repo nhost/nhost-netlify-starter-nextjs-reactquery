@@ -50,7 +50,7 @@ Inside this project, you are going to see both the specification for the backend
 │   ├── graphql/
 │   │   └── *.gql
 │   ├── pages/
-│   |   └── *.tsx (every )
+│   |   └── *.tsx
 │   ├── types/
 │   │   └── *.ts
 │   └── utils/
