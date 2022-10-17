@@ -282,7 +282,7 @@ Clicking this button will start the setup for a new project and deployment
 Clone this repo with the `git clone` command. Then install the [Netlify CLI](https://docs.netlify.com/cli/get-started/) tool and run `netlify init`.
 
 ```sh
-git clone https://github.com/netlify-templates/kpop-stack
+git clone https://github.com/nhost/nhost-netlify-starter-nextjs-reactquery.git
 
 npm install netlify-cli -g # to install the Netlify CLI tool globally
 
