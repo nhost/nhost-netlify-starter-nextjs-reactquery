@@ -30,7 +30,7 @@ You can check out the video walkthrough of the project [here](https://user-image
 
 ### Previews
 
-- Backend: https://rhhvmcjwixtxiumktygi.nhost.run/console
+- Backend: https://cuzwcdqwgmhbxqetfbci.nhost.run/console
 - Front-end: https://fanciful-concha-7412d8.netlify.app/
 
 ### Project Structure Walkthrough
